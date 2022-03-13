@@ -1,90 +1,55 @@
-<!-- validasi login -->
-<?php
-// session mulai
-session_start();
-//include/require koneksi
-require 'conn.php';
-// jika teken tombol login
-if (isset($_POST['login'])) {
-    // simpan inputan yg terjadi pada variabel post dan massukan ke variable $username dan $password
-    $username = $_POST['txtusername'];
-    $password = $_POST['txtpassword'];
-    // jalankan query dari sql, koneksi dari conn, lalu ambil semua isi dalam tb_user, jika inputan sesuai user dan pass
-    $query = mysqli_query($koneksi, "SELECT * FROM tb_user WHERE username='$username' and password='$password'");
-    // kondisi, jika query benar, 
-    if (mysqli_num_rows($query) === 1) {
-        // masukan ke variabel data
-        $data = mysqli_fetch_object($query);
-        // ambil nilai dan masukan ke dalam session
-        $_SESSION['login'] = true;
-        $_SESSION['fullname'] = $data->fullname;
-        $_SESSION['username'] = $data->username;
-        $_SESSION['role'] = $data->role;
-        // arahkan ke dashboard-> index
-        header('location:dashboard/index.php');
-        // jika salah maka munculkan pop up login gagal, username/password salah
-    } else {
-    }
-    //    echo $error = 'Username atau password yang anda masukan salah';
-}
-?>
-<!-- end val  -->
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login </title>
-    <link rel="stylesheet" href="../C45/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    <link rel="stylesheet" type="text/css" href="../C45/assets/Parsley.js-2.9.2/src/parsley.css">
-    <!-- <link rel="stylesheet" type="text/css" href="https://parsleyjs.org/src/parsley.css"> -->
-    <script src="../C45/assets/js/jquery.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-    <script src="../c45/assets/Parsley.js-2.9.2/dist/parsley.min.js"></script>
-    <!-- <script src="https://parsleyjs.org/dist/parsley.min.js"></script> -->
-    <script src="../c45/assets/Parsley.js-2.9.2/dist/i18n/id.js"></script>
-    <!-- <script src="https://parsleyjs.org/dist/i18n/id.js"></script> -->
-    <style>
-        body {
-            background-image: url('dist/img/photo4.jpg');
-        }
-    </style>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
+	<title>Login Admin</title>
+	<link rel="stylesheet" type="text/css" href="assets/login.css" media="screen" />
+	<script type="text/javascript">
+		function validasi(form){
+
+			if (form.user.value == "" & form.pass.value == ""){
+				alert("Masukkan Username dan Password!");
+				form.user.focus();
+				return (false);
+			} 
+			if (form.user.value == ""){
+				alert("Masukkan Username!");
+				form.user.focus();
+				return (false);
+			}     
+			if (form.pass.value == ""){
+				alert("Masukkan Password!");
+				form.pass.focus();
+				return (false);
+			}
+			return (true);
+		}
+	</script>
 </head>
-
 <body>
-    <div class="container-fluid vh-100">
-        <div class="" style="margin-top:100px">
-            <div class="rounded d-flex justify-content-center">
-                <div class="col-md-4 col-sm-12 shadow-lg p-4 bg-light" style="border-radius: 30px;">
-                    <div class="text-center py-2">
-                    <img src="dist/img/avatar2.png" style="border-radius: 150px; height: 80px; width: 80px;" alt="...">
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-primary"> LOGIN </h3>
-                    </div>
-                    <hr>
-                    <form method="Post" id="form" data-parsley-validate>
-                        <div class="form-group">
-                            <label for="text">Username</label>
-                            <input required type="text" class="form-control" name="txtusername" placeholder="Enter Username" required data-parsley-length="[4, 12]" autocomplete>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input required type="password" class="form-control" name="txtpassword" placeholder="Enter Password" required data-parsley-length="[4, 12]">
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="submit" id="submit" name="login" value="Login" class="btn btn-success" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-<script>
-    $('#form').parsley();
-</script>
+	<div>
+		<center><h2>Login</h2><h4>Sistem Penentuan Jurusan Siswa</h4><br></center>
+	</div>
+	<div class="wrap">
+		<div id="content">			
+			<div id="main">		
+				<div class="full_w">
+				<center>	<img src="dist/img/user-image-with-black-background.png"  alt=""></center>
+					<form action="cekLogin.php" method="post" onSubmit="return validasi(this)">
 
+						<label for="user">Username:</label>
+							<input id="user" name="user" class="text" placeholder="Username"/>
+						<label for="pass">Password:</label>
+							<input id="pass" name="pass" type="password" class="text" placeholder="Password"/>
+						<div class="sep"></div>
+							<center><button type="submit">Login</button></center>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
 </html>
