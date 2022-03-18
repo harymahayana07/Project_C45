@@ -11,7 +11,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>Executive | Landing, Corporate &amp; Business Templatee</title>
+    <title>Skripsi | C45</title>
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
@@ -20,6 +20,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
     <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.css" integrity="sha384-AvIUz0OeqILp4fNEi51z9HqDHi/FXyvB54l4CFzgP3pV8V67SxE8j0CEmLHWIu/e" crossorigin="anonymous"/>
     <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
     <!-- ===============================================-->
@@ -35,15 +36,14 @@
     <!-- ===============================================-->
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
-        <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="index.html"> <img class="me-3" src="assets/img/gallery/logo.png" alt="" /></a>
+        <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="index.html"> <img class="me-3" src="assets/img/logo-sma2.png" alt="" /></a>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Home</a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#events">Events</a></li>
+              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Beranda</a></li>
+              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#events">Event</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#services">Our Services </a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#testimonial">Testimonial </a></li>
-              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#country">Country </a></li>
+              <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#country">Profile </a></li>
             </ul>
             <form class="ps-lg-5">
               <a class="btn btn-outline-primary order-0" type="submit" href="../login.php"> Login </a>
@@ -63,13 +63,13 @@
 
         <div class="container">
           <div class="row align-items-center min-vh-md-75 mt-7">
-            <div class="col-md-7 col-lg-6 py-6 text-sm-start text-center">
-              <h1 class="mt-3 mb-sm-4 display-4 fw-light lh-sm fs-4 fs-lg-6 fs-xxl-7"> KLASIFIKASI JURUSAN <span class="text-primary"> SMAN 2 MATARAM </span><br class="d-block d-lg-none d-xl-block" /> DENGAN METODE C4.5 </h1>
-              <p class="mb-5 fs-1 lh-lg">Algoritma C4.5 sangat direkomendasikan untuk klasifikasi penjurusan karena atribbut yang dimiliki dalam penentuan jurusan ini mayoritas kedalam numerik, dimana perhitungannya lebih baik untuk menghadapi data-data yang bersifat numerik.</p><a class="btn btn-lg btn-primary hover-top btn-glow" href="#">Apply Online
+            <div class="col-md-7 col-lg-6 py-4 text-sm-start ">
+              <h1 class="mt-3 mb-sm-4 display-4 fw-light lh-sm fs-4 fs-lg-6 fs-xxl-7"> KLASIFIKASI JURUSAN <span class=""> SMAN 2 MATARAM </span><br class="d-block d-lg-none d-xl-block" /> DENGAN METODE C4.5 </h1>
+              <p class="mb-5 fs-1 lh-lg text-justify" >Algoritma C4.5 sangat direkomendasikan untuk klasifikasi penjurusan karena atribbut yang dimiliki dalam penentuan jurusan ini mayoritas kedalam numerik, dimana perhitungannya lebih baik untuk menghadapi data-data yang bersifat numerik.</p><a class="btn btn-lg btn-primary hover-top btn-glow" href="#">Apply Online
                 <svg class="bi bi-arrow-right-short ms-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
                 </svg></a>
-              <div class="mt-5 mt-xl-6">
+              <div class="mt-5 mt-xl-6 mb-4">
                 <ul class="list-unstyled list-inline mb-0">
                   <li class="list-inline-item me-3"><a class="text-decoration-none" href="#!">
                       <svg class="bi bi-facebook text-facebook" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -84,6 +84,7 @@
                         <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"> </path>
                       </svg></a></li>
                 </ul>
+
               </div>
             </div>
           </div>
@@ -92,6 +93,8 @@
 
 
       <!-- ============================================-->
+
+
       <!-- <section> begin ============================-->
       <section class="bg-100 py-5">
 
@@ -99,7 +102,21 @@
           <div class="row">
             <div class="col-12 mx-auto align-items-center text-center">
               <h6 class="mb-4 text-uppercase fw-light fs-1 mb-6">Featured Universities</h6>
-              <div class="carousel slide" id="carouselExampleDark" data-bs-ride="carousel">
+              <div class="carouSnap carouSnap-round" data-ratio="square">
+	<div class="numbSlide"></div>
+	<div class="bnSlide"></div>
+	<div class="photoCollect">
+		<img src="assets/img/gallery/country-2.png" alt="#alt-image" title="#title-image" loading="lazy" />
+		<img src="assets/img/gallery/country-3.png" alt="#alt-image" title="#title-image" loading="lazy" />
+
+		<img src="assets/img/gallery/news-1.png" alt="#alt-image" title="#title-image" loading="lazy" />
+		<img src="assets/img/gallery/news-2.png" alt="#alt-image" title="#title-image" loading="lazy" />
+
+		<img src="assets/img/gallery/news-3.png" alt="#alt-image" title="#title-image" loading="fast" />
+	</div>
+	<div class="indCat"></div>
+</div>
+              <!-- <div class="carousel slide" id="carouselExampleDark" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-bs-interval="10000">
                     <div class="row h-100 justify-content-center">
@@ -143,7 +160,7 @@
                     </ol>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div><!-- end of .container-->
@@ -157,7 +174,7 @@
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
-      <section id="services">
+      <!-- <section id="services">
 
         <div class="container">
           <div class="row">
@@ -236,15 +253,16 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div><!-- end of .container-->
+          </div> -->
+       <!--  </div>end of .container-->
 
-      </section>
+      <!-- </section> -->
       <!-- <section> close ============================-->
       <!-- ============================================-->
 
 
 
+<!-- caraousnap -->
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
@@ -971,6 +989,7 @@
     <script src="vendors/is/is.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.js" integrity="sha384-1mHmu4fyyExEnjX4DGx0QsSsPWPIaJ7oFcQ3LIL/gAT7t5i6mNfW80xJOzEHfNgv" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
   </body>
