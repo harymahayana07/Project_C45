@@ -8,7 +8,7 @@ if (!isset($_SESSION['usr'])){
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>C45 | Home</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -33,6 +33,7 @@ if (!isset($_SESSION['usr'])){
   <!-- summernote -->
   <!-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css"> -->
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -87,6 +88,12 @@ if (!isset($_SESSION['usr'])){
             <a href="data-training.php" class="nav-link">
               <i class="nav-icon fas fa-server"></i>
               <p> Data Training</p></a>
+
+          </li>
+          <li class="nav-item">
+            <a href="data-siswa.php" class="nav-link">
+              <i class="nav-icon fas fa-server"></i>
+              <p> Data Siswa</p></a>
 
           </li>
           <li class="nav-item">

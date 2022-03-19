@@ -15,15 +15,13 @@
          <div class="card-group">
            <div class="card-body bg-primary " style="text-align: center;">
              <h5 class="card-title">Login Sebagai :</h5>
-             <p class="card-text"> <b>Ni Luh Putu Sri Astiti</b> </p>
+             <p class="card-text mt-4"> <b><?=$_SESSION['nama']?></b> </p>
            </div>
            <div class="card-footer">
              <div class="row">
-             <div class="col-md-8">
-               <a href="#" class="btn btn-secondary" role="button" data-bs-toggle="button"><i class="fas fa-key"></i>  Ganti Sandi </a>
-             </div>
-             <div class="col-md-4">
-               <a href="#" class="btn btn-danger" role="button" data-bs-toggle="button"><i class="fas fa-sign-out-alt"></i>  Logout </a>
+             <div class="col">
+               <a href="#" class="btn btn-secondary" role="button" data-bs-toggle="button"><i class="fas fa-key"></i> Ubah Sandi</a>
+               <a href="#" class="btn btn-danger" role="button" data-bs-toggle="button"><i class="fas fa-sign-out-alt"></i> LogOut</a>
              </div>
              </div>
            </div>

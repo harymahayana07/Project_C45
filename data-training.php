@@ -22,11 +22,7 @@ if (isset($_GET['act'])) {
     header('location:index.php?menu=data');
   }
 } else {
-  include "form_data_training.php";
-  $query = mysql_query("select * from data_training order by(id)");
-  $jumlah = mysql_num_rows($query);
 ?>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -42,31 +38,35 @@ if (isset($_GET['act'])) {
               <li class="breadcrumb-item active">Data Training</li>
             </ol>
 
+            <!-- tombol tambah data -->
           </div><!-- /.col -->
-          <div class="mt-3">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <i class="fas fa-plus-circle"> Tambah Data Training</i>
+          <tr>
+          <div class=" col-sm-4 col-md-4 mt-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
+              <i class="fas fa-plus-circle"> Tambah Data</i>
             </button>
-
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="fas fa-plus-circle"> Hapus Data</i>
+            </button>
           </div>
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
 
-              <form method=POST action=''>
+                <form method=POST action=''>
+                  <div class="modal-header bg-info">
+                    <h5 class="modal-title" id="tambahDataModal">Tambah Data Training</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
 
-                <div class="modal-header bg-info">
-                  <h5 class="modal-title" id="exampleModalLabel">Tambah Data Training</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-               
-                  <!-- Input addon -->
-                  <!--  -->
-                  <div class="card card-info">
-                    <div class="card-body">
-                     
+                    <!-- Input addon -->
+                    <!--  -->
+                    <div class="card card-info">
+                      <div class="card-body">
+
                         <!-- ppdb -->
                         <div class="form-group">
 
@@ -134,29 +134,21 @@ if (isset($_GET['act'])) {
                           <input type='radio' name='peminatan' value='BAHASA' required="required"> BAHASA
                         </div>
                         <!--  -->
-                        <!-- motivasi -->
-                        <div class="form-group">
-                          <label for="jp">Motivasi :</label>
-                          <br>
-                          <input type='checkbox' name='motivasi' value='sendiri' required="required"> Sendiri &nbsp;&nbsp;&nbsp;
-                          <input type='checkbox' name='motivasi' value='orang-tua' required="required"> Orang Tua &nbsp;&nbsp;&nbsp;
-                          <input type='checkbox' name='motivasi' value='orang-lain' required="required"> Orang Lain
-                        </div>
-                        <!--  -->
-                          
-                     
+                       
+
+
+                      </div>
+                      <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <input type="button" class="btn btn-secondary" value="Batal" data-bs-dismiss="modal">
-                  <input type="button" name="submit" class="btn btn-primary" value="Simpan">
-                </div>
-                <?php
-                             if (isset($_POST['submit'])) {
-                        mysql_query("INSERT INTO data_training 
-			                      	(ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,minat,motivasi)
+                  <div class="modal-footer">
+                    <input type="button" class="btn btn-secondary" value="Batal" data-bs-dismiss="modal">
+                    <input type="button" name="submit" class="btn btn-primary" value="Simpan">
+                  </div>
+                  <?php
+                  if (isset($_POST['submit'])) {
+                    mysql_query("INSERT INTO data_training 
+			                      	(ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,minat)
                             VALUES(
                               '$_POST[txtppdb]',
                               '$_POST[txtbhs_id]',
@@ -165,16 +157,38 @@ if (isset($_GET['act'])) {
                               '$_POST[txtipa]',
                               '$_POST[txtips]',
                               '$_POST[txtskhu]',
-                              '$_POST[peminatan]',
-                              '$_POST[motivasi]'
+                              '$_POST[peminatan]'
+
+                             
                             )");
-                         }
-                         ?>
-              </form>
-              
+                  }
+                  ?>
+                </form>
+
               </div>
             </div>
           </div>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-warning">
+                <h5>Hapus Data Training</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Yakin Hapus Semua Data ?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                  <button type="button" class="btn btn-primary"> Ya </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
 
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -237,7 +251,7 @@ if (isset($_GET['act'])) {
 ?>
 <!-- end table -->
 
-<!-- Button trigger modal -->
+
 
 <script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
 <?php
