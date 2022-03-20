@@ -23,6 +23,11 @@ if (isset($_GET['act'])) {
   }
 } else {
 ?>
+
+
+
+
+  <!--  -->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -38,18 +43,49 @@ if (isset($_GET['act'])) {
               <li class="breadcrumb-item active">Data Training</li>
             </ol>
 
+            <!--  -->
+
+
+            <!--  -->
+
             <!-- tombol tambah data -->
           </div><!-- /.col -->
-          <tr>
-          <div class=" col-sm-4 col-md-4 mt-4">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
-              <i class="fas fa-plus-circle"> Tambah Data</i>
-            </button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <i class="fas fa-plus-circle"> Hapus Data</i>
-            </button>
-          </div>
+
+          <!--  -->
+          <section class="content">
+            <div class="container-fluid mt-3">
+              <!--  -->
+              <div class="row mb-2" style="float: left;">
+               
+                  <div class="col-md-4 col-4">
+                    <!-- small box -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
+                      <i class="fas fa-plus-circle"> Tambah Data </i>
+                    </button>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-md-4 col-4">
+                    <!-- small box -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <i class="fas fa-plus-circle"> Hapus Data </i>
+                    </button>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-md-4 col-4">
+                    <!-- small box -->
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <i class="fas fa-plus-circle"> Import Data </i>
+                    </button>
+
+                  </div>
+                
+                  <!-- ./col -->
+                </div>
+                <!-- /.row -->
+              </div>
+          </section>
           <!-- Modal -->
           <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
             <div class="modal-dialog">
@@ -134,7 +170,7 @@ if (isset($_GET['act'])) {
                           <input type='radio' name='peminatan' value='BAHASA' required="required"> BAHASA
                         </div>
                         <!--  -->
-                       
+
 
 
                       </div>
@@ -168,14 +204,12 @@ if (isset($_GET['act'])) {
               </div>
             </div>
           </div>
-
-
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header bg-warning">
-                <h5>Hapus Data Training</h5>
+                  <h5>Hapus Data Training</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -195,6 +229,7 @@ if (isset($_GET['act'])) {
     </div>
   </div>
   <!-- /.content-header -->
+
   <!-- data table -->
   <?php
   if ($jumlah == 0) {
