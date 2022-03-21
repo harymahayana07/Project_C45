@@ -23,11 +23,11 @@ if (isset($_GET['act'])) {
   }
 } else {
 ?>
-
-
-
-
-  <!--  -->
+  <style>
+    .btn {
+      margin-bottom: 8px;
+    }
+  </style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -36,57 +36,41 @@ if (isset($_GET['act'])) {
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Data Training</h1>
-          </div><!-- /.col -->
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
               <li class="breadcrumb-item active">Data Training</li>
             </ol>
-
-            <!--  -->
-
-
-            <!--  -->
-
-            <!-- tombol tambah data -->
-          </div><!-- /.col -->
-
-          <!--  -->
+          </div>
           <section class="content">
             <div class="container-fluid mt-3">
               <!--  -->
               <div class="row mb-2" style="float: left;">
-               
-                  <div class="col-md-4 col-4">
-                    <!-- small box -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
-                      <i class="fas fa-plus-circle"> Tambah Data </i>
-                    </button>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-md-4 col-4">
-                    <!-- small box -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <i class="fas fa-plus-circle"> Hapus Data </i>
-                    </button>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-md-4 col-4">
-                    <!-- small box -->
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <i class="fas fa-plus-circle"> Import Data </i>
-                    </button>
-
-                  </div>
-                
-                  <!-- ./col -->
+                <div class="col-md-4 col-6">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
+                    <i class="fas fa-plus-circle"> Tambah Data </i>
+                  </button>
                 </div>
-                <!-- /.row -->
+
+                <div class="col-md-4 col-6">
+                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#hapusData">
+                    <i class="fas fa-trash-alt"> Hapus Data </i>
+                  </button>
+                </div>
+
+                <div class="col-md-4 col-6">
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importData">
+                    <i class="fas fa-plus-circle"> Import Data </i>
+                  </button>
+                </div>
+
               </div>
+
+            </div>
           </section>
-          <!-- Modal -->
+          <!-- Modal tambah data -->
           <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -125,42 +109,31 @@ if (isset($_GET['act'])) {
                           <label for="indo">Nilai Bahasa Indonesia :</label>
                           <input type="text" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98.5" required>
                         </div>
-
-                        <!--  -->
                         <!-- Nilai Matematika -->
                         <div class="form-group">
                           <label for="math">Nilai Matematika :</label>
                           <input type="text" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98.5" required>
                         </div>
-
-                        <!--  -->
                         <!-- Nilai bahasa inggris -->
                         <div class="form-group">
                           <label for="ing">Nilai Bahasa Inggris :</label>
                           <input type="text" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98.5" required>
                         </div>
-
-                        <!--  -->
                         <!-- Nilai ipa -->
                         <div class="form-group">
                           <label for="alam">Nilai Ilmu Pengetahuan Alam :</label>
                           <input type="text" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98.5" required>
                         </div>
-
-                        <!--  -->
                         <!-- Nilai ips -->
                         <div class="form-group">
                           <label for="sosial">Nilai Ilmu Pengetahuan Sosial :</label>
                           <input type="text" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98.5" required>
                         </div>
-
-                        <!--  -->
                         <!-- Nilai skhu -->
                         <div class="form-group">
                           <label for="hu">Nilai SKHU :</label>
                           <input type="text" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required>
                         </div>
-                        <!--  -->
                         <!-- minat jurusan -->
                         <div class="form-group">
                           <label for="jp">Jurusan Peminatan :</label>
@@ -170,9 +143,6 @@ if (isset($_GET['act'])) {
                           <input type='radio' name='peminatan' value='BAHASA' required="required"> BAHASA
                         </div>
                         <!--  -->
-
-
-
                       </div>
                       <!-- /.card-body -->
                     </div>
@@ -194,8 +164,6 @@ if (isset($_GET['act'])) {
                               '$_POST[txtips]',
                               '$_POST[txtskhu]',
                               '$_POST[peminatan]'
-
-                             
                             )");
                   }
                   ?>
@@ -204,8 +172,8 @@ if (isset($_GET['act'])) {
               </div>
             </div>
           </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!-- Modal hapus data -->
+          <div class="modal fade" id="hapusData" tabindex="-1" aria-labelledby="hapusDataModal" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header bg-warning">
@@ -223,30 +191,57 @@ if (isset($_GET['act'])) {
             </div>
           </div>
           <!--  -->
+          <!-- Modal import data -->
+          <div class="modal fade" id="importData" tabindex="-1" aria-labelledby="importDataModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-warning">
+                  <h5>Import Data Training</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Input File : </label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                  <button type="button" class="btn btn-primary"> Upload </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
 
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
   </div>
   <!-- /.content-header -->
-
   <!-- data table -->
   <?php
   if ($jumlah == 0) {
-    echo "<center><h3>Data training masih kosong...</h3></center>";
+    echo "<center><h3>Data Training masih kosong...</h3></center>";
   } else {
     echo "Jumlah data training: " . $jumlah;
   ?>
     <table bgcolor='#7c96ba' border='1' cellspacing='0' cellspading='0' align='center' width=900>
       <tr align='center'>
         <th>No</th>
-        <th>Instansi</th>
-        <th>Status</th>
-        <th>Jurusan</th>
-        <th>Nilai Rata UN</th>
-        <th>Status Kerja</th>
-        <th>Motivasi</th>
-        <th><b>Prestasi</b></th>
+        <th>PPDB</th>
+        <th>bhs_indonesia</th>
+        <th>Matematika</th>
+        <th>bhs_inggris</th>
+        <th>Ipa</th>
+        <th>Ips</th>
+        <th>SKHU</th>
+        <th><b>Peminatan</b></th>
         <th>Action</th>
       </tr>
       <?php
@@ -263,13 +258,14 @@ if (isset($_GET['act'])) {
       ?>
         <tr bgcolor=<?php echo $warna; ?> align='center'>
           <td><?php echo $no; ?></td>
-          <td><?php echo $row['instansi']; ?></td>
-          <td><?php echo $row['status']; ?></td>
-          <td><?php echo $row['jurusan']; ?></td>
-          <td><?php echo $row['rata_un']; ?></td>
-          <td><?php echo $row['kerja']; ?></td>
-          <td><?php echo $row['motivasi']; ?></td>
-          <td><b><?php echo $row['ipk']; ?></b></td>
+          <td><?php echo $row['ppdb']; ?></td>
+          <td><?php echo $row['bhs_indonesia']; ?></td>
+          <td><?php echo $row['matematika']; ?></td>
+          <td><?php echo $row['bhs_inggris']; ?></td>
+          <td><?php echo $row['ipa']; ?></td>
+          <td><?php echo $row['ips']; ?></td>
+          <td><?php echo $row['skhu']; ?></td>
+          <td><b><?php echo $row['minat']; ?></b></td>
           <td>
             <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>">Update | </a>
             <a href="data_training.php?act=delete&id=<?php echo $row['id']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data?')">Delete</a>
