@@ -75,10 +75,11 @@ if (!isset($_SESSION['usr'])){
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+      <nav class="mt-2" id="menu">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               
           <li class="nav-item">
             <a href="dashboard.php" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -91,7 +92,7 @@ if (!isset($_SESSION['usr'])){
 
           </li>
           <li class="nav-item">
-            <a href="data-siswa.php" class="nav-link">
+            <a href="data-user.php" class="nav-link">
               <i class="nav-icon fas fa-server"></i>
               <p> Data Siswa</p></a>
 

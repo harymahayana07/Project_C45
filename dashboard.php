@@ -2,7 +2,12 @@
  require 'sidebar.php';
  require 'navbar.php';
  ?>
- 
+ <?php
+    session_start();
+    if (!isset($_SESSION['usr'])){
+        header("location:login.php");
+    }
+?>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->

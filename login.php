@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
 	<title>Login Admin</title>
 	<link rel="stylesheet" type="text/css" href="assets/login.css" media="screen" />
@@ -36,7 +36,7 @@
 		<div id="content">			
 			<div id="main">		
 				<div class="full_w">
-				<center>	<img src="dist/img/user-image-with-black-background.png"  alt=""></center>
+				<center><img src="dist/img/user-image-with-black-background.png"  alt=""></center>
 					<form action="cekLogin.php" method="post" onSubmit="return validasi(this)">
 
 						<label for="user">Username:</label>
