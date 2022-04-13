@@ -1,22 +1,11 @@
- <?php 
- require 'sidebar.php';
- require 'navbar.php';
- ?>
- <?php
-    session_start();
-    if (!isset($_SESSION['usr'])){
-        header("location:login.php");
-    }
-?>
- <!-- Content Wrapper. Contains page content -->
- <div class="content-wrapper">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
@@ -53,7 +42,6 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
-
                 <p>Bounce Rate</p>
               </div>
               <div class="icon">
@@ -83,7 +71,6 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>65</h3>
-
                 <p>Unique Visitors</p>
               </div>
               <div class="icon">
@@ -131,10 +118,6 @@
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
-
-           
-
-
           </section>
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -167,10 +150,6 @@
               </div>
             </div>
             <!-- /.card -->
-
-            <!-- solid sales graph -->
-          
-
             <!-- Calendar -->
             <div class="card bg-gradient-success">
               <div class="card-header border-0">
@@ -218,6 +197,3 @@
     </section>
     <!-- /.content -->
   </div>
-  <?php 
-  require 'footer.php';
-  ?>

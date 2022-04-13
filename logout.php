@@ -4,5 +4,5 @@
     unset($_SESSION['pwd']);
 	unset($_SESSION['lvl']);
     session_destroy();
-    header("location:login.php");
+    header("location:login-form.php");
 ?>

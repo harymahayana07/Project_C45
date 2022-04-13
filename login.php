@@ -38,7 +38,6 @@
 				<div class="full_w">
 				<center><img src="dist/img/user-image-with-black-background.png"  alt=""></center>
 					<form action="cekLogin.php" method="post" onSubmit="return validasi(this)">
-
 						<label for="user">Username:</label>
 							<input id="user" name="user" class="text" placeholder="Username"/>
 						<label for="pass">Password:</label>
