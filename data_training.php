@@ -1,14 +1,12 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['usr'])){
-        header("location:login-form.php");
-    }
+session_start();
+if (!isset($_SESSION['usr'])) {
+  header("location:login-form.php");
+}
 ?>
 <?php
 require 'partial/sidebar.php';
 require 'partial/navbar.php';
-?>
-<?php
 include "koneksi.php";
 if (isset($_GET['act'])) {
   $action = $_GET['act'];
@@ -177,12 +175,14 @@ if (isset($_GET['act'])) {
         <div class="modal-body">
           Yakin Hapus Semua Data ?
         </div>
-        <form method="POST" enctype="multipart/form-data" action="upload.php?data=training">
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-          <a href="index.php?menu=data&act=delete_all" type="button" class="btn btn-primary"> Ya </a>
+          <!--  -->
+          <a href="index.php?menu=data&act=delete_all" class="btn btn-primary"> Ya </a>
+          <!--  -->
         </div>
-        </form>
+
       </div>
     </div>
   </div>
@@ -200,7 +200,8 @@ if (isset($_GET['act'])) {
           <div class="form-group">
             <label for="exampleInputFile">Input File : </label>
             <div class="input-group">
-   <form method="POST" enctype="multipart/form-data" action="upload.php?data=training">
+
+              <form method="POST" enctype="multipart/form-data" action="upload.php?data=training">
                 <div class="custom-file">
                   <input type="file" name="userfile">
                 </div>
@@ -209,8 +210,9 @@ if (isset($_GET['act'])) {
         </div>
         <div class="modal-footer">
           <input name="upload" type="submit" value="import">
-          </div>
-   </form>
+        </div>
+        </form>
+
       </div>
     </div>
   </div>

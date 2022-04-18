@@ -1,4 +1,3 @@
-<!-- taro session -->
 <!DOCTYPE html>
 
 <html lang="en">
@@ -78,194 +77,211 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <?php
-            if ($_SESSION['lvl'] == 'admin') {
-            ?>
-              <li class="nav-item">
-                <a href="index.php" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p> Dashboard </i></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="data-training.php" class="nav-link">
-                  <i class="nav-icon fas fa-server"></i>
-                  <p> Data Training</p>
-                </a>
-                <!-- end session admin  -->
-              <?php
-            }
-              ?>
-              <!--  -->
-              </li>
-              <li class="nav-item">
-                <a href="data-user.php" class="nav-link">
-                  <i class="nav-icon fas fa-server"></i>
-                  <p> Data Siswa</p>
-                </a>
 
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-edit"></i>
-                  <p>
-                    Forms
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="pages/forms/general.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>General Elements</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/forms/advanced.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Advanced Elements</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/forms/editors.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Editors</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/forms/validation.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Validation</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-table"></i>
-                  <p>
-                    Tables
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="pages/tables/simple.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Simple Tables</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/tables/data.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>DataTables</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>
-                        Login & Register v1
-                        <i class="fas fa-angle-left right"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="pages/examples/login.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Login v1</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/examples/register.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Register v1</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/examples/forgot-password.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Forgot Password v1</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/examples/recover-password.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Recover Password v1</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>
-                        Login & Register v2
-                        <i class="fas fa-angle-left right"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="pages/examples/login-v2.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Login v2</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/examples/register-v2.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Register v2</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/examples/forgot-password-v2.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Forgot Password v2</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/examples/recover-password-v2.html" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Recover Password v2</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/examples/lockscreen.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Lockscreen</p>
-                    </a>
-                  </li>
+            <li class="nav-item">
+              <a href="index.php" accesskey='1' class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p> Dashboard </i></p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="data_training.php" accesskey='2' class="nav-link">
+                <i class="nav-icon fas fa-server"></i>
+                <p> Data Training</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="data-user.php" accesskey='3' class="nav-link">
+                <i class="nav-icon fas fa-server"></i>
+                <p> Data Siswa</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="mining.php" accesskey='4' class="nav-link">
+                <i class="nav-icon fas fa-server"></i>
+                <p> Mining </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pohon_tree.php" accesskey='5' class="nav-link">
+                <i class="nav-icon fas fa-server"></i>
+                <p> Pohon Keputusan </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="data-user.php" accesskey='6' class="nav-link">
+                <i class="nav-icon fas fa-server"></i>
+                <p> Hasil Prediksi </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="data-user.php" accesskey='3' class="nav-link">
+                <i class="nav-icon fas fa-server"></i>
+                <p> Data User </p>
+              </a>
+            </li>
 
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-search"></i>
-                  <p>
-                    Search
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="pages/search/simple.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Simple Search</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="logout.php" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p style="color: red;">Logout</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                  Forms
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/forms/general.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>General Elements</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/forms/advanced.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Advanced Elements</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/forms/editors.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Editors</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/forms/validation.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Validation</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                  Tables
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/tables/simple.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Simple Tables</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/tables/data.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>DataTables</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Login & Register v1
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="pages/examples/login.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Login v1</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/register.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Register v1</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/forgot-password.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Forgot Password v1</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/recover-password.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Recover Password v1</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Login & Register v2
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="pages/examples/login-v2.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Login v2</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/register-v2.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Register v2</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/forgot-password-v2.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Forgot Password v2</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/examples/recover-password-v2.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Recover Password v2</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="pages/examples/lockscreen.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Lockscreen</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-search"></i>
+                <p>
+                  Search
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/search/simple.html" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Simple Search</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="logout.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p style="color: red;">Logout</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
           </ul>
         </nav>
