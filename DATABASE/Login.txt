@@ -1,0 +1,7 @@
+Admin
+user: admin
+pass: admin
+
+User 
+user: NIM
+pass: NIM

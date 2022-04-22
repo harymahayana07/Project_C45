@@ -1,5 +1,5 @@
  <!-- Modal tambah data -->
- <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
+ <div class="modal fade" id="tambahDataTraining" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
    <div class="modal-dialog">
      <div class="modal-content">
        <div class="modal-header bg-info">

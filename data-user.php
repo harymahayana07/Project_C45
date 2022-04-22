@@ -4,6 +4,27 @@
 		header("location:login-form.php");
 	}
 	?>
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SMANDA | DATA SISWA </title>
+		<!-- Google Font: Source Sans Pro -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+		<!-- DataTables -->
+		<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+		<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
+		<link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+
+		<link rel="stylesheet" href="dist/css/adminlte.min.css">
+		<!-- overlayScrollbars -->
+		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+	</head>
 	<?php
 	require 'partial/sidebar.php';
 	require 'partial/navbar.php';
@@ -59,7 +80,7 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-6">
-							<h1 class="m-0">Data Siswa</h1>
+							<h1 class="m-0">DATA SISWA</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -79,14 +100,14 @@
 						<div class="container-fluid">
 							<div class="row" style="float: left;">
 								<div class="col-lg-12 col-md-4">
-									<button type="button" class="btn btn-secondary btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
-										<i class="fas fa-plus-circle"> Tambah Data</i>
+									<button type="button" class="btn btn-primary btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
+										<i class="fas fa-plus-square"></i> Tambah Data
 									</button>
-									<button type="button" class="btn btn-secondary btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusData">
-										<i class="fas fa-trash-alt"> Hapus Data</i>
+									<button type="button" class="btn btn-danger btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusData">
+										<i class="fas fa-trash-alt"></i></i> Reset
 									</button>
-									<button type="button" class="btn btn-secondary btn-responsive" data-bs-toggle="modal" data-bs-target="#importData">
-										<i class="fas fa-plus-circle"> Import Data</i>
+									<button type="button" class="btn btn-success btn-responsive" data-bs-toggle="modal" data-bs-target="#importData">
+										<i class="fas fa-upload"></i> Import
 									</button>
 								</div>
 
@@ -96,81 +117,105 @@
 					<!--  -->
 				</div>
 
-				<div class="row" style="float: left;">
 
-					<div class="col-md-12">
 
-						<!--  -->
+				<!--  -->
+				<div class="wrapper">
+					<section class="content">
+						<div class="container-fluid">
 
-						<!--  -->
-						<?php
+							<div class="row">
+								<div class="col-12">
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">
+												<?php
+												if ($jumlah == 0) {
+													echo "<center><h3>Data User & Siswa Masih kosong...</h3></center>";
+												} else {
+													echo "Jumlah Data Siswa : " . $jumlah;
+												}
+												?>
+											</h3>
+										</div>
+										<!-- /.card-header -->
+										<div class="card-body">
 
-						if ($jumlah == 0) {
-							echo "<center><h3> Data User & Siswa masih kosong...</h3></center>";
-						} else {
-							echo "Jumlah data : " . $jumlah;
-						?>
-							<table bgcolor='#7c96ba' border='1' cellspacing='0' cellspading='0' align='center' width=900>
-								<tr align='center'>
-									<th>No</th>
-									<th>UserId/Nisn</th>
-									<th>Nama</th>
-									<th>Jenis Kelamin</th>
-									<th>Asal Sekolah</th>
-									<th>Cek Prediksi</th>
-									<th>Action</th>
-								</tr>
-								<?php
-								$warna1 = '#ffffff';
-								$warna2 = '#f5f5f5';
-								$warna  = $warna1;
-								$no = 1;
-								while ($row = mysql_fetch_array($query)) {
-									$nisn = $row['nisn'];
-									$que = mysql_query("SELECT * FROM hasil_prediksi WHERE nisn = '$nisn'");
-									$statusPrediksi = "";
-									//jika mahasiswa sudah melakukan prediksi
-									if (mysql_num_rows($que) == 1) {
-										$statusPrediksi = "Sudah";
-									} else if (mysql_num_rows($que) == 0) {
-										$statusPrediksi = "Belum";
-									}
-									if ($warna == $warna1) {
-										$warna = $warna2;
-									} else {
-										$warna = $warna1;
-									}
-								?>
-									<tr bgcolor=<?php echo $warna; ?> align='center'>
-										<td><?php echo $no; ?></td>
-										<td><?php echo $row[0]; ?></td>
-										<td><?php echo $row[1]; ?></td>
-										<td><?php echo $row[2]; ?></td>
-										<td><?php echo $row[3]; ?></td>
-										<td><?php
-											if ($statusPrediksi == 'Sudah') {
-												echo "<strong>" . $statusPrediksi . "</strong>";
-											} else {
-												echo $statusPrediksi;
-											}
-											?></td>
-										<td>
-											<a href="index.php?menu=user&act=delete&id=<?php echo $row[0]; ?>" onclick="return confirm('Anda yakin akan hapus data ini?')">Delete</a>
-										</td>
-									</tr>
-								<?php
-									$no++;
-								}
-								?>
-							</table>
-					<?php
-						}
-					}
-					?>
-					</div>
+											<table id="example1" class="table table-bordered table-striped">
+												<thead>
+													<tr style="text-align: center;">
+														<th>No</th>
+														<th>UserId/Nisn</th>
+														<th>Nama</th>
+														<th>Jenis Kelamin</th>
+														<th>Asal Sekolah</th>
+														<th>Status Prediksi</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													$warna1 = '#ffffff';
+													$warna2 = '#f5f5f5';
+													$warna  = $warna1;
+													$no = 1;
+													while ($row = mysql_fetch_array($query)) {
+														$nisn = $row['nisn'];
+														$que = mysql_query("SELECT * FROM hasil_prediksi WHERE nisn = '$nisn'");
+														$statusPrediksi = "";
+														//jika mahasiswa sudah melakukan prediksi
+														if (mysql_num_rows($que) == 1) {
+															$statusPrediksi = "Sudah";
+														} else if (mysql_num_rows($que) == 0) {
+															$statusPrediksi = "Belum";
+														}
+														if ($warna == $warna1) {
+															$warna = $warna2;
+														} else {
+															$warna = $warna1;
+														}
+													?>
+														<tr bgcolor=<?php echo $warna; ?> class="text-center">
+															<td><?php echo $no; ?></td>
+															<td><?php echo $row[0]; ?></td>
+															<td><?php echo $row[1]; ?></td>
+															<td><?php echo $row[2]; ?></td>
+															<td><?php echo $row[3]; ?></td>
+															<td><?php
+																if ($statusPrediksi == 'Sudah') {
+																	echo "<strong>" . $statusPrediksi . "</strong>";
+																} else {
+																	echo $statusPrediksi;
+																}
+																?>
+															</td>
+															<td>
+																<a href="index.php?menu=user&act=delete&id=<?php echo $row[0]; ?>" class="btn btn-danger btn-responsive btn-sm" onclick="return confirm('Anda yakin akan hapus data ini?')"><i class="fas fa-trash"></i></a>
+															</td>
+														</tr>
+												<?php
+														$no++;
+													}
+												}
+												?>
+												</tbody>
+
+											</table>
+
+										</div>
+										<!-- /.card-body -->
+									</div>
+									<!-- /.card -->
+								</div>
+								<!-- /.col -->
+							</div>
+							<!-- /.row -->
+						</div>
+						<!-- /.container-fluid -->
+					</section>
+					<!--  -->
 				</div>
 			</div>
-			<!-- end table -->
 		</div>
 
 
@@ -208,7 +253,7 @@
 						<div class="form-group">
 							<label for="exampleInputFile">Input File : </label>
 							<div class="input-group">
-								<form method="POST" enctype="multipart/form-data" action="upload.php?data=training">
+								<form method="POST" enctype="multipart/form-data" action="upload.php?data=siswa">
 									<div class="custom-file">
 										<input type="file" name="userfile">
 									</div>
@@ -224,8 +269,61 @@
 		</div>
 		<!--  -->
 		<!-- /.content-header -->
+
 		<script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
-		<?php
-		require 'partial/footer.php';
-		?>
-		<!--  -->
+		<!-- jQuery -->
+		<script src="plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap 4 -->
+		<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- DataTables  & Plugins -->
+		<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+		<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+		<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+		<script src="plugins/jszip/jszip.min.js"></script>
+		<script src="plugins/pdfmake/pdfmake.min.js"></script>
+		<script src="plugins/pdfmake/vfs_fonts.js"></script>
+		<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+		<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+		<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="dist/js/adminlte.min.js"></script>
+
+		<!-- Page specific script -->
+		<script>
+			$(function() {
+				$("#example1")
+					.DataTable({
+						responsive: true,
+						lengthChange: false,
+						autoWidth: false,
+						buttons: ["copy", "excel", "pdf", "print", "colvis"],
+					})
+					.buttons()
+					.container()
+					.appendTo("#example1_wrapper .col-md-6:eq(0)");
+				$("#example2").DataTable({
+					paging: true,
+					lengthChange: false,
+					searching: false,
+					ordering: true,
+					info: true,
+					autoWidth: false,
+					responsive: true,
+				});
+			});
+		</script>
+
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2021-2022 <i>Ni Luh Putu Sri Astiti</i> </strong>
+		</footer>
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		</div>
+		</body>
+
+	</html>

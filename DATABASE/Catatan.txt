@@ -1,0 +1,10 @@
+1. Tipe file excel berformat Excel 97-2003 Worksheet (.xls) / Excel 2003
+2. Ikuti format sesuai contoh pada folder ini
+
+
+Keterangan:
+1. Data Soal Kuisioner:
+Kumpulan soal yang dijawab saat kuisioner dan saat kuis di program.
+
+2. Data Uji Pohon Keputusan
+Kumpulan data mahasiswa untuk dilakukan pengujian di Pohon Keputusan.

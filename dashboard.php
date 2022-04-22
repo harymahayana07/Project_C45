@@ -1,4 +1,5 @@
 <?php
+require 'partial/header.php';
 require 'partial/navbar.php';
 require 'partial/sidebar.php';
 ?>

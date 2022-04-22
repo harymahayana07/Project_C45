@@ -1,319 +1,422 @@
 <?php
-	$awal = microtime(true); 
-	include 'koneksi.php';
-	include 'fungsi.php';
-	mysql_query("TRUNCATE pohon_keputusan");	
-	pembentukan_tree("","");
-	echo "<br><h1><center>---PROSES SELESAI---</center></h1>";
-	echo "<center><a href='index.php?menu=tree' accesskey='5' title='pohon keputusan'>Lihat pohon keputusan yang terbentuk</a></center>";
-	
-	$akhir = microtime(true);
-	$lama = $akhir - $awal;
-	//echo "<br>Lama eksekusi script adalah: ".$lama." detik";
-		
-	
-	//fungsi utama
-	function proses_DT($parent , $kasus_cabang1 , $kasus_cabang2){	
-		echo "cabang 1<br>";
-		pembentukan_tree($parent , $kasus_cabang1);		
-		echo "cabang 2<br>";
-		pembentukan_tree($parent , $kasus_cabang2);		
-	}		
-	
-	function pangkas($PARENT, $KASUS, $LEAF){
-		//PEMANGKASAN CABANG
-		$sql_pangkas = mysql_query("SELECT * FROM pohon_keputusan WHERE parent=\"$PARENT\" AND keputusan=\"$LEAF\"");
-		$row_pangkas = mysql_fetch_array($sql_pangkas);
-		$jml_pangkas = mysql_num_rows($sql_pangkas);
-		//jika keputusan dan parent belum ada maka insert
-		if($jml_pangkas==0){			
-			mysql_query("INSERT INTO pohon_keputusan (parent,akar,keputusan)VALUES (\"$PARENT\" , \"$KASUS\" , \"$LEAF\")");
-		}
-		//jika keputusan dan parent sudah ada maka delete
-		else{			
-			mysql_query("DELETE FROM pohon_keputusan WHERE id='$row_pangkas[0]'");
-			
-			$exPangkas = explode(" AND ",$PARENT);
-			$jmlEXpangkas = count($exPangkas);
-			$temp=array();
-			for($a=0;$a<($jmlEXpangkas-1);$a++){
-				$temp[$a]=$exPangkas[$a];
-			}
-			$imPangkas = implode(" AND ",$temp);
-			$akarPangkas = $exPangkas[$jmlEXpangkas-1];
-			
-			$que_pangkas = mysql_query("SELECT * FROM pohon_keputusan WHERE parent=\"$imPangkas\" AND keputusan=\"$LEAF\"");
-			$baris_pangkas = mysql_fetch_array($que_pangkas);
-			$jumlah_pangkas = mysql_num_rows($que_pangkas);
-			
-			if($jumlah_pangkas==0){		
-				mysql_query("INSERT INTO pohon_keputusan (parent,akar,keputusan)VALUES (\"$imPangkas\" , \"$akarPangkas\" , \"$LEAF\")");
-				//mysql_query("UPDATE pohon_keputusan SET parent=\"$imPangkas\" , akar=\"$akarPangkas\" , keputusan=\"$LEAF\" WHERE id=\"$row_pangkas[0]\"");
-			}else{
-				pangkas($imPangkas,$akarPangkas,$LEAF);
-			}								
-		}
-		echo "Keputusan = ".$LEAF."<br>================================<br>";		
+$awal = microtime(true);
+include 'koneksi.php';
+include 'fungsi.php';
+mysql_query("TRUNCATE pohon_keputusan");
+pembentukan_tree("", "");
+echo "<br><h1><center>---PROSES SELESAI---</center></h1>";
+echo "<center><a href='index.php?menu=tree' accesskey='5' title='pohon keputusan'>Lihat pohon keputusan yang terbentuk</a></center>";
+
+$akhir = microtime(true);
+$lama = $akhir - $awal;
+//echo "<br>Lama eksekusi script adalah: ".$lama." detik";
+
+
+//fungsi utama
+function proses_DT($parent, $kasus_cabang1, $kasus_cabang2)
+{
+	echo "cabang 1<br>";
+	pembentukan_tree($parent, $kasus_cabang1);
+	echo "cabang 2<br>";
+	pembentukan_tree($parent, $kasus_cabang2);
+}
+
+function pangkas($PARENT, $KASUS, $LEAF)
+{
+	//PEMANGKASAN CABANG
+	$sql_pangkas = mysql_query("SELECT * FROM pohon_keputusan WHERE parent=\"$PARENT\" AND keputusan=\"$LEAF\"");
+	$row_pangkas = mysql_fetch_array($sql_pangkas);
+	$jml_pangkas = mysql_num_rows($sql_pangkas);
+	//jika keputusan dan parent belum ada maka insert
+	if ($jml_pangkas == 0) {
+		mysql_query("INSERT INTO pohon_keputusan (parent,akar,keputusan)VALUES (\"$PARENT\" , \"$KASUS\" , \"$LEAF\")");
 	}
-	
-	//fungsi proses dalam suatu kasus data
-	function pembentukan_tree($N_parent , $kasus){
-		//mengisi kondisi
-		if($N_parent!=''){
-			$kondisi = $N_parent." AND ".$kasus;
-		}else{
-			$kondisi = $kasus;
-		}		
-		echo $kondisi."<br>";
-		//cek data heterogen / homogen???
-		$cek = cek_heterohomogen('ipk',$kondisi);		
-		if($cek=='homogen'){
+	//jika keputusan dan parent sudah ada maka delete
+	else {
+		mysql_query("DELETE FROM pohon_keputusan WHERE id='$row_pangkas[0]'");
+
+		$exPangkas = explode(" AND ", $PARENT);
+		$jmlEXpangkas = count($exPangkas);
+		$temp = array();
+		for ($a = 0; $a < ($jmlEXpangkas - 1); $a++) {
+			$temp[$a] = $exPangkas[$a];
+		}
+		$imPangkas = implode(" AND ", $temp);
+		$akarPangkas = $exPangkas[$jmlEXpangkas - 1];
+
+		$que_pangkas = mysql_query("SELECT * FROM pohon_keputusan WHERE parent=\"$imPangkas\" AND keputusan=\"$LEAF\"");
+		$baris_pangkas = mysql_fetch_array($que_pangkas);
+		$jumlah_pangkas = mysql_num_rows($que_pangkas);
+
+		if ($jumlah_pangkas == 0) {
+			mysql_query("INSERT INTO pohon_keputusan (parent,akar,keputusan)VALUES (\"$imPangkas\" , \"$akarPangkas\" , \"$LEAF\")");
+			//mysql_query("UPDATE pohon_keputusan SET parent=\"$imPangkas\" , akar=\"$akarPangkas\" , keputusan=\"$LEAF\" WHERE id=\"$row_pangkas[0]\"");
+		} else {
+			pangkas($imPangkas, $akarPangkas, $LEAF);
+		}
+	}
+	echo "Keputusan = " . $LEAF . "<br>================================<br>";
+}
+
+//fungsi proses dalam suatu kasus data
+function pembentukan_tree($N_parent, $kasus)
+{
+	//mengisi kondisi
+	if ($N_parent != '') {
+		$kondisi = $N_parent . " AND " . $kasus;
+	} else {
+		$kondisi = $kasus;
+	}
+	echo $kondisi . "<br>";
+	//cek data heterogen / homogen???
+	$cek = cek_heterohomogen('ipk', $kondisi);
+	if ($cek == 'homogen') {
+		echo "<br>LEAF ";
+		$sql_keputusan = mysql_query("SELECT DISTINCT(ipk) FROM data_training WHERE $kondisi");
+		$row_keputusan = mysql_fetch_array($sql_keputusan);
+		$keputusan = $row_keputusan['0'];
+		//insert atau lakukan pemangkasan cabang
+		pangkas($N_parent, $kasus, $keputusan);
+	} //jika data masih heterogen
+	else if ($cek == 'heterogen') {
+		//cek jumlah data
+		$jumlah = jumlah_data($kondisi);
+		if ($jumlah < 8) {
 			echo "<br>LEAF ";
-			$sql_keputusan = mysql_query("SELECT DISTINCT(ipk) FROM data_training WHERE $kondisi");
-			$row_keputusan = mysql_fetch_array($sql_keputusan);	
-			$keputusan = $row_keputusan['0'];
+			$Nmipa = $kondisi . " AND jurusan='mipa'";
+			$Nips = $kondisi . " AND jurusan='ips'";
+			$jumlahMipa = jumlah_data("$Nmipa");
+			$jumlahIps = jumlah_data("$Nips");
+			if ($jumlahMipa <= $jumlahIps) {
+				$keputusan = 'Ips';
+			} else {
+				$keputusan = 'Mipa';
+			}
 			//insert atau lakukan pemangkasan cabang
-			pangkas($N_parent , $kasus , $keputusan);
-			
-		}//jika data masih heterogen
-		else if($cek=='heterogen'){
-			//cek jumlah data
-			$jumlah = jumlah_data($kondisi);				
-			if($jumlah<8){
-				echo "<br>LEAF ";
-				$Ntinggi = $kondisi." AND ipk='tinggi'";
-				$Nrendah = $kondisi." AND ipk='rendah'";
-				$jumlahTinggi = jumlah_data("$Ntinggi");
-				$jumlahRendah = jumlah_data("$Nrendah");				
-				if($jumlahTinggi <= $jumlahRendah){
-					$keputusan = 'Rendah';
-				}else{
-					$keputusan = 'Tinggi';
-				}				
-				//insert atau lakukan pemangkasan cabang
-				pangkas($N_parent , $kasus , $keputusan);		
+			pangkas($N_parent, $kasus, $keputusan);
+		}
+		//lakukan perhitungan
+		else {
+			//jika kondisi tidak kosong kondisi_ipk=tambah and
+			$kondisi_jurusan = '';
+			if ($kondisi != '') {
+				$kondisi_jurusan = $kondisi . " AND ";
 			}
-			//lakukan perhitungan
-			else{			
-				//jika kondisi tidak kosong kondisi_ipk=tambah and
-				$kondisi_ipk='';
-				if($kondisi!=''){
-					$kondisi_ipk=$kondisi." AND ";
-				}
-				$jml_tinggi = jumlah_data("$kondisi_ipk ipk='Tinggi'");
-				$jml_rendah = jumlah_data("$kondisi_ipk ipk='Rendah'");
-				$jml_total = $jml_tinggi + $jml_rendah;
-				echo "Jumlah data = ".$jml_total."<br>";
-				echo "Jumlah tinggi = ".$jml_tinggi."<br>";
-				echo "Jumlah rendah = ".$jml_rendah."<br>";
-				
-				//hitung entropy semua
-				$entropy_all = hitung_entropy($jml_tinggi , $jml_rendah);
-				echo "Entropy = ".$entropy_all."<br>";
-				
-				//cek berapa nilai setiap atribut
-				$nilai_instansi = array();
-				$nilai_instansi = cek_nilaiAtribut('instansi',$kondisi);								
-				$jmlInstansi = count($nilai_instansi);								
-				$nilai_status = array();
-				$nilai_status = cek_nilaiAtribut('status',$kondisi);								
-				$jmlStatus = count($nilai_status);
-				$nilai_jurusan = array();
-				$nilai_jurusan = cek_nilaiAtribut('jurusan',$kondisi);								
-				$jmlJurusan = count($nilai_jurusan);
-				$nilai_kerja = array();
-				$nilai_kerja = cek_nilaiAtribut('kerja',$kondisi);								
-				$jmlKerja = count($nilai_kerja);
-				$nilai_motivasi = array();
-				$nilai_motivasi = cek_nilaiAtribut('motivasi',$kondisi);								
-				$jmlMotivasi = count($nilai_motivasi);				
-							
+			$jml_mipa = jumlah_data("$kondisi_jurusan jurusan='Mipa'");
+			$jml_ips = jumlah_data("$kondisi_jurusan jurusan='Ips'");
+			$jml_total = $jml_mipa + $jml_ips;
+			echo "Jumlah data = " . $jml_total . "<br>";
+			echo "Jumlah tinggi = " . $jml_mipa . "<br>";
+			echo "Jumlah rendah = " . $jml_ips . "<br>";
+
+			//hitung entropy semua
+			$entropy_all = hitung_entropy($jml_mipa, $jml_ips);
+			echo "Entropy = " . $entropy_all . "<br>";
+
+			//cek berapa nilai setiap atribut
+			$nilai_ppdb = array();
+			$nilai_ppdb = cek_nilaiAtribut('ppdb', $kondisi);
+			$jmlPpdb = count($nilai_ppdb);
+			$nilai_bindo = array();
+			$nilai_bindo = cek_nilaiAtribut('bindo', $kondisi);
+			$jmlBindo = count($nilai_bindo);
+			$nilai_mat = array();
+			$nilai_mat = cek_nilaiAtribut('mat', $kondisi);
+			$jmlMat = count($nilai_mat);
+			$nilai_bing = array();
+			$nilai_bing = cek_nilaiAtribut('bing', $kondisi);
+			$jmlBing = count($nilai_bing);
+			$nilai_mipa = array();
+			$nilai_mipa = cek_nilaiAtribut('mipa', $kondisi);
+			$jmlMipa = count($nilai_mipa);
+			$nilai_ips = array();
+			$nilai_ips = cek_nilaiAtribut('ips', $kondisi);
+			$jmlIps = count($nilai_ips);
+			$nilai_skhu = array();
+			$nilai_skhu = cek_nilaiAtribut('skhu', $kondisi);
+			$jmlSkhu = count($nilai_skhu);
+			$nilai_jurusan = array();
+			$nilai_jurusan = cek_nilaiAtribut('jurusan', $kondisi);
+			$jmlJurusan = count($nilai_jurusan);
+
 			//hitung gain atribut
-				mysql_query("TRUNCATE gain");
-				//instansi
-				if($jmlInstansi!=1){
-					$NA1Instansi="instansi='$nilai_instansi[0]'";
-					$NA2Instansi="";
-					$NA3Instansi="";
-					if($jmlInstansi==2){
-						$NA2Instansi="instansi='$nilai_instansi[1]'";
-					}else if ($jmlInstansi==3){
-						$NA2Instansi="instansi='$nilai_instansi[1]'";
-						$NA3Instansi="instansi='$nilai_instansi[2]'";
-					}				
-					hitung_gain($kondisi , "instansi"	, $entropy_all , $NA1Instansi, $NA2Instansi, $NA3Instansi, "" , "");	
+			mysql_query("TRUNCATE gain");
+			//ppdb
+			if ($jmlPpdb != 1) {
+				$NA1Ppdb = "ppdb='$nilai_ppdb[0]'";
+				$NA2Ppdb = "";
+				$NA3Ppdb = "";
+				$NA4Ppdb = "";
+				$NA5Ppdb = "";
+				$NA6Ppdb = "";
+				$NA7Ppdb = "";
+				if ($jmlPpdb == 2) {
+					$NA2Ppdb = "ppdb='$nilai_ppdb[1]'";
+				} else if ($jmlPpdb == 3) {
+					$NA2Ppdb = "ppdb='$nilai_ppdb[1]'";
+					$NA3Ppdb = "ppdb='$nilai_ppdb[2]'";
+				} else if ($jmlPpdb == 4) {
+					$NA2Ppdb = "ppdb='$nilai_ppdb[1]'";
+					$NA3Ppdb = "ppdb='$nilai_ppdb[2]'";
+					$NA4Ppdb = "ppdb='$nilai_ppdb[3]'";
+				} else if ($jmlPpdb == 5) {
+					$NA2Ppdb = "ppdb='$nilai_ppdb[1]'";
+					$NA3Ppdb = "ppdb='$nilai_ppdb[2]'";
+					$NA4Ppdb = "ppdb='$nilai_ppdb[3]'";
+					$NA5Ppdb = "ppdb='$nilai_ppdb[4]'";
+				} else if ($jmlPpdb == 6) {
+					$NA2Ppdb = "ppdb='$nilai_ppdb[1]'";
+					$NA3Ppdb = "ppdb='$nilai_ppdb[2]'";
+					$NA4Ppdb = "ppdb='$nilai_ppdb[3]'";
+					$NA5Ppdb = "ppdb='$nilai_ppdb[4]'";
+					$NA6Ppdb = "ppdb='$nilai_ppdb[5]'";
+				} else if ($jmlPpdb == 7) {
+					$NA2Ppdb = "ppdb='$nilai_ppdb[1]'";
+					$NA3Ppdb = "ppdb='$nilai_ppdb[2]'";
+					$NA4Ppdb = "ppdb='$nilai_ppdb[3]'";
+					$NA5Ppdb = "ppdb='$nilai_ppdb[4]'";
+					$NA6Ppdb = "ppdb='$nilai_ppdb[5]'";
+					$NA7Ppdb = "ppdb='$nilai_ppdb[6]'";
 				}
-				//status
-				if($jmlStatus!=1){
-					$NA1Status="status='$nilai_status[0]'";
-					$NA2Status="status='$nilai_status[1]'";
-					hitung_gain($kondisi , "status" , $entropy_all , $NA1Status , $NA2Status , "" , "" , "");
-				}
-				//jurusan
-				if($jmlJurusan!=1){
-					$NA1Jurusan="jurusan='$nilai_jurusan[0]'";
-					$NA2Jurusan="";
-					$NA3Jurusan="";
-					$NA4Jurusan="";
-					$NA5Jurusan="";
-					if($jmlJurusan==2){
-						$NA2Jurusan="jurusan='$nilai_jurusan[1]'";
-					}else if($jmlJurusan==3){
-						$NA2Jurusan="jurusan='$nilai_jurusan[1]'";
-						$NA3Jurusan="jurusan='$nilai_jurusan[2]'";
-					}else if($jmlJurusan==4){
-						$NA2Jurusan="jurusan='$nilai_jurusan[1]'";
-						$NA3Jurusan="jurusan='$nilai_jurusan[2]'";
-						$NA4Jurusan="jurusan='$nilai_jurusan[3]'";
-					}else if($jmlJurusan==5){
-						$NA2Jurusan="jurusan='$nilai_jurusan[1]'";
-						$NA3Jurusan="jurusan='$nilai_jurusan[2]'";
-						$NA4Jurusan="jurusan='$nilai_jurusan[3]'";
-						$NA5Jurusan="jurusan='$nilai_jurusan[4]'";
-					}
-					hitung_gain($kondisi , "jurusan" , $entropy_all , $NA1Jurusan , $NA2Jurusan , $NA3Jurusan , $NA4Jurusan , $NA5Jurusan);
-				}				
-				//kerja
-				if($jmlKerja!=1){
-					$NA1Kerja="kerja='$nilai_kerja[0]'";
-					$NA2Kerja="kerja='$nilai_kerja[1]'";
-					hitung_gain($kondisi , "kerja"	 , $entropy_all , $NA1Kerja , $NA2Kerja , "" , "" , "");
-				}
-				//motivasi
-				if($jmlMotivasi!=1){
-					$NA1Motivasi="motivasi='$nilai_motivasi[0]'";
-					$NA2Motivasi="";
-					$NA3Motivasi="";
-					if($jmlMotivasi==2){
-						$NA2Motivasi="motivasi='$nilai_motivasi[1]'";
-					}else if ($jmlMotivasi==3){
-						$NA2Motivasi="motivasi='$nilai_motivasi[1]'";
-						$NA3Motivasi="motivasi='$nilai_motivasi[2]'";
-					}
-					hitung_gain($kondisi , "motivasi" , $entropy_all , $NA1Motivasi, $NA2Motivasi, $NA3Motivasi, "" , "");
-				}																																				
-				//hitung gain atribut Numerik										
-					hitung_gain($kondisi , "rata UN posisi 6.5"	, $entropy_all , "rata_un<=6.5"	, "rata_un>6.5" , "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 6.75"	, $entropy_all , "rata_un<=6.75", "rata_un>6.75", "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 7"		, $entropy_all , "rata_un<=7"	, "rata_un>7"	, "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 7.25"	, $entropy_all , "rata_un<=7.25", "rata_un>7.25", "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 7.5" 	, $entropy_all , "rata_un<=7.5" , "rata_un>7.5" , "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 7.75"	, $entropy_all , "rata_un<=7.75", "rata_un>7.75", "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 8"		, $entropy_all , "rata_un<=8"	, "rata_un>8" 	, "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 8.25"	, $entropy_all , "rata_un<=8.25", "rata_un>8.25", "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 8.5"	, $entropy_all , "rata_un<=8.5" , "rata_un>8.5" , "" , "" , "");
-					hitung_gain($kondisi , "rata UN posisi 8.75"	, $entropy_all , "rata_un<=8.75", "rata_un>8.75", "" , "" , "");
-					
-				//ambil nilai gain tertinggi
-					$sql_max = mysql_query("SELECT MAX(gain) FROM gain");
-					$row_max = mysql_fetch_array($sql_max);	
-					$max_gain = $row_max['0'];
-					$sql = mysql_query("SELECT * FROM gain WHERE gain=$max_gain");
-					$row = mysql_fetch_array($sql);	
-					$atribut = $row['1'];
-					echo "Atribut terpilih = ".$atribut.", dengan nilai gain = ".$max_gain."<br>";					
-					echo "<br>================================<br>";
-				//percabangan jika nilai atribut lebih dari 2 hitung rasio terlebih dahulu
-				//INSTANSI TERPILIH
-				if($atribut=="instansi"){
-					//jika nilai atribut 3
-					if($jmlInstansi==3){
-						//hitung rasio
-						$cabang = array();
-						$cabang = hitung_rasio($kondisi , 'instansi',$max_gain,$nilai_instansi[0],$nilai_instansi[1],$nilai_instansi[2],'','');
-						$exp_cabang = explode(" , ",$cabang[1]);						
-						proses_DT($kondisi , "($atribut='$cabang[0]')","($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");						
-					}
-					//jika nilai atribut 2
-					else if($jmlInstansi==2){
-						proses_DT($kondisi , "($atribut='$nilai_instansi[0]')" , "($atribut='$nilai_instansi[1]')");
-					}
-				}				
-				//STATUS TERPILIH
-				else if($atribut=="status"){					
-					proses_DT($kondisi , "($atribut='Negeri')","($atribut='Swasta')");										
-				}
-				//JURUSAN TERPILIH
-				else if($atribut=="jurusan"){
-					//jika nilai atribut 5
-					if($jmlJurusan==5){
-						//hitung rasio
-						$cabang = array();
-						$cabang = hitung_rasio($kondisi , 'jurusan',$max_gain,$nilai_jurusan[0],$nilai_jurusan[1],$nilai_jurusan[2],$nilai_jurusan[3],$nilai_jurusan[4]);
-						$exp_cabang = explode(" , ",$cabang[1]);						
-						proses_DT($kondisi,"($atribut='$cabang[0]')","($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");						
-					}					
-					//jika nilai atribut 4
-					else if($jmlJurusan==4){
-						//hitung rasio
-						$cabang = array();
-						$cabang = hitung_rasio($kondisi , 'jurusan',$max_gain,$nilai_jurusan[0],$nilai_jurusan[1],$nilai_jurusan[2],$nilai_jurusan[3],'');
-						$exp_cabang = explode(" , ",$cabang[1]);
-						proses_DT($kondisi,"($atribut='$cabang[0]')","($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
-					}					
-					//jika nilai atribut 3
-					else if($jmlJurusan==3){
-						//hitung rasio
-						$cabang = array();
-						$cabang = hitung_rasio($kondisi , 'jurusan',$max_gain,$nilai_jurusan[0],$nilai_jurusan[1],$nilai_jurusan[2],'','');
-						$exp_cabang = explode(" , ",$cabang[1]);
-						proses_DT($kondisi,"($atribut='$cabang[0]')","($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
-					}
-					//jika nilai atribut 2
-					else if($jmlJurusan==2){
-						proses_DT($kondisi,"($atribut='$nilai_jurusan[0]')" , "($atribut='$nilai_jurusan[1]')");
-					}
-				}
-				//RATA UN TERPILIH
-				else if($atribut=="rata UN posisi 6.5"){					
-					proses_DT($kondisi,"(rata_un<=6.5)","(rata_un>6.5)");					
-				}
-				else if($atribut=="rata UN posisi 6.75"){					
-					proses_DT($kondisi,"(rata_un<=6.75)","(rata_un>6.75)");					
-				}
-				else if($atribut=="rata UN posisi 7"){					
-					proses_DT($kondisi,"(rata_un<=7)","(rata_un>7)");					
-				}
-				else if($atribut=="rata UN posisi 7.25"){					
-					proses_DT($kondisi,"(rata_un<=7.25)","(rata_un>7.25)");					
-				}
-				else if($atribut=="rata UN posisi 7.5"){					
-					proses_DT($kondisi,"(rata_un<=7.5)","(rata_un>7.5)");			
-				}
-				else if($atribut=="rata UN posisi 7.75"){					
-					proses_DT($kondisi,"(rata_un<=7.75)","(rata_un>7.75)");					
-				}
-				else if($atribut=="rata UN posisi 8"){					
-					proses_DT($kondisi,"(rata_un<=8)","(rata_un>8)");					
-				}
-				else if($atribut=="rata UN posisi 8.25"){					
-					proses_DT($kondisi,"(rata_un<=8.25)","(rata_un>8.25)");					
-				}
-				else if($atribut=="rata UN posisi 8.5"){					
-					proses_DT($kondisi,"(rata_un<=8.5)","(rata_un>8.5)");					
-				}
-				else if($atribut=="rata UN posisi 8.75"){					
-					proses_DT($kondisi,"(rata_un<=8.75)","(rata_un>8.75)");					
-				}
-				//KERJA TERPILIH
-				else if($atribut=="kerja"){					
-					proses_DT($kondisi,"($atribut='Sudah')","($atribut='Belum')");					
-				}
-				//MOTIVASI TERPILIH
-				else if($atribut=="motivasi"){
-					//jika nilai atribut 3
-					if($jmlMotivasi==3){
-						$cabang = array();
-						$cabang = hitung_rasio($kondisi , 'motivasi',$max_gain,$nilai_motivasi[0],$nilai_motivasi[1],$nilai_motivasi[2],'','');
-						$exp_cabang = explode(" , ",$cabang[1]);							
-						proses_DT($kondisi,"($atribut='$cabang[0]')","($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");						
-					}
-					//jika nilai atribut 2
-					else if($jmlMotivasi==2){
-						proses_DT($kondisi,"($atribut='$nilai_motivasi[0]')" , "($atribut='$nilai_motivasi[1]')");
-					}
-				}				
+
+				hitung_gain($kondisi, "ppdb", $entropy_all, $NA1Ppdb, $NA2Ppdb, $NA3Ppdb, $NA4Ppdb, $NA5Ppdb, $NA6Ppdb, $NA7Ppdb);
 			}
-		}						
+			//BAHASA INDONESIA
+			if ($jmlBindo != 1) {
+				$NA1Bindo = "bindo='$nilai_bindo[0]'";
+				$NA2Bindo = "";
+				$NA3Bindo = "";
+				$NA4Bindo = "";
+				$NA5Bindo = "";
+				if ($jmlBindo == 2) {
+					$NA2Bindo = "bindo='$nilai_bindo[1]'";
+				} else if ($jmlBindo == 3) {
+					$NA2Bindo = "bindo='$nilai_bindo[1]'";
+					$NA3Bindo = "bindo='$nilai_bindo[2]'";
+				} else if ($jmlBindo == 4) {
+					$NA2Bindo = "bindo='$nilai_bindo[1]'";
+					$NA3Bindo = "bindo='$nilai_bindo[2]'";
+					$NA4Bindo = "bindo='$nilai_bindo[3]'";
+				} else if ($jmlBindo == 5) {
+					$NA2Bindo = "bindo='$nilai_bindo[1]'";
+					$NA3Bindo = "bindo='$nilai_bindo[2]'";
+					$NA4Bindo = "bindo='$nilai_bindo[3]'";
+					$NA5Bindo = "bindo='$nilai_bindo[4]'";
+				}
+				hitung_gain($kondisi, "bindo", $entropy_all, $NA1Bindo, $NA2Bindo, $NA3Bindo, $NA4Bindo, $NA5Bindo, "", "", "");
+			}
+			//MATEMATIKA
+			if ($jmlMat != 1) {
+				$NA1Mat = "mat='$nilai_mat[0]'";
+				$NA2Mat = "";
+				$NA3Mat = "";
+				$NA4Mat = "";
+				$NA5Mat = "";
+				if (
+					$jmlMat == 2
+				) {
+					$NA2Mat = "mat='$nilai_mat[1]'";
+				} else if ($jmlMat == 3) {
+					$NA2Mat = "mat='$nilai_mat[1]'";
+					$NA3Mat = "mat='$nilai_mat[2]'";
+				} else if ($jmlMat == 4) {
+					$NA2Mat = "mat='$nilai_mat[1]'";
+					$NA3Mat = "mat='$nilai_mat[2]'";
+					$NA4Mat = "mat='$nilai_mat[3]'";
+				} else if ($jmlMat == 5) {
+					$NA2Mat = "mat='$nilai_mat[1]'";
+					$NA3Mat = "mat='$nilai_mat[2]'";
+					$NA4Mat = "mat='$nilai_mat[3]'";
+					$NA5Mat = "mat='$nilai_mat[4]'";
+				}
+				hitung_gain($kondisi, "mat", $entropy_all, $NA1Mat, $NA2Mat, $NA3Mat, $NA4Mat, $NA5Mat, "", "", "");
+			}
+			//BAHASA INGGRIS
+			if ($jmlBing != 1) {
+				$NA1Bing = "bing='$nilai_bing[0]'";
+				$NA2Bing = "";
+				$NA3Bing = "";
+				$NA4Bing = "";
+				$NA5Bing = "";
+				if ($jmlBing == 2) {
+					$NA2Bing = "bing='$nilai_bing[1]'";
+				} else if ($jmlBing == 3) {
+					$NA2Bing = "bing='$nilai_bing[1]'";
+					$NA3Bing = "bing='$nilai_bing[2]'";
+				} else if ($jmlBing == 4) {
+					$NA2Bing = "bing='$nilai_bing[1]'";
+					$NA3Bing = "bing='$nilai_bing[2]'";
+					$NA4Bing = "bing='$nilai_bing[3]'";
+				} else if ($jmlBing == 5) {
+					$NA2Bing = "bing='$nilai_bing[1]'";
+					$NA3Bing = "bing='$nilai_bing[2]'";
+					$NA4Bing = "bing='$nilai_bing[3]'";
+					$NA5Bing = "bing='$nilai_bing[4]'";
+				}
+				hitung_gain($kondisi, "bing", $entropy_all, $NA1Bing, $NA2Bing, $NA3Bing, $NA4Bing, $NA5Bing, "", "", "");
+			}
+			//MIPA
+			if ($jmlMipa != 1) {
+				$NA1Mipa = "mipa='$nilai_mipa[0]'";
+				$NA2Mipa = "";
+				$NA3Mipa = "";
+				$NA4Mipa = "";
+				$NA5Mipa = "";
+				if (
+					$jmlMipa == 2
+				) {
+					$NA2Mipa = "mipa='$nilai_mipa[1]'";
+				} else if ($jmlMipa == 3) {
+					$NA2Mipa = "mipa='$nilai_mipa[1]'";
+					$NA3Mipa = "mipa='$nilai_mipa[2]'";
+				} else if ($jmlMipa == 4) {
+					$NA2Mipa = "mipa='$nilai_mipa[1]'";
+					$NA3Mipa = "mipa='$nilai_mipa[2]'";
+					$NA4Mipa = "mipa='$nilai_mipa[3]'";
+				} else if ($jmlMipa == 5) {
+					$NA2Mipa = "mipa='$nilai_mipa[1]'";
+					$NA3Mipa = "mipa='$nilai_mipa[2]'";
+					$NA4Mipa = "mipa='$nilai_mipa[3]'";
+					$NA5Mipa = "mipa='$nilai_mipa[4]'";
+				}
+				hitung_gain($kondisi, "mipa", $entropy_all, $NA1Mipa, $NA2Mipa, $NA3Mipa, $NA4Mipa, $NA5Mipa, "", "", "");
+			}
+			//IPS
+			if ($jmlIps != 1) {
+				$NA1Ips = "ips='$nilai_ips[0]'";
+				$NA2Ips = "";
+				$NA3Ips = "";
+				$NA4Ips = "";
+				$NA5Ips = "";
+				if (
+					$jmlIps == 2
+				) {
+					$NA2Ips = "ips='$nilai_ips[1]'";
+				} else if ($jmlIps == 3) {
+					$NA2Ips = "ips='$nilai_ips[1]'";
+					$NA3Ips = "ips='$nilai_ips[2]'";
+				} else if ($jmlIps == 4) {
+					$NA2Ips = "ips='$nilai_ips[1]'";
+					$NA3Ips = "ips='$nilai_ips[2]'";
+					$NA4Ips = "ips='$nilai_ips[3]'";
+				} else if ($jmlIps == 5) {
+					$NA2Ips = "ips='$nilai_ips[1]'";
+					$NA3Ips = "ips='$nilai_ips[2]'";
+					$NA4Ips = "ips='$nilai_ips[3]'";
+					$NA5Ips = "ips='$nilai_ips[4]'";
+				}
+				hitung_gain($kondisi, "ips", $entropy_all, $NA1Ips, $NA2Ips, $NA3Ips, $NA4Ips, $NA5Ips, "", "", "");
+			}
+			//SKHU
+			if ($jmlSkhu != 1) {
+				$NA1Skhu = "skhu='$nilai_skhu[0]'";
+				$NA2Skhu = "";
+				$NA3Skhu = "";
+				$NA4Skhu = "";
+				$NA5Skhu = "";
+				if (
+					$jmlSkhu == 2
+				) {
+					$NA2Skhu = "skhu='$nilai_skhu[1]'";
+				} else if ($jmlSkhu == 3) {
+					$NA2Skhu = "skhu='$nilai_skhu[1]'";
+					$NA3Skhu = "skhu='$nilai_skhu[2]'";
+				} else if ($jmlSkhu == 4) {
+					$NA2Skhu = "skhu='$nilai_skhu[1]'";
+					$NA3Skhu = "skhu='$nilai_skhu[2]'";
+					$NA4Skhu = "skhu='$nilai_skhu[3]'";
+				} else if ($jmlSkhu == 5) {
+					$NA2Skhu = "skhu='$nilai_skhu[1]'";
+					$NA3Skhu = "skhu='$nilai_skhu[2]'";
+					$NA4Skhu = "skhu='$nilai_skhu[3]'";
+					$NA5Skhu = "skhu='$nilai_skhu[4]'";
+				}
+				hitung_gain($kondisi, "skhu", $entropy_all, $NA1Skhu, $NA2Skhu, $NA3Skhu, $NA4Skhu, $NA5Skhu, "", "", "");
+			}
+			//jurusan
+			if ($jmlJurusan != 1) {
+				$NA1Jurusan = "jurusan='$nilai_jurusan[0]'";
+				$NA2Jurusan = "";
+				$NA3Jurusan = "";
+				if ($jmlJurusan == 2) {
+					$NA2Jurusan = "jurusan='$nilai_jurusan[1]'";
+				} else if ($jmlJurusan == 3) {
+					$NA2Jurusan = "jurusan='$nilai_jurusan[1]'";
+					$NA3Jurusan = "jurusan='$nilai_jurusan[2]'";
+				}
+
+				hitung_gain($kondisi, "Jurusan", $entropy_all, $NA1Jurusan, $NA2Jurusan, $NA3Jurusan, "", "", "", "");
+			}
+
+			//ambil nilai gain tertinggi
+			$sql_max = mysql_query("SELECT MAX(gain) FROM gain");
+			$row_max = mysql_fetch_array($sql_max);
+			$max_gain = $row_max['0'];
+			$sql = mysql_query("SELECT * FROM gain WHERE gain=$max_gain");
+			$row = mysql_fetch_array($sql);
+			$atribut = $row['1'];
+			echo "Atribut terpilih = " . $atribut . ", dengan nilai gain = " . $max_gain . "<br>";
+			echo "<br>================================<br>";
+			//percabangan jika nilai atribut lebih dari 2 hitung rasio terlebih dahulu
+			//PPDB TERPILIH
+			if ($atribut == "ppdb") {
+				//jika nilai atribut 3
+				if ($jmlPpdb == 7) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ppdb', $max_gain, $nilai_ppdb[0], $nilai_ppdb[1], $nilai_ppdb[2], $nilai_ppdb[3], $nilai_ppdb[4], $nilai_ppdb[5], $nilai_ppdb[6]);
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT(
+						$kondisi,
+						"($atribut='$cabang[0]')",
+						"($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')",
+						"($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]'  OR $atribut='$exp_cabang[2]')",
+						"($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]'  OR $atribut='$exp_cabang[2]'  OR $atribut='$exp_cabang[3]')",
+						"($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]'  OR $atribut='$exp_cabang[2]'  OR $atribut='$exp_cabang[3]'  OR $atribut='$exp_cabang[4]')",
+						"($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]'  OR $atribut='$exp_cabang[2]'  OR $atribut='$exp_cabang[3]'  OR $atribut='$exp_cabang[4]' OR $atribut='$exp_cabang[5]')",
+						"($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]'  OR $atribut='$exp_cabang[2]'  OR $atribut='$exp_cabang[3]'  OR $atribut='$exp_cabang[4]' OR $atribut='$exp_cabang[5]' OR $atribut='$exp_cabang[6]')",
+					);
+				}
+				//jika nilai atribut 2
+				else if ($jmlPpdb == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_ppdb[0]')", "($atribut='$nilai_ppdb[1]')");
+				}
+			}
+			//BAHASA INDONESIA TERPILIH
+			else if ($atribut == "bindo") {
+				//jika nilai atribut 5
+				if ($jmlBindo == 5) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'bindo', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], $nilai_bindo[3], $nilai_bindo[4], '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
+				}
+				//jika nilai atribut 4
+				else if ($jmlBindo == 4) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'bindo', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], $nilai_bindo[3], '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
+				}
+				//jika nilai atribut 3
+				else if ($jmlBindo == 3) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'bindo', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], '', '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
+				}
+				//jika nilai atribut 2
+				else if ($jmlBindo == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_bindo[0]')", "($atribut='$nilai_bindo[1]')");
+				}
+			}
+			//JURUSAN TERPILIH
+			else if ($atribut == "jurusan") {
+				proses_DT($kondisi, "($atribut='Mipa')", "($atribut='Ips')");
+			}
+		}
 	}
-?>
+}
