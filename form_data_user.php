@@ -12,7 +12,7 @@
 				<!--  -->
 				<div class="card card-info">
 					<div class="card-body">
-						<form method="post" action="data-user.php">
+						<form method="post" action="data_user.php">
 							<!-- ppdb -->
 							<!-- Nisn -->
 							<div class="form-group">

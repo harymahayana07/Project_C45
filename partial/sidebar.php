@@ -45,7 +45,7 @@
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="index.php" accesskey='1' class="nav-link">
+              <a href="dashboard.php" accesskey='1' class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p> Dashboard </i></p>
               </a>
@@ -63,7 +63,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="tabel.php" accesskey='4' class="nav-link">
+              <a href="pohon_tree.php" accesskey='4' class="nav-link">
                 <i class="nav-icon fas fa-tree"></i>
                 <p> Pohon Keputusan </p>
               </a>
@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="data-user.php" accesskey='6' class="nav-link">
+              <a href="data_user.php" accesskey='6' class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p> Data Siswa </p>
               </a>
@@ -83,7 +83,7 @@
             <li class="nav-item">
               <a href="logout.php" accesskey='7' class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p style="color: red;"> LogOut </p>
+                <p style="color: blue;"> LogOut </p>
               </a>
             </li>
 

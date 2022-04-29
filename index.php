@@ -1,33 +1,14 @@
-<?php
-session_start();
-if (!isset($_SESSION['usr'])) {
-  header("location:login-form.php");
-}
-?>
 
 <?php
-$level = $_SESSION['lvl'];
-if ($level == 'admin') {
-  require 'dashboard.php';
-?>
-<?php
-} else {
-  require 'partial/navbar-siswa.php';
+if (!isset($_GET['menu'])) {
+  include 'dashboard.php';
 }
-?>
-<?php
 //jika menu sudah diset
 if (isset($_GET['menu'])) {
   $kode = $_GET['menu'];
   //menu home
   if ($kode == 'home') {
-    echo "<center><strong>
-      <h2>SISTEM PREDIKSI PRESTASI AKADEMIK MAHASISWA MENGGUNAKAN METODE DECISION TREE C4.5</h2><br/>
-      <img src='images/university.png' width='350' height='auto'/><br>									
-      Aplikasi ini akan menghasilkan informasi perkiraan prestasi akademik mahasiswa baru dari data training yang digunakan adalah data nilai UN, Jurusan, Status pekerjaan, Motivasi dan Prestasi sekolah.
-      <br>
-      Hasil analisa dikelompokkan menjasi kelas tinggi (predikasi berprestasi tinggi) dan kelas rendah (predikasi berprestasi rendah).
-      </strong></center>";
+    include 'dashboard.php';
   }
   //menu olah data
   else if ($kode == 'data') {
@@ -66,8 +47,4 @@ if (isset($_GET['menu'])) {
     include 'ubah_password.php';
   }
 }
-?>
-
-<?php
-require 'partial/footer.php';
 ?>

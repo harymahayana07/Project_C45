@@ -10,7 +10,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>SMANDA | DATA SISWA </title>
+		<title>SMANDA | DATA USER </title>
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -25,11 +25,9 @@
 		<!-- overlayScrollbars -->
 		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	</head>
+
 	<?php
-	require 'partial/sidebar.php';
-	require 'partial/navbar.php';
-	?>
-	<?php
+
 	include "koneksi.php";
 	if (isset($_GET['act'])) {
 		$action = $_GET['act'];
@@ -48,8 +46,9 @@
 		}
 	} else {
 		include 'form_data_user.php';
-		$query = mysql_query("select * from data_siswa ORDER BY(nisn)");
+		$query = mysql_query("SELECT * FROM data_siswa ORDER BY (nisn)");
 		$jumlah = mysql_num_rows($query);
+
 	?>
 		<style>
 			.btn {
@@ -73,6 +72,10 @@
 				}
 			}
 		</style>
+		<?php
+		require 'partial/sidebar.php';
+		require 'partial/navbar.php';
+		?>
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -103,7 +106,7 @@
 									<button type="button" class="btn btn-primary btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
 										<i class="fas fa-plus-square"></i> Tambah Data
 									</button>
-									<button type="button" class="btn btn-danger btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusData">
+									<button type="button" class="btn btn-danger btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusDataSiswa">
 										<i class="fas fa-trash-alt"></i></i> Reset
 									</button>
 									<button type="button" class="btn btn-success btn-responsive" data-bs-toggle="modal" data-bs-target="#importData">
@@ -190,7 +193,7 @@
 																?>
 															</td>
 															<td>
-																<a href="index.php?menu=user&act=delete&id=<?php echo $row[0]; ?>" class="btn btn-danger btn-responsive btn-sm" onclick="return confirm('Anda yakin akan hapus data ini?')"><i class="fas fa-trash"></i></a>
+																<a href="data_user.php?act=delete&id=<?php echo $row[0]; ?>" class="btn btn-danger btn-responsive btn-sm d-inline" onclick="return confirm('Anda yakin akan hapus data ini?')"><i class="fas fa-trash"></i></a>
 															</td>
 														</tr>
 												<?php
@@ -220,7 +223,7 @@
 
 
 		<!-- Modal hapus data -->
-		<div class="modal fade" id="hapusData" tabindex="-1" aria-labelledby="hapusDataModal" aria-hidden="true">
+		<div class="modal fade" id="hapusDataSiswa" tabindex="-1" aria-labelledby="hapusDataModal" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header bg-warning">
@@ -233,7 +236,7 @@
 					<form method="POST" enctype="multipart/form-data" action="upload.php?data=training">
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-							<a href="index.php?menu=data&act=delete_all" type="button" class="btn btn-primary"> Ya </a>
+							<a href="index.php?menu=user&act=delete_all" type="button" class="btn btn-primary"> Ya </a>
 						</div>
 					</form>
 				</div>
@@ -253,7 +256,7 @@
 						<div class="form-group">
 							<label for="exampleInputFile">Input File : </label>
 							<div class="input-group">
-								<form method="POST" enctype="multipart/form-data" action="upload.php?data=siswa">
+								<form method="POST" enctype="multipart/form-data" action="upload.php?data=user">
 									<div class="custom-file">
 										<input type="file" name="userfile">
 									</div>
@@ -308,7 +311,7 @@
 					paging: true,
 					lengthChange: false,
 					searching: false,
-					ordering: true,
+					ordering: false,
 					info: true,
 					autoWidth: false,
 					responsive: true,
