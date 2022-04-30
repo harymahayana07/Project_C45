@@ -60,7 +60,7 @@
                  <label for="hu">Nilai SKHU :</label>
                  <input type="number" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                </div>
-               <!-- minat jurusan -->
+               <!-- jurusan jurusan -->
                <div class="form-group">
                  <label for="jp">Jurusan Peminatan :</label>
                  <br>
@@ -81,7 +81,7 @@
        <?php
         if (isset($_POST['submit'])) {
           mysql_query("INSERT INTO data_training 
-			                      	(ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,minat)
+			                      	(ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,jurusan)
                             VALUES(
                               '$_POST[txtppdb]',
                               '$_POST[txtbhs_id]',

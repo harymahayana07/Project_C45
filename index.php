@@ -18,6 +18,10 @@ if (isset($_GET['menu'])) {
   else if ($kode == 'mining') {
     include 'mining.php';
   }
+  //menu konversi (proses konversi merubah angka menjadi huruf, untuk mempermudah uji)
+  else if ($kode == 'konversi') {
+    include 'mining_konversi.php';
+  }
   //menu pohon keputusan atau rule
   else if ($kode == 'tree') {
     include 'tree.php';

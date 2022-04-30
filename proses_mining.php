@@ -69,10 +69,10 @@ function pembentukan_tree($N_parent, $kasus)
 	}
 	echo $kondisi . "<br>";
 	//cek data heterogen / homogen???
-	$cek = cek_heterohomogen('ipk', $kondisi);
+	$cek = cek_heterohomogen('jurusan', $kondisi);
 	if ($cek == 'homogen') {
 		echo "<br>LEAF ";
-		$sql_keputusan = mysql_query("SELECT DISTINCT(ipk) FROM data_training WHERE $kondisi");
+		$sql_keputusan = mysql_query("SELECT DISTINCT(jurusan) FROM data_training_konversi WHERE $kondisi");
 		$row_keputusan = mysql_fetch_array($sql_keputusan);
 		$keputusan = $row_keputusan['0'];
 		//insert atau lakukan pemangkasan cabang
@@ -106,8 +106,8 @@ function pembentukan_tree($N_parent, $kasus)
 			$jml_ips = jumlah_data("$kondisi_jurusan jurusan='Ips'");
 			$jml_total = $jml_mipa + $jml_ips;
 			echo "Jumlah data = " . $jml_total . "<br>";
-			echo "Jumlah tinggi = " . $jml_mipa . "<br>";
-			echo "Jumlah rendah = " . $jml_ips . "<br>";
+			echo "Jumlah Mipa = " . $jml_mipa . "<br>";
+			echo "Jumlah Ips = " . $jml_ips . "<br>";
 
 			//hitung entropy semua
 			$entropy_all = hitung_entropy($jml_mipa, $jml_ips);
@@ -118,16 +118,16 @@ function pembentukan_tree($N_parent, $kasus)
 			$nilai_ppdb = cek_nilaiAtribut('ppdb', $kondisi);
 			$jmlPpdb = count($nilai_ppdb);
 			$nilai_bindo = array();
-			$nilai_bindo = cek_nilaiAtribut('bindo', $kondisi);
+			$nilai_bindo = cek_nilaiAtribut('bhs_indonesia', $kondisi);
 			$jmlBindo = count($nilai_bindo);
 			$nilai_mat = array();
-			$nilai_mat = cek_nilaiAtribut('mat', $kondisi);
+			$nilai_mat = cek_nilaiAtribut('matematika', $kondisi);
 			$jmlMat = count($nilai_mat);
 			$nilai_bing = array();
-			$nilai_bing = cek_nilaiAtribut('bing', $kondisi);
+			$nilai_bing = cek_nilaiAtribut('bhs_inggris', $kondisi);
 			$jmlBing = count($nilai_bing);
 			$nilai_mipa = array();
-			$nilai_mipa = cek_nilaiAtribut('mipa', $kondisi);
+			$nilai_mipa = cek_nilaiAtribut('ipa', $kondisi);
 			$jmlMipa = count($nilai_mipa);
 			$nilai_ips = array();
 			$nilai_ips = cek_nilaiAtribut('ips', $kondisi);
@@ -183,31 +183,31 @@ function pembentukan_tree($N_parent, $kasus)
 			}
 			//BAHASA INDONESIA
 			if ($jmlBindo != 1) {
-				$NA1Bindo = "bindo='$nilai_bindo[0]'";
+				$NA1Bindo = "bhs_indonesia='$nilai_bindo[0]'";
 				$NA2Bindo = "";
 				$NA3Bindo = "";
 				$NA4Bindo = "";
 				$NA5Bindo = "";
 				if ($jmlBindo == 2) {
-					$NA2Bindo = "bindo='$nilai_bindo[1]'";
+					$NA2Bindo = "bhs_indonesia='$nilai_bindo[1]'";
 				} else if ($jmlBindo == 3) {
-					$NA2Bindo = "bindo='$nilai_bindo[1]'";
-					$NA3Bindo = "bindo='$nilai_bindo[2]'";
+					$NA2Bindo = "bhs_indonesia='$nilai_bindo[1]'";
+					$NA3Bindo = "bhs_indonesia='$nilai_bindo[2]'";
 				} else if ($jmlBindo == 4) {
-					$NA2Bindo = "bindo='$nilai_bindo[1]'";
-					$NA3Bindo = "bindo='$nilai_bindo[2]'";
-					$NA4Bindo = "bindo='$nilai_bindo[3]'";
+					$NA2Bindo = "bhs_indonesia='$nilai_bindo[1]'";
+					$NA3Bindo = "bhs_indonesia='$nilai_bindo[2]'";
+					$NA4Bindo = "bhs_indonesia='$nilai_bindo[3]'";
 				} else if ($jmlBindo == 5) {
-					$NA2Bindo = "bindo='$nilai_bindo[1]'";
-					$NA3Bindo = "bindo='$nilai_bindo[2]'";
-					$NA4Bindo = "bindo='$nilai_bindo[3]'";
-					$NA5Bindo = "bindo='$nilai_bindo[4]'";
+					$NA2Bindo = "bhs_indonesia='$nilai_bindo[1]'";
+					$NA3Bindo = "bhs_indonesia='$nilai_bindo[2]'";
+					$NA4Bindo = "bhs_indonesia='$nilai_bindo[3]'";
+					$NA5Bindo = "bhs_indonesia='$nilai_bindo[4]'";
 				}
-				hitung_gain($kondisi, "bindo", $entropy_all, $NA1Bindo, $NA2Bindo, $NA3Bindo, $NA4Bindo, $NA5Bindo, "", "", "");
+				hitung_gain($kondisi, "bhs_indonesia", $entropy_all, $NA1Bindo, $NA2Bindo, $NA3Bindo, $NA4Bindo, $NA5Bindo, "", "");
 			}
 			//MATEMATIKA
 			if ($jmlMat != 1) {
-				$NA1Mat = "mat='$nilai_mat[0]'";
+				$NA1Mat = "matematika='$nilai_mat[0]'";
 				$NA2Mat = "";
 				$NA3Mat = "";
 				$NA4Mat = "";
@@ -215,49 +215,49 @@ function pembentukan_tree($N_parent, $kasus)
 				if (
 					$jmlMat == 2
 				) {
-					$NA2Mat = "mat='$nilai_mat[1]'";
+					$NA2Mat = "matematika='$nilai_mat[1]'";
 				} else if ($jmlMat == 3) {
-					$NA2Mat = "mat='$nilai_mat[1]'";
-					$NA3Mat = "mat='$nilai_mat[2]'";
+					$NA2Mat = "matematika='$nilai_mat[1]'";
+					$NA3Mat = "matematika='$nilai_mat[2]'";
 				} else if ($jmlMat == 4) {
-					$NA2Mat = "mat='$nilai_mat[1]'";
-					$NA3Mat = "mat='$nilai_mat[2]'";
-					$NA4Mat = "mat='$nilai_mat[3]'";
+					$NA2Mat = "matematika='$nilai_mat[1]'";
+					$NA3Mat = "matematika='$nilai_mat[2]'";
+					$NA4Mat = "matematika='$nilai_mat[3]'";
 				} else if ($jmlMat == 5) {
-					$NA2Mat = "mat='$nilai_mat[1]'";
-					$NA3Mat = "mat='$nilai_mat[2]'";
-					$NA4Mat = "mat='$nilai_mat[3]'";
-					$NA5Mat = "mat='$nilai_mat[4]'";
+					$NA2Mat = "matematika='$nilai_mat[1]'";
+					$NA3Mat = "matematika='$nilai_mat[2]'";
+					$NA4Mat = "matematika='$nilai_mat[3]'";
+					$NA5Mat = "matematika='$nilai_mat[4]'";
 				}
-				hitung_gain($kondisi, "mat", $entropy_all, $NA1Mat, $NA2Mat, $NA3Mat, $NA4Mat, $NA5Mat, "", "", "");
+				hitung_gain($kondisi, "matematika", $entropy_all, $NA1Mat, $NA2Mat, $NA3Mat, $NA4Mat, $NA5Mat, "", "");
 			}
 			//BAHASA INGGRIS
 			if ($jmlBing != 1) {
-				$NA1Bing = "bing='$nilai_bing[0]'";
+				$NA1Bing = "bhs_inggris='$nilai_bing[0]'";
 				$NA2Bing = "";
 				$NA3Bing = "";
 				$NA4Bing = "";
 				$NA5Bing = "";
 				if ($jmlBing == 2) {
-					$NA2Bing = "bing='$nilai_bing[1]'";
+					$NA2Bing = "bhs_inggris='$nilai_bing[1]'";
 				} else if ($jmlBing == 3) {
-					$NA2Bing = "bing='$nilai_bing[1]'";
-					$NA3Bing = "bing='$nilai_bing[2]'";
+					$NA2Bing = "bhs_inggris='$nilai_bing[1]'";
+					$NA3Bing = "bhs_inggris='$nilai_bing[2]'";
 				} else if ($jmlBing == 4) {
-					$NA2Bing = "bing='$nilai_bing[1]'";
-					$NA3Bing = "bing='$nilai_bing[2]'";
-					$NA4Bing = "bing='$nilai_bing[3]'";
+					$NA2Bing = "bhs_inggris='$nilai_bing[1]'";
+					$NA3Bing = "bhs_inggris='$nilai_bing[2]'";
+					$NA4Bing = "bhs_inggris='$nilai_bing[3]'";
 				} else if ($jmlBing == 5) {
-					$NA2Bing = "bing='$nilai_bing[1]'";
-					$NA3Bing = "bing='$nilai_bing[2]'";
-					$NA4Bing = "bing='$nilai_bing[3]'";
-					$NA5Bing = "bing='$nilai_bing[4]'";
+					$NA2Bing = "bhs_inggris='$nilai_bing[1]'";
+					$NA3Bing = "bhs_inggris='$nilai_bing[2]'";
+					$NA4Bing = "bhs_inggris='$nilai_bing[3]'";
+					$NA5Bing = "bhs_inggris='$nilai_bing[4]'";
 				}
-				hitung_gain($kondisi, "bing", $entropy_all, $NA1Bing, $NA2Bing, $NA3Bing, $NA4Bing, $NA5Bing, "", "", "");
+				hitung_gain($kondisi, "bhs_inggris", $entropy_all, $NA1Bing, $NA2Bing, $NA3Bing, $NA4Bing, $NA5Bing, "", "");
 			}
 			//MIPA
 			if ($jmlMipa != 1) {
-				$NA1Mipa = "mipa='$nilai_mipa[0]'";
+				$NA1Mipa = "ipa='$nilai_mipa[0]'";
 				$NA2Mipa = "";
 				$NA3Mipa = "";
 				$NA4Mipa = "";
@@ -265,21 +265,21 @@ function pembentukan_tree($N_parent, $kasus)
 				if (
 					$jmlMipa == 2
 				) {
-					$NA2Mipa = "mipa='$nilai_mipa[1]'";
+					$NA2Mipa = "ipa='$nilai_mipa[1]'";
 				} else if ($jmlMipa == 3) {
-					$NA2Mipa = "mipa='$nilai_mipa[1]'";
-					$NA3Mipa = "mipa='$nilai_mipa[2]'";
+					$NA2Mipa = "ipa='$nilai_mipa[1]'";
+					$NA3Mipa = "ipa='$nilai_mipa[2]'";
 				} else if ($jmlMipa == 4) {
-					$NA2Mipa = "mipa='$nilai_mipa[1]'";
-					$NA3Mipa = "mipa='$nilai_mipa[2]'";
-					$NA4Mipa = "mipa='$nilai_mipa[3]'";
+					$NA2Mipa = "ipa='$nilai_mipa[1]'";
+					$NA3Mipa = "ipa='$nilai_mipa[2]'";
+					$NA4Mipa = "ipa='$nilai_mipa[3]'";
 				} else if ($jmlMipa == 5) {
-					$NA2Mipa = "mipa='$nilai_mipa[1]'";
-					$NA3Mipa = "mipa='$nilai_mipa[2]'";
-					$NA4Mipa = "mipa='$nilai_mipa[3]'";
-					$NA5Mipa = "mipa='$nilai_mipa[4]'";
+					$NA2Mipa = "ipa='$nilai_mipa[1]'";
+					$NA3Mipa = "ipa='$nilai_mipa[2]'";
+					$NA4Mipa = "ipa='$nilai_mipa[3]'";
+					$NA5Mipa = "ipa='$nilai_mipa[4]'";
 				}
-				hitung_gain($kondisi, "mipa", $entropy_all, $NA1Mipa, $NA2Mipa, $NA3Mipa, $NA4Mipa, $NA5Mipa, "", "", "");
+				hitung_gain($kondisi, "ipa", $entropy_all, $NA1Mipa, $NA2Mipa, $NA3Mipa, $NA4Mipa, $NA5Mipa, "", "");
 			}
 			//IPS
 			if ($jmlIps != 1) {
@@ -305,7 +305,7 @@ function pembentukan_tree($N_parent, $kasus)
 					$NA4Ips = "ips='$nilai_ips[3]'";
 					$NA5Ips = "ips='$nilai_ips[4]'";
 				}
-				hitung_gain($kondisi, "ips", $entropy_all, $NA1Ips, $NA2Ips, $NA3Ips, $NA4Ips, $NA5Ips, "", "", "");
+				hitung_gain($kondisi, "ips", $entropy_all, $NA1Ips, $NA2Ips, $NA3Ips, $NA4Ips, $NA5Ips, "", "");
 			}
 			//SKHU
 			if ($jmlSkhu != 1) {
@@ -331,7 +331,7 @@ function pembentukan_tree($N_parent, $kasus)
 					$NA4Skhu = "skhu='$nilai_skhu[3]'";
 					$NA5Skhu = "skhu='$nilai_skhu[4]'";
 				}
-				hitung_gain($kondisi, "skhu", $entropy_all, $NA1Skhu, $NA2Skhu, $NA3Skhu, $NA4Skhu, $NA5Skhu, "", "", "");
+				hitung_gain($kondisi, "skhu", $entropy_all, $NA1Skhu, $NA2Skhu, $NA3Skhu, $NA4Skhu, $NA5Skhu, "", "");
 			}
 			//jurusan
 			if ($jmlJurusan != 1) {
@@ -340,12 +340,9 @@ function pembentukan_tree($N_parent, $kasus)
 				$NA3Jurusan = "";
 				if ($jmlJurusan == 2) {
 					$NA2Jurusan = "jurusan='$nilai_jurusan[1]'";
-				} else if ($jmlJurusan == 3) {
-					$NA2Jurusan = "jurusan='$nilai_jurusan[1]'";
-					$NA3Jurusan = "jurusan='$nilai_jurusan[2]'";
 				}
 
-				hitung_gain($kondisi, "Jurusan", $entropy_all, $NA1Jurusan, $NA2Jurusan, $NA3Jurusan, "", "", "", "");
+				hitung_gain($kondisi, "jurusan", $entropy_all, $NA1Jurusan, $NA2Jurusan, "", "", "", "", "");
 			}
 
 			//ambil nilai gain tertinggi
@@ -383,12 +380,12 @@ function pembentukan_tree($N_parent, $kasus)
 				}
 			}
 			//BAHASA INDONESIA TERPILIH
-			else if ($atribut == "bindo") {
+			else if ($atribut == "bhs_indonesia") {
 				//jika nilai atribut 5
 				if ($jmlBindo == 5) {
 					//hitung rasio
 					$cabang = array();
-					$cabang = hitung_rasio($kondisi, 'bindo', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], $nilai_bindo[3], $nilai_bindo[4], '', '');
+					$cabang = hitung_rasio($kondisi, 'bhs_indonesia', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], $nilai_bindo[3], $nilai_bindo[4], '', '');
 					$exp_cabang = explode(" , ", $cabang[1]);
 					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
 				}
@@ -396,7 +393,7 @@ function pembentukan_tree($N_parent, $kasus)
 				else if ($jmlBindo == 4) {
 					//hitung rasio
 					$cabang = array();
-					$cabang = hitung_rasio($kondisi, 'bindo', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], $nilai_bindo[3], '', '', '');
+					$cabang = hitung_rasio($kondisi, 'bhs_indonesia', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], $nilai_bindo[3], '', '', '');
 					$exp_cabang = explode(" , ", $cabang[1]);
 					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
 				}
@@ -404,13 +401,168 @@ function pembentukan_tree($N_parent, $kasus)
 				else if ($jmlBindo == 3) {
 					//hitung rasio
 					$cabang = array();
-					$cabang = hitung_rasio($kondisi, 'bindo', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], '', '', '', '');
+					$cabang = hitung_rasio($kondisi, 'bhs_indonesia', $max_gain, $nilai_bindo[0], $nilai_bindo[1], $nilai_bindo[2], '', '', '', '');
 					$exp_cabang = explode(" , ", $cabang[1]);
 					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
 				}
 				//jika nilai atribut 2
 				else if ($jmlBindo == 2) {
 					proses_DT($kondisi, "($atribut='$nilai_bindo[0]')", "($atribut='$nilai_bindo[1]')");
+				}
+			}
+			//MATEMATIKA TERPILIH
+			else if ($atribut == "matematika") {
+				//jika nilai atribut 5
+				if ($jmlMat == 5) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'matematika', $max_gain, $nilai_mat[0], $nilai_mat[1], $nilai_mat[2], $nilai_mat[3], $nilai_mat[4], '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
+				}
+				//jika nilai atribut 4
+				else if ($jmlMat == 4) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'matematika', $max_gain, $nilai_mat[0], $nilai_mat[1], $nilai_mat[2], $nilai_mat[3], '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
+				}
+				//jika nilai atribut 3
+				else if ($jmlMat == 3) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'matematika', $max_gain, $nilai_mat[0], $nilai_mat[1], $nilai_mat[2], '', '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
+				}
+				//jika nilai atribut 2
+				else if ($jmlMat == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_mat[0]')", "($atribut='$nilai_mat[1]')");
+				}
+			}
+			//BAHASA INGGRIS TERPILIH
+			else if ($atribut == "bhs_inggris") {
+				//jika nilai atribut 5
+				if ($jmlBing == 5) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'bhs_inggris', $max_gain, $nilai_bing[0], $nilai_bing[1], $nilai_bing[2], $nilai_bing[3], $nilai_bing[4], '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
+				}
+				//jika nilai atribut 4
+				else if ($jmlBing == 4) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'bhs_inggris', $max_gain, $nilai_bing[0], $nilai_bing[1], $nilai_bing[2], $nilai_bing[3], '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
+				}
+				//jika nilai atribut 3
+				else if ($jmlBing == 3) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'bhs_inggris', $max_gain, $nilai_bing[0], $nilai_bing[1], $nilai_bing[2], '', '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
+				}
+				//jika nilai atribut 2
+				else if ($jmlBing == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_bing[0]')", "($atribut='$nilai_bing[1]')");
+				}
+			}
+			//MIPA TERPILIH
+			else if ($atribut == "ipa") {
+				//jika nilai atribut 5
+				if ($jmlMipa == 5) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ipa', $max_gain, $nilai_mipa[0], $nilai_mipa[1], $nilai_mipa[2], $nilai_mipa[3], $nilai_mipa[4], '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
+				}
+				//jika nilai atribut 4
+				else if ($jmlMipa == 4) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ipa', $max_gain, $nilai_mipa[0], $nilai_mipa[1], $nilai_mipa[2], $nilai_mipa[3], '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
+				}
+				//jika nilai atribut 3
+				else if ($jmlMipa == 3) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ipa', $max_gain, $nilai_mipa[0], $nilai_mipa[1], $nilai_mipa[2], '', '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
+				}
+				//jika nilai atribut 2
+				else if ($jmlMipa == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_mipa[0]')", "($atribut='$nilai_mipa[1]')");
+				}
+			}
+			//IPS TERPILIH
+			else if ($atribut == "ips") {
+				//jika nilai atribut 5
+				if ($jmlIps == 5) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ips', $max_gain, $nilai_ips[0], $nilai_ips[1], $nilai_ips[2], $nilai_ips[3], $nilai_ips[4], '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
+				}
+				//jika nilai atribut 4
+				else if ($jmlIps == 4) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ips', $max_gain, $nilai_ips[0], $nilai_ips[1], $nilai_ips[2], $nilai_ips[3], '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
+				}
+				//jika nilai atribut 3
+				else if ($jmlIps == 3) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'ips', $max_gain, $nilai_ips[0], $nilai_ips[1], $nilai_ips[2], '', '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
+				}
+				//jika nilai atribut 2
+				else if ($jmlIps == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_ips[0]')", "($atribut='$nilai_ips[1]')");
+				}
+			}
+			//SKHU TERPILIH
+			else if ($atribut == "skhu") {
+				//jika nilai atribut 5
+				if ($jmlSkhu == 5) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'skhu', $max_gain, $nilai_skhu[0], $nilai_skhu[1], $nilai_skhu[2], $nilai_skhu[3], $nilai_skhu[4], '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]' OR $atribut='$exp_cabang[3]')");
+				}
+				//jika nilai atribut 4
+				else if ($jmlSkhu == 4) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'skhu', $max_gain, $nilai_skhu[0], $nilai_skhu[1], $nilai_skhu[2], $nilai_skhu[3], '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]' OR $atribut='$exp_cabang[2]')");
+				}
+				//jika nilai atribut 3
+				else if ($jmlSkhu == 3) {
+					//hitung rasio
+					$cabang = array();
+					$cabang = hitung_rasio($kondisi, 'skhu', $max_gain, $nilai_skhu[0], $nilai_skhu[1], $nilai_skhu[2], '', '', '', '');
+					$exp_cabang = explode(" , ", $cabang[1]);
+					proses_DT($kondisi, "($atribut='$cabang[0]')", "($atribut='$exp_cabang[0]' OR $atribut='$exp_cabang[1]')");
+				}
+				//jika nilai atribut 2
+				else if ($jmlSkhu == 2) {
+					proses_DT($kondisi, "($atribut='$nilai_skhu[0]')", "($atribut='$nilai_skhu[1]')");
 				}
 			}
 			//JURUSAN TERPILIH

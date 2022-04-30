@@ -1,15 +1,15 @@
 <!-- Modal update data -->
 <?php
 $sql = mysql_query("SELECT * FROM data_training WHERE id='$_GET[id]'");
-$row = mysql_fetch_array($sql);	
-$ppdb=$row[1];
-$bhs_indonesia=$row[2];
-$matematika=$row[3];
-$bhs_inggris=$row[4];
-$ipa=$row[5];
-$ips=$row[6];
-$skhu=$row[7];
-$minat=$row[8];
+$row = mysql_fetch_array($sql);
+$ppdb = $row[1];
+$bhs_indonesia = $row[2];
+$matematika = $row[3];
+$bhs_inggris = $row[4];
+$ipa = $row[5];
+$ips = $row[6];
+$skhu = $row[7];
+$jurusan = $row[8];
 if (isset($_POST['submit'])) {
   mysql_query("UPDATE data_training SET
                      ppdb = '$_POST[txtppdb]',
@@ -19,13 +19,12 @@ if (isset($_POST['submit'])) {
                      ipa = '$_POST[txtipa]',
                      ips = '$_POST[txtips]',
                      skhu = '$_POST[txtskhu]',
-                     minat = '$_POST[peminatan]'
+                     jurusan = '$_POST[peminatan]'
                      WHERE id = '$_GET[id]'");
-                     	echo "<center><h3>Berhasil update</h3></center>";
-
-}else{
+  echo "<center><h3>Berhasil update</h3></center>";
+} else {
 ?>
-<div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
+  <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-info">
@@ -45,13 +44,27 @@ if (isset($_POST['submit'])) {
 
                   <label for="ppdb">PPDB :</label>
                   <select name="txtppdb" id="ppdb" class="form-control" required autofocus>
-                    <option value="Prestasi Akademik" <?php if($ppdb=='Prestasi Akademik'){ echo 'selected'; } ?>>Prestasi Akademik</option>
-                    <option value="Prestasi Non-Akademik" <?php if($ppdb=='Prestasi Non-Akademik'){ echo 'selected'; } ?>>Prestasi Non-Akademik</option>
-                    <option value="Prestasi Tahfidz" <?php if($ppdb=='Prestasi Tahfidz'){ echo 'selected'; } ?>>Prestasi Tahfidz</option>
-                    <option value="Afirmasi" <?php if($ppdb=='Afirmasi'){ echo 'selected'; } ?>>Afirmasi</option>
-                    <option value="PPLP" <?php if($ppdb=='PPLP'){ echo 'selected'; } ?>>PPLP</option>
-                    <option value="Zonasi" <?php if($ppdb=='Zonasi'){ echo 'selected'; } ?>>Zonasi</option>
-                    <option value="Perpindahan Orang tua" <?php if($ppdb=='Perpindahan Orang tua'){ echo 'selected'; } ?>>Perpindahan Orang tua</option>
+                    <option value="Prestasi Akademik" <?php if ($ppdb == 'Prestasi Akademik') {
+                                                        echo 'selected';
+                                                      } ?>>Prestasi Akademik</option>
+                    <option value="Prestasi Non-Akademik" <?php if ($ppdb == 'Prestasi Non-Akademik') {
+                                                            echo 'selected';
+                                                          } ?>>Prestasi Non-Akademik</option>
+                    <option value="Prestasi Tahfidz" <?php if ($ppdb == 'Prestasi Tahfidz') {
+                                                        echo 'selected';
+                                                      } ?>>Prestasi Tahfidz</option>
+                    <option value="Afirmasi" <?php if ($ppdb == 'Afirmasi') {
+                                                echo 'selected';
+                                              } ?>>Afirmasi</option>
+                    <option value="PPLP" <?php if ($ppdb == 'PPLP') {
+                                            echo 'selected';
+                                          } ?>>PPLP</option>
+                    <option value="Zonasi" <?php if ($ppdb == 'Zonasi') {
+                                              echo 'selected';
+                                            } ?>>Zonasi</option>
+                    <option value="Perpindahan Orang tua" <?php if ($ppdb == 'Perpindahan Orang tua') {
+                                                            echo 'selected';
+                                                          } ?>>Perpindahan Orang tua</option>
                   </select>
                 </div>
                 <!-- Nilai bahasa indonesia -->
@@ -84,13 +97,19 @@ if (isset($_POST['submit'])) {
                   <label for="hu">Nilai SKHU :</label>
                   <input type="text" name="txtskhu" value=<?php echo $skhu; ?> id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                 </div>
-                <!-- minat jurusan -->
+                <!-- jurusan jurusan -->
                 <div class="form-group">
                   <label for="jp">Jurusan Peminatan :</label>
                   <br>
-                  <input type='radio' name='peminatan' value='IPA' <?php if($minat=='IPA'){ echo 'checked'; } ?>  required="required"> IPA &nbsp;&nbsp;&nbsp;
-                  <input type='radio' name='peminatan' value='IPS' <?php if($minat=='IPS'){ echo 'checked'; } ?> required="required"> IPS &nbsp;&nbsp;&nbsp;
-                  <input type='radio' name='peminatan' value='BAHASA' <?php if($minat=='BAHASA'){ echo 'checked'; } ?> required="required"> BAHASA
+                  <input type='radio' name='peminatan' value='IPA' <?php if ($jurusan == 'IPA') {
+                                                                      echo 'checked';
+                                                                    } ?> required="required"> IPA &nbsp;&nbsp;&nbsp;
+                  <input type='radio' name='peminatan' value='IPS' <?php if ($jurusan == 'IPS') {
+                                                                      echo 'checked';
+                                                                    } ?> required="required"> IPS &nbsp;&nbsp;&nbsp;
+                  <input type='radio' name='peminatan' value='BAHASA' <?php if ($jurusan == 'BAHASA') {
+                                                                        echo 'checked';
+                                                                      } ?> required="required"> BAHASA
                 </div>
                 <!--  -->
             </div>
@@ -102,11 +121,12 @@ if (isset($_POST['submit'])) {
           <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
         </div>
         </form>
-       
+
       </div>
     </div>
   </div>
 <?php
 }
 ?>
-<a href='index.php?menu=data' accesskey='5' title='Kembali'><< kembali</a>
+<a href='index.php?menu=data' accesskey='5' title='Kembali'>
+  << kembali</a>

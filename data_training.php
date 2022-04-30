@@ -234,7 +234,7 @@ if (isset($_GET['act'])) {
                             <td><?php echo $row['ipa']; ?></td>
                             <td><?php echo $row['ips']; ?></td>
                             <td><?php echo $row['skhu']; ?></td>
-                            <td><b><?php echo $row['minat']; ?></b></td>
+                            <td><b><?php echo $row['jurusan']; ?></b></td>
                             <td>
                               <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline"><i class="fas fa-edit"></i></a>
                               <a href="data_training.php?act=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-responsive btn-sm d-inline" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="fas fa-trash"></i></a>

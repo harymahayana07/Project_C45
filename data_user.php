@@ -172,6 +172,7 @@
 														} else if (mysql_num_rows($que) == 0) {
 															$statusPrediksi = "Belum";
 														}
+														// 
 														if ($warna == $warna1) {
 															$warna = $warna2;
 														} else {
