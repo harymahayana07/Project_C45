@@ -45,7 +45,7 @@ if ($level == 'siswa') {
               <div class="inner">
                 <h3>150</h3>
 
-                <p>New Orders</p>
+                <p>Jumlah Data</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -58,8 +58,8 @@ if ($level == 'siswa') {
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-                <p>Bounce Rate</p>
+                <h3>53<sup style="font-size: 20px"></sup></h3>
+                <p>Jumlah Data Mipa</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -74,7 +74,7 @@ if ($level == 'siswa') {
               <div class="inner">
                 <h3>44</h3>
 
-                <p>User Registrations</p>
+                <p>Jumlah Data Ips</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -88,7 +88,7 @@ if ($level == 'siswa') {
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>65</h3>
-                <p>Unique Visitors</p>
+                <p>Hasil Entropy </p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -108,16 +108,14 @@ if ($level == 'siswa') {
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Sales
+                  Siswa
                 </h3>
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
                       <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                    </li>
+
                   </ul>
                 </div>
               </div><!-- /.card-header -->

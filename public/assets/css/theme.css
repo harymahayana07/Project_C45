@@ -17617,6 +17617,10 @@ ul {
 .container-xxl {
   position: relative;
 }
+.clsmap .maps{
+  height: 400px;
+  width: 200px;
+}
 
 .all-0 {
   top: 0;
@@ -18119,6 +18123,10 @@ ul {
   -o-transition: opacity 0.15s ease;
   transition: opacity 0.15s ease;
 }
+.clsmap .maps{
+  width: 500px;
+  height: 200px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .carousel-control-prev,
@@ -18199,6 +18207,10 @@ ul {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+.clsmap .maps{
+  width: 90px;
+  height: 10px;
 }
 
 /*-----------------------------------------------

@@ -8,20 +8,18 @@ if (!isset($_SESSION['usr'])) {
 require 'partial/header.php';
 require 'partial/sidebar.php';
 require 'partial/navbar.php';
-?>
-<?php
+
 include "koneksi.php";
 if (isset($_GET['act'])) {
   $action = $_GET['act'];
   //delete semua data
   if ($action == 'delete_all') {
     mysql_query("TRUNCATE data_training_konversi");
-    header('location:index.php?menu=konversi');
+    header('location:mining_konversi.php');
   }
 }
-if (isset($_POST['submit_mining'])) {
-  include "proses_mining.php";
-}
+?>
+<?php
 $query = mysql_query("select * from data_training order by(id)");
 while ($row = mysql_fetch_array($query)) {
   $jumlah = mysql_num_rows($query);
@@ -33,11 +31,11 @@ while ($row = mysql_fetch_array($query)) {
     $bhs_indonesia = "A";
   } else if ($bhs_indonesia >= 84 && $bhs_indonesia < 92) {
     $bhs_indonesia = "B";
-  } else if ($bhs_indonesia >= 76 && $bhs_indonesia <= 84) {
+  } else if ($bhs_indonesia >= 76 && $bhs_indonesia < 84) {
     $bhs_indonesia = "C";
-  } else if ($bhs_indonesia >= 70 && $bhs_indonesia <= 76) {
+  } else if ($bhs_indonesia >= 70 && $bhs_indonesia < 76) {
     $bhs_indonesia = "D";
-  } else if ($bhs_indonesia >= 65  && $bhs_indonesia <= 70) {
+  } else if ($bhs_indonesia >= 65  && $bhs_indonesia < 70) {
     $bhs_indonesia = "E";
   } else {
     $bhs_indonesia = "Tidak Lulus";
@@ -49,11 +47,11 @@ while ($row = mysql_fetch_array($query)) {
     $matematika = "A";
   } else if ($matematika >= 84 && $matematika < 92) {
     $matematika = "B";
-  } else if ($matematika >= 76 && $matematika <= 84) {
+  } else if ($matematika >= 76 && $matematika < 84) {
     $matematika = "C";
-  } else if ($matematika >= 70 && $matematika <= 76) {
+  } else if ($matematika >= 70 && $matematika < 76) {
     $matematika = "D";
-  } else if ($matematika >= 65  && $matematika <= 70) {
+  } else if ($matematika >= 65  && $matematika < 70) {
     $matematika = "E";
   } else {
     $matematika = "Tidak Lulus";
@@ -64,11 +62,11 @@ while ($row = mysql_fetch_array($query)) {
     $bhs_inggris = "A";
   } else if ($bhs_inggris >= 84 && $bhs_inggris < 92) {
     $bhs_inggris = "B";
-  } else if ($bhs_inggris >= 76 && $bhs_inggris <= 84) {
+  } else if ($bhs_inggris >= 76 && $bhs_inggris < 84) {
     $bhs_inggris = "C";
-  } else if ($bhs_inggris >= 70 && $bhs_inggris <= 76) {
+  } else if ($bhs_inggris >= 70 && $bhs_inggris < 76) {
     $bhs_inggris = "D";
-  } else if ($bhs_inggris >= 65  && $bhs_inggris <= 70) {
+  } else if ($bhs_inggris >= 65  && $bhs_inggris < 70) {
     $bhs_inggris = "E";
   } else {
     $bhs_inggris = "Tidak Lulus";
@@ -79,11 +77,11 @@ while ($row = mysql_fetch_array($query)) {
     $ipa = "A";
   } else if ($ipa >= 84 && $ipa < 92) {
     $ipa = "B";
-  } else if ($ipa >= 76 && $ipa <= 84) {
+  } else if ($ipa >= 76 && $ipa < 84) {
     $ipa = "C";
-  } else if ($ipa >= 70 && $ipa <= 76) {
+  } else if ($ipa >= 70 && $ipa < 76) {
     $ipa = "D";
-  } else if ($ipa >= 65  && $ipa <= 70) {
+  } else if ($ipa >= 65  && $ipa < 70) {
     $ipa = "E";
   } else {
     $ipa = "Tidak Lulus";
@@ -94,11 +92,11 @@ while ($row = mysql_fetch_array($query)) {
     $ips = "A";
   } else if ($ips >= 84 && $ips < 92) {
     $ips = "B";
-  } else if ($ips >= 76 && $ips <= 84) {
+  } else if ($ips >= 76 && $ips < 84) {
     $ips = "C";
-  } else if ($ips >= 70 && $ips <= 76) {
+  } else if ($ips >= 70 && $ips < 76) {
     $ips = "D";
-  } else if ($ips >= 65  && $ips <= 70) {
+  } else if ($ips >= 65  && $ips < 70) {
     $ips = "E";
   } else {
     $ips = "Tidak Lulus";
@@ -109,17 +107,16 @@ while ($row = mysql_fetch_array($query)) {
     $skhu = "A";
   } else if ($skhu >= 84 && $skhu < 92) {
     $skhu = "B";
-  } else if ($skhu >= 76 && $skhu <= 84) {
+  } else if ($skhu >= 76 && $skhu < 84) {
     $skhu = "C";
-  } else if ($skhu >= 70 && $skhu <= 76) {
+  } else if ($skhu >= 70 && $skhu < 76) {
     $skhu = "D";
-  } else if ($skhu >= 65  && $skhu <= 70) {
+  } else if ($skhu >= 65  && $skhu < 70) {
     $skhu = "E";
   } else {
     $skhu = "Tidak Lulus";
   }
   $jurusan = $row['jurusan'];
-
 
   if (isset($_POST['submit_konversi'])) {
     mysql_query("INSERT INTO data_training_konversi 
@@ -138,7 +135,6 @@ while ($row = mysql_fetch_array($query)) {
 }
 ?>
 
-
 <!--  -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -146,12 +142,12 @@ while ($row = mysql_fetch_array($query)) {
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6">
-          <h1 class="m-0">MINING DATA</h1>
+          <h1 class="m-0">MINING KONVERSI DATA</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item active">Mining</li>
+            <li class="breadcrumb-item">Mining</li>
+            <li class="breadcrumb-item active">Konversi</li>
           </ol>
         </div>
       </div>
@@ -166,19 +162,16 @@ while ($row = mysql_fetch_array($query)) {
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12 col-md-4">
-
+              <a href="mining.php" type="button" class="btn btn-success btn-sm btn-responsive"><i class="fas fa-backward"></i>&emsp; Kembali</a>&emsp;
+              <button type="submit" class="btn btn-danger btn-sm btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusKonversi">
+                <i class="fas fa-trash-alt"></i></i>&emsp;Reset
+              </button>&emsp;
               <form method="POST" action='' class="d-inline">
-                <a href="mining.php" type="button" class="btn btn-success btn-sm btn-responsive"><i class="fas fa-backward"></i>&emsp; Kembali</a>&emsp;
-
-                <button type="submit" class="btn btn-danger btn-sm btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusKonversi">
-                  <i class="fas fa-trash-alt"></i></i>&emsp;Reset
-                </button>&emsp;
-
                 <button type="submit" name="submit_mining" class="btn btn-primary btn-sm btn-responsive">
                   <i class="fas fa-hourglass-end"></i>&emsp;Proses Mining
                 </button>
-
               </form>
+
 
               <!--  -->
               <!-- Modal hapus data -->
@@ -246,7 +239,7 @@ while ($row = mysql_fetch_array($query)) {
                         <th>IPS</th>
                         <th>SKHU</th>
                         <th>JURUSAN</th>
-                        <th>AKSI</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -291,10 +284,6 @@ while ($row = mysql_fetch_array($query)) {
                               <?php echo $row['jurusan']; ?>
                             </b>
                           </td>
-                          <td>
-                            <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm"><i class="fas fa-edit"></i></a>
-                            <a href="data_training.php?act=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-responsive btn-sm" onclick=" confirm('Apakah anda yakin akan menghapus data?')"><i class="fas fa-trash"></i></a>
-                          </td>
                         </tr>
                       <?php
                         $no++;
@@ -315,6 +304,19 @@ while ($row = mysql_fetch_array($query)) {
 
           </div>
           <!-- /.row -->
+          <?php
+          if (isset($_POST['submit_mining'])) {
+          ?>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                <?php
+                include "proses_mining.php";
+              }
+                ?>
+                </div>
+              </div>
+            </div>
         </div>
         <!-- /.container-fluid -->
       </section>

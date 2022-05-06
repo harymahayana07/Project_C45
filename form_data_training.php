@@ -64,9 +64,9 @@
                <div class="form-group">
                  <label for="jp">Jurusan Peminatan :</label>
                  <br>
-                 <input type='radio' name='peminatan' value='MIPA' required="required"> IPA &nbsp;&nbsp;&nbsp;
+                 <input type='radio' name='peminatan' value='MIPA' required="required"> MIPA &nbsp;&nbsp;&nbsp;
                  <input type='radio' name='peminatan' value='IPS' required="required"> IPS &nbsp;&nbsp;&nbsp;
-                 <input type='radio' name='peminatan' value='BHS' required="required"> BAHASA
+
                </div>
                <!--  -->
            </div>

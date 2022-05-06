@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+    <title>Users / Profile </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -59,8 +59,8 @@
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center mb-5">
 
                             <img src="dist/img/user-bg-dark.png" alt="Profile" class="rounded-circle">
-                            <h2>Ni Luh Putu Sri Astiti</h2>
-                            <h3>Siswa</h3>
+                            <h2><?= $_SESSION['nama'] ?></h2>
+                            <h3><?= $_SESSION['lvl'] ?></h3>
 
                         </div>
                     </div>

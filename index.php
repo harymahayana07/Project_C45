@@ -21,6 +21,8 @@ if (isset($_GET['menu'])) {
   //menu konversi (proses konversi merubah angka menjadi huruf, untuk mempermudah uji)
   else if ($kode == 'konversi') {
     include 'mining_konversi.php';
+  } else if ($kode == 'konversi2') {
+    include 'mining_konversi.php';
   }
   //menu pohon keputusan atau rule
   else if ($kode == 'tree') {

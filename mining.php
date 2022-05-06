@@ -49,8 +49,9 @@ if ($jumlah == 0) {
               <div class="col-lg-12 col-md-4">
 
                 <a href="mining_konversi.php" type="button" class="btn btn-warning btn-sm btn-responsive"><i class="fas fa-eye"></i>&emsp; Lihat Hasil Konversi</a> &emsp;
-
-                <a href="mining_konversi.php" type="button" name="submit" class="btn btn-success btn-sm btn-responsive"><i class="fab fa-cloudscale"></i>&emsp; Konversi Data Ke Huruf</a>
+                <form action="mining_konversi.php" method="POST" class="d-inline">
+                  <button name="submit_konversi" type="submit" class="btn btn-success btn-sm btn-responsive"><i class="fab fa-cloudscale"></i>&emsp; Konversi Data Ke Huruf</button>
+                </form>
 
               </div>
 

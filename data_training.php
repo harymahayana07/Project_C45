@@ -24,6 +24,7 @@ if (!isset($_SESSION['usr'])) {
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
 <?php
 
@@ -48,6 +49,7 @@ if (isset($_GET['act'])) {
 } else {
   include "form_data_training.php";
   $query = mysql_query("select * from data_training order by(id)");
+
   $jumlah = mysql_num_rows($query);
 ?>
   <style>
@@ -237,6 +239,10 @@ if (isset($_GET['act'])) {
                             <td><b><?php echo $row['jurusan']; ?></b></td>
                             <td>
                               <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline"><i class="fas fa-edit"></i></a>
+                              <!-- <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline" data-bs-toggle="modal" data-bs-target="#editDataTraining"><i class="fas fa-edit"></i></a> -->
+                              <!-- coba sweetalert -->
+                              <!-- <button type="button" id="hapus" class="btn btn-danger btn-responsive btn-sm d-inline">coba<i class="fas fa-trash"></i></button> -->
+                              <!--  -->
                               <a href="data_training.php?act=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-responsive btn-sm d-inline" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="fas fa-trash"></i></a>
                             </td>
                           </tr>
@@ -264,8 +270,18 @@ if (isset($_GET['act'])) {
       </div>
     </div>
   </div>
+  <script>
+    const hapus = document.querySelector('#hapus');
+    hapus.addEventListener('click', function() {
+      swal({
+        title: 'hapus data ini',
+        text: 'yakin hapus data',
+        type: 'warning'
+      });
+    });
+  </script>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
   <script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
