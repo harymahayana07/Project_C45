@@ -1,10 +1,17 @@
-<?php require 'partial/header.php'; ?>
+<?php $thisPage = "POHON KEPUTUSAN";
+session_start();
+if (!isset($_SESSION['usr'])) {
+    header("location:login-form.php");
+}
+?>
+<?php
+require 'partial/header.php';
+require 'partial/sidebar.php';
+require 'partial/navbar.php';
+?>
 
 <body class="hold-transition sidebar-mini">
-    <?php
-    require 'partial/sidebar.php';
-    require 'partial/navbar.php';
-    ?>
+
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -207,9 +214,15 @@
             });
         });
     </script>
-    <?php
-    require 'partial/footer.php';
-    ?>
+
+    <footer class="main-footer">
+        <strong>Copyright &copy; 2021-2022 <i>Ni Luh Putu Sri Astiti</i> </strong>
+    </footer>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    </div>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?php
+<?php $thisPage = "MINING DATA";
 session_start();
 if (!isset($_SESSION['usr'])) {
   header("location:login-form.php");

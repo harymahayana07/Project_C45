@@ -181,6 +181,9 @@
 
 					hitung_gain($kondisi, "ppdb", $entropy_all, $NA1Ppdb, $NA2Ppdb, $NA3Ppdb, $NA4Ppdb, $NA5Ppdb, $NA6Ppdb, $NA7Ppdb);
 				}
+
+
+
 				//BAHASA INDONESIA
 				if ($jmlBindo != 1) {
 					$NA1Bindo = "bhs_indonesia='$nilai_bindo[0]'";
@@ -341,9 +344,15 @@
 					if ($jmlJurusan == 2) {
 						$NA2Jurusan = "jurusan='$nilai_jurusan[1]'";
 					}
-
 					hitung_gain($kondisi, "jurusan", $entropy_all, $NA1Jurusan, $NA2Jurusan, "", "", "", "", "");
 				}
+				// 
+				//hitung gain atribut Numerik										
+				hitung_gain($kondisi, "A", $entropy_all, "bhs_indonesia", "rata_un>6.5", "", "", "", "", "");
+				hitung_gain($kondisi, "B", $entropy_all, "rata_un<=6.75", "rata_un>6.75", "", "", "", "", "");
+				hitung_gain($kondisi, "C", $entropy_all, "rata_un<=7", "rata_un>7", "", "", "", "", "");
+				hitung_gain($kondisi, "D", $entropy_all, "rata_un<=7.25", "rata_un>7.25", "", "", "", "", "");
+				hitung_gain($kondisi, "E", $entropy_all, "rata_un<=7.5", "rata_un>7.5", "", "", "", "", "");
 
 				//ambil nilai gain tertinggi
 				$sql_max = mysql_query("SELECT MAX(gain) FROM gain");
@@ -564,6 +573,21 @@
 					else if ($jmlSkhu == 2) {
 						proses_DT($kondisi, "($atribut='$nilai_skhu[0]')", "($atribut='$nilai_skhu[1]')");
 					}
+				}
+				// 
+				//RATA bhs_indonesia TERPILIH
+				else if ($atribut == "A") {
+					proses_DT($kondisi, "(bhs_indonesia>=92)", "(bhs_indonesia<=100)");
+				} else if ($atribut == "B") {
+					proses_DT($kondisi, "(bhs_indonesia>=84)", "(bhs_indonesia<92)");
+				} else if ($atribut == "C") {
+					proses_DT($kondisi, "(bhs_indonesia>=76)", "(bhs_indonesia<84)");
+				} else if ($atribut == "D") {
+					proses_DT($kondisi, "(bhs_indonesia>=70)", "(bhs_indonesia<76)");
+				} else if ($atribut == "E") {
+					proses_DT($kondisi, "(bhs_indonesia>=65)", "(bhs_indonesia<70)");
+				} else if ($atribut == "Tidak Lulus") {
+					proses_DT($kondisi, "(bhs_indonesia>=0)", "(bhs_indonesia<65)");
 				}
 				//JURUSAN TERPILIH
 				else if ($atribut == "jurusan") {

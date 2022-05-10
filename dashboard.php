@@ -1,4 +1,4 @@
-<?php
+<?php $thisPage = "Dashboard";
 session_start();
 if (!isset($_SESSION['usr'])) {
   header("location:login-form.php");
@@ -13,7 +13,9 @@ if ($level == 'siswa') {
   require 'partial/header.php';
   require 'partial/navbar.php';
   require 'partial/sidebar.php';
-
+  include 'koneksi.php';
+  $query_data = mysql_query("select * from data_training order by(id)");
+  $jumlah_data = mysql_num_rows($query_data);
 ?>
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -21,7 +23,7 @@ if ($level == 'siswa') {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0"><?php echo $thisPage; ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -43,8 +45,7 @@ if ($level == 'siswa') {
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
+                <h3><?php echo $jumlah_data; ?></h3>
                 <p>Jumlah Data</p>
               </div>
               <div class="icon">

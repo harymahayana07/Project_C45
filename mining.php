@@ -1,4 +1,4 @@
-<?php
+<?php $thisPage = "MINING DATA";
 session_start();
 if (!isset($_SESSION['usr'])) {
   header("location:login-form.php");
@@ -27,7 +27,7 @@ if ($jumlah == 0) {
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1 class="m-0">MINING DATA</h1>
+            <h1 class="m-0"><?php echo $thisPage; ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

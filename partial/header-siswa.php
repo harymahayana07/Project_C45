@@ -17,20 +17,20 @@
 
                   <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                       <img src="dist/img/user-bg-dark.png" alt="Profile" class="rounded-circle">
-                      <span class="d-none d-md-block dropdown-toggle ps-2">Ni Luh Putu Sri Astiti</span>
+                      <span class="d-none d-md-block dropdown-toggle ps-2"><?= $_SESSION['nama'] ?></span>
                   </a><!-- End Profile Iamge Icon -->
 
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" style="border: 10px;">
                       <li class="dropdown-header">
-                          <h6>Ni Luh Putu Sri Astiti</h6>
-                          <span>Siswa</span>
+                          <h6><?= $_SESSION['nama'] ?></h6>
+                          <span><?= $_SESSION['lvl'] ?></span>
                       </li>
                       <li>
                           <hr class="dropdown-divider">
                       </li>
 
                       <li>
-                          <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                          <a class="dropdown-item d-flex align-items-center" href="profile-siswa.php">
                               <i class="bi bi-person"></i>
                               <span>My Profile</span>
                           </a>
@@ -39,12 +39,6 @@
                           <hr class="dropdown-divider">
                       </li>
 
-                      <li>
-                          <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                              <i class="bi bi-gear"></i>
-                              <span>Account Settings</span>
-                          </a>
-                      </li>
                       <li>
                           <hr class="dropdown-divider">
                       </li>
@@ -60,7 +54,7 @@
                       </li>
 
                       <li>
-                          <a class="dropdown-item d-flex align-items-center" href="#">
+                          <a class="dropdown-item d-flex align-items-center" href="logout.php">
                               <i class="bi bi-box-arrow-right"></i>
                               <span>LogOut</span>
                           </a>

@@ -45,37 +45,37 @@
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="dashboard.php" accesskey='1' class="nav-link">
+              <a href="dashboard.php" accesskey='1' class="nav-link <?php if ($thisPage == "Dashboard") echo "active"; ?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p> Dashboard </i></p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="data_training.php" accesskey='2' class="nav-link">
+              <a href="data_training.php" accesskey='2' class="nav-link <?php if ($thisPage == "DATA TRAINING") echo "active"; ?>">
                 <i class="nav-icon fas fa-server"></i>
                 <p> Data Training</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="mining.php" accesskey='3' class="nav-link">
+              <a href="mining.php" accesskey='3' class="nav-link <?php if ($thisPage == "MINING DATA") echo "active"; ?>">
                 <i class="nav-icon fab fa-cloudscale"></i>
                 <p> Mining </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pohon_tree.php" accesskey='4' class="nav-link">
+              <a href="pohon_tree.php" accesskey='4' class="nav-link <?php if ($thisPage == "POHON KEPUTUSAN") echo "active"; ?>">
                 <i class="nav-icon fas fa-tree"></i>
                 <p> Pohon Keputusan </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="hasil_prediksi.php" accesskey='5' class="nav-link">
+              <a href="hasil_prediksi.php" accesskey='5' class="nav-link <?php if ($thisPage == "HASIL PREDIKSI") echo "active"; ?>">
                 <i class="nav-icon fas fa-calculator"></i>
                 <p> Hasil Prediksi </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="data_user.php" accesskey='6' class="nav-link">
+              <a href="data_user.php" accesskey='6' class="nav-link <?php if ($thisPage == "DATA SISWA") echo "active"; ?>">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p> Data Siswa </p>
               </a>

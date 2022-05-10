@@ -1,4 +1,4 @@
-	<?php
+	<?php $thisPage = "DATA SISWA";
 	session_start();
 	if (!isset($_SESSION['usr'])) {
 		header("location:login-form.php");
@@ -25,6 +25,10 @@
 		<!-- overlayScrollbars -->
 		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	</head>
+	<?php
+	require 'partial/sidebar.php';
+	require 'partial/navbar.php';
+	?>
 
 	<?php
 
@@ -72,10 +76,7 @@
 				}
 			}
 		</style>
-		<?php
-		require 'partial/sidebar.php';
-		require 'partial/navbar.php';
-		?>
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -83,7 +84,7 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-6">
-							<h1 class="m-0">DATA SISWA</h1>
+							<h1 class="m-0"><?php echo $thisPage; ?></h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -103,7 +104,7 @@
 						<div class="container-fluid">
 							<div class="row" style="float: left;">
 								<div class="col-lg-12 col-md-4">
-									<button type="button" class="btn btn-primary btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
+									<button type="button" class="btn bg-info btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
 										<i class="fas fa-plus-square"></i> Tambah Data
 									</button>
 									<button type="button" class="btn btn-danger btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusDataSiswa">

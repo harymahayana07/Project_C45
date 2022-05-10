@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['usr'])) {
+    header("location:login-form.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,11 +81,7 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
-                                </li>
-
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Tambah Data</button>
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-edit"> Data Diri Anda</button>
                                 </li>
 
                                 <li class="nav-item">
@@ -93,48 +95,8 @@
                             </ul>
                             <div class="tab-content pt-2">
 
-                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-                                    <h5 class="card-title">Data Siswa :</h5>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                        <div class="col-lg-9 col-md-8">Ni Luh Putu Sri Astiti</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Company</div>
-                                        <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Job</div>
-                                        <div class="col-lg-9 col-md-8">Web Designer</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Country</div>
-                                        <div class="col-lg-9 col-md-8">USA</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                                <div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
                                     <!--  -->
 
                                     <?php
@@ -156,17 +118,78 @@
                                         $baris = mysql_fetch_array($query);
                                         $jmlque = mysql_num_rows($query);
                                         if ($jmlque == 1) {
-                                            echo "<center><h1>Anda sudah melakukan prediksi..<br></h1>
-			<strong>Jawaban Anda sebelumnya:<br>
-			ppdb = " . $baris['ppdb'] . "<br>
-			bahasa indonesia = " . $baris['bhs_indonesia'] . "<br>
-			matematika = " . $baris['matematika'] . "<br>
-			Bhs_inggris = " . $baris['bhs_inggris'] . "<br> 
-			Nilai Ipa = " . $baris['ipa'] . "<br>
-			Nilai Ips = " . $baris['ips'] . "</strong><br> 
-			Rata - rata skhu = " . $baris['skhu'] . "</strong><br> 
-			<h1>Prediksi prestasi Anda adalah " . $baris['hasil'] . "</h1></center>";
+                                    ?>
+                                            <div class="row">
+                                                <div class="col-lg-9 col-md-4 label "><b>
+                                                        <h3>Data Diri Anda : </h3>
+                                                    </b></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label ">Nisn </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+                                                <div class="col-lg-7 col-md-7"><?= $_SESSION['usr'] ?></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label ">Nama Lengkap </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+                                                <div class="col-lg-7 col-md-7"><?= $_SESSION['nama'] ?></div>
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">PPBD </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['ppdb'] ?></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Nilai Bahasa Indonesia </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['bhs_indonesia'] ?></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Nilai Matematika </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['matematika'] ?></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Nilai Bahasa Inggris </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['bhs_inggris'] ?></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Nilai Ipa </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['ipa'] ?></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Nilai Ips </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['ips'] ?></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Rata - Rata SKHU </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['skhu'] ?></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Prediksi Kelas </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
+
+                                                <div class="col-lg-7 col-md-7"><?= $baris['hasil'] ?></div>
+                                            </div>
+
+                                            <?php
                                             //menyajikan rule
                                             $n_ppdb = $baris['ppdb'];
                                             $n_bhs_indonesia = $baris['bhs_indonesia'];
@@ -281,19 +304,28 @@
                                                 }
                                             }
                                             if ($keputusan == '') {
-                                                echo "<h4><center>Rule terpilih adalah rule yang terakhir karena tidak memenuhi semua rule</center></h4>";
+                                            ?>
+                                                <div class="row mt-3" style="text-align: center;">
+                                                    <div class="col-lg-12 col-md-4 label"><b>Rule yang terpilih adalah rule terakhir karena tidak memenuhi semua rule</b></div>
+                                                </div>
+                                            <?php
                                             } else {
                                                 $sql_que = mysql_query("SELECT * FROM pohon_keputusan WHERE id=$id_rule");
                                                 $row_bar = mysql_fetch_array($sql_que);
                                                 $rule_terpilih = "IF " . $row_bar[1] . " AND " . $row_bar[2] . " THEN jurusan = " . $row_bar[3];
-                                                echo "<h4><center>Rule yang terpilih adalah rule ke-" . $row_bar[0] . "<br>" . $rule_terpilih . "</center></h4>";
+                                            ?>
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-4 label">Rule yang terpilih adalah rule ke :</div>
+                                                    <div class="col-lg-9 col-md-8"><?= $row_bar[0] . $rule_terpilih ?></div>
+                                                </div>
+                                            <?php
                                             }
                                             echo "<center><a href='delete_prediksi.php?id=$nisn' accesskey='5' title='ubah jawaban' onClick=\"return confirm('Anda yakin akan mengedit data?')\">Klik disini untuk kembali lakukan prediksi</a></center>";
                                         }
                                         //jika belum melakukan prediksi
                                         else if ($jmlque == 0) {
                                             if (!isset($_POST['submit'])) {
-                                    ?>
+                                            ?>
                                                 <center><b>Jawab pertanyaan berikut dengan benar!</b></center>
                                                 <form method="post" action="">
                                                     <div class="form-group">

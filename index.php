@@ -10,6 +10,7 @@ if (isset($_GET['menu'])) {
   if ($kode == 'home') {
     include 'dashboard.php';
   }
+  
   //menu olah data
   else if ($kode == 'data') {
     include 'data_training.php';

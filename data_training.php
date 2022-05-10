@@ -1,6 +1,7 @@
-<?php
+<?php $thisPage = "DATA TRAINING";
 session_start();
 if (!isset($_SESSION['usr'])) {
+  // alert swal.fire ({})
   header("location:login-form.php");
 }
 ?>
@@ -26,8 +27,29 @@ if (!isset($_SESSION['usr'])) {
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
 </head>
-<?php
+<style>
+  .btn {
+    margin-bottom: 8px;
+  }
 
+  @media (max-width: 768px) {
+    .btn-responsive {
+      padding: 2px 4px;
+      font-size: 80%;
+      line-height: 1;
+      border-radius: 3px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    .btn-responsive {
+      padding: 4px 9px;
+      font-size: 90%;
+      line-height: 1.2;
+    }
+  }
+</style>
+<?php
 include "koneksi.php";
 if (isset($_GET['act'])) {
   $action = $_GET['act'];
@@ -51,33 +73,10 @@ if (isset($_GET['act'])) {
   $query = mysql_query("select * from data_training order by(id)");
 
   $jumlah = mysql_num_rows($query);
-?>
-  <style>
-    .btn {
-      margin-bottom: 8px;
-    }
 
-    @media (max-width: 768px) {
-      .btn-responsive {
-        padding: 2px 4px;
-        font-size: 80%;
-        line-height: 1;
-        border-radius: 3px;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 992px) {
-      .btn-responsive {
-        padding: 4px 9px;
-        font-size: 90%;
-        line-height: 1.2;
-      }
-    }
-  </style>
-  <?php
   require 'partial/navbar.php';
   require 'partial/sidebar.php';
-  ?>
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -85,7 +84,7 @@ if (isset($_GET['act'])) {
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1 class="m-0">DATA TRAINING</h1>
+            <h1 class="m-0"><?php echo $thisPage; ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -105,7 +104,7 @@ if (isset($_GET['act'])) {
           <div class="container-fluid">
             <div class="row" style="float: left;">
               <div class="col-lg-12 col-md-4">
-                <button type="button" class="btn btn-primary btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataTraining">
+                <button type="button" class="btn bg-info btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataTraining">
                   <i class="fas fa-plus-square"></i> Tambah Data
                 </button>
                 <!--  -->
@@ -284,6 +283,7 @@ if (isset($_GET['act'])) {
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
   <script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
   <!-- jQuery -->
+
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
