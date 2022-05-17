@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 11:17 AM
+-- Generation Time: May 17, 2022 at 04:15 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -40,7 +40,6 @@ CREATE TABLE `data_siswa` (
 --
 
 INSERT INTO `data_siswa` (`nisn`, `nama`, `jenis_kelamin`, `asal_sekolah`) VALUES
-('0015668539', 'RIDHO FAHREZI ', 'L', 'SMPN 8 MATARAM'),
 ('0022032006', 'MA RUB EGIP ALGI WIRASYANDA', 'L', 'SMPN 15 MATARAM'),
 ('003068779', 'HAZIZ LUKMAN HAKIM', 'L', 'SMPN 13 MATARAM'),
 ('0037075495', 'SITI ERA FAZIRA YAMANI', 'P', 'SMPN 8 MATARAM'),
@@ -1312,7 +1311,7 @@ INSERT INTO `data_training_konversi` (`id`, `ppdb`, `bhs_indonesia`, `matematika
 
 CREATE TABLE `gain` (
   `id` int(11) NOT NULL,
-  `atribut` varchar(20) DEFAULT NULL,
+  `atribut` varchar(40) DEFAULT NULL,
   `gain` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1322,13 +1321,31 @@ CREATE TABLE `gain` (
 
 INSERT INTO `gain` (`id`, `atribut`, `gain`) VALUES
 (1, 'ppdb', 0.003),
-(2, 'bhs_indonesia', 0),
-(3, 'matematika', -0),
-(4, 'bhs_inggris', 0.006),
-(5, 'ipa', 0.002),
-(6, 'ips', 0.004),
-(7, 'skhu', 0.001),
-(8, 'jurusan', 0.566);
+(2, 'Rata-rata bhs_indonesia A', 0),
+(3, 'Rata-rata bhs_indonesia B', -0.004),
+(4, 'Rata-rata bhs_indonesia C', 0.003),
+(5, 'Rata-rata bhs_indonesia D', 0),
+(6, 'Rata-rata matematika A', -0),
+(7, 'Rata-rata matematika B', 0.001),
+(8, 'Rata-rata matematika C', -0.001),
+(9, 'Rata-rata matematika D', 0),
+(10, 'Rata-rata bhs_inggris A', 0),
+(11, 'Rata-rata bhs_inggris B', -0.006),
+(12, 'Rata-rata bhs_inggris C', 0.015),
+(13, 'Rata-rata bhs_inggris D', 0),
+(14, 'Rata-rata ipa A', 0),
+(15, 'Rata-rata ipa B', 0),
+(16, 'Rata-rata ipa C', 0.001),
+(17, 'Rata-rata ipa D', 0),
+(18, 'Rata-rata ips A', 0),
+(19, 'Rata-rata ips B', -0.001),
+(20, 'Rata-rata ips C', 0.006),
+(21, 'Rata-rata ips D', 0),
+(22, 'Rata-rata skhu A', 0.004),
+(23, 'Rata-rata skhu B', -0.001),
+(24, 'Rata-rata skhu C', -0.001),
+(25, 'Rata-rata skhu D', 0),
+(26, 'jurusan', 0.566);
 
 -- --------------------------------------------------------
 
@@ -1354,7 +1371,8 @@ CREATE TABLE `hasil_prediksi` (
 --
 
 INSERT INTO `hasil_prediksi` (`id`, `nisn`, `ppdb`, `bhs_indonesia`, `matematika`, `bhs_inggris`, `ipa`, `ips`, `skhu`, `hasil`) VALUES
-(1, '', 'Prestasi Akademik', 98, 89, 89, 89, 89, 89, 'IPS');
+(1, '0037075495', 'Prestasi Akademik', 98, 89, 89, 89, 89, 87, 'IPS'),
+(2, '0043185627', 'Afirmasi', 90, 90, 90, 90, 90, 90, 'IPS');
 
 -- --------------------------------------------------------
 
@@ -1391,6 +1409,19 @@ CREATE TABLE `rasio_gain` (
   `rasio_gain` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `rasio_gain`
+--
+
+INSERT INTO `rasio_gain` (`id`, `opsi`, `cabang1`, `cabang2`, `rasio_gain`) VALUES
+(1, 'opsi1', 'Zonasi', 'PPLP , Afirmasi , Prestasi Akademik , Prestasi Non', 0),
+(2, 'opsi2', 'PPLP', 'Afirmasi , Prestasi Akademik , Prestasi Non Akadem', 0.005),
+(3, 'opsi3', 'Afirmasi', 'Prestasi Akademik , Prestasi Non Akademik , Perpin', 0.005),
+(4, 'opsi4', 'Prestasi Akademik', 'Prestasi Non Akademik , Perpindahan Orang Tua , Pr', 0.01),
+(5, 'opsi5', 'Prestasi Non Akademik', 'Perpindahan Orang Tua , Prestasi Tahfidz , Zonasi ', 0.012),
+(6, 'opsi6', 'Perpindahan Orang Tua', 'Prestasi Tahfidz , Zonasi , PPLP , Afirmasi , Pres', 0.019),
+(7, 'opsi7', 'Prestasi Tahfidz', 'Zonasi , PPLP , Afirmasi , Prestasi Akademik , Pre', 0.021);
+
 -- --------------------------------------------------------
 
 --
@@ -1409,7 +1440,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `nama`, `password`, `type`) VALUES
-('0015668539', 'RIDHO FAHREZI ', '0015668539', 'siswa'),
 ('0022032006', 'MA RUB EGIP ALGI WIRASYANDA', '0022032006', 'siswa'),
 ('003068779', 'HAZIZ LUKMAN HAKIM', '003068779', 'siswa'),
 ('0037075495', 'SITI ERA FAZIRA YAMANI', '0037075495', 'siswa'),
@@ -1888,13 +1918,13 @@ ALTER TABLE `data_training_konversi`
 -- AUTO_INCREMENT for table `gain`
 --
 ALTER TABLE `gain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `hasil_prediksi`
 --
 ALTER TABLE `hasil_prediksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pohon_keputusan`
@@ -1906,7 +1936,7 @@ ALTER TABLE `pohon_keputusan`
 -- AUTO_INCREMENT for table `rasio_gain`
 --
 ALTER TABLE `rasio_gain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

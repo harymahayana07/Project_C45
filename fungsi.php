@@ -7,9 +7,9 @@
 			//sql disticnt		
 			$hasil = array();
 			if ($kondisi == '') {
-				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training_konversi");
+				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training");
 			} else {
-				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training_konversi WHERE $kondisi");
+				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training WHERE $kondisi");
 			}
 			$a = 0;
 			while ($row = mysql_fetch_array($sql)) {
@@ -23,9 +23,9 @@
 		{
 			//sql disticnt
 			if ($kondisi == '') {
-				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training_konversi");
+				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training");
 			} else {
-				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training_konversi WHERE $kondisi");
+				$sql = mysql_query("SELECT DISTINCT($field) FROM data_training WHERE $kondisi");
 			}
 			//jika jumlah data 1 maka homogen
 			if (mysql_num_rows($sql) == 1) {
@@ -40,9 +40,9 @@
 		{
 			//sql
 			if ($kondisi == '') {
-				$sql = mysql_query("SELECT COUNT(*) FROM data_training_konversi $kondisi");
+				$sql = mysql_query("SELECT COUNT(*) FROM data_training $kondisi");
 			} else {
-				$sql = mysql_query("SELECT COUNT(*) FROM data_training_konversi WHERE $kondisi");
+				$sql = mysql_query("SELECT COUNT(*) FROM data_training WHERE $kondisi");
 			}
 			$row = mysql_fetch_array($sql);
 			$jml = $row['0'];

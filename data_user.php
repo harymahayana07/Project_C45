@@ -1,6 +1,7 @@
 	<?php $thisPage = "DATA SISWA";
 	session_start();
 	if (!isset($_SESSION['usr'])) {
+
 		header("location:login-form.php");
 	}
 	?>
@@ -28,9 +29,6 @@
 	<?php
 	require 'partial/sidebar.php';
 	require 'partial/navbar.php';
-	?>
-
-	<?php
 
 	include "koneksi.php";
 	if (isset($_GET['act'])) {
