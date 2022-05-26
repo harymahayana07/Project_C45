@@ -1,7 +1,7 @@
 <?php $thisPage = "MINING DATA";
-session_start();
+require_once 'conn/koneksi.php';
 if (!isset($_SESSION['usr'])) {
-  header("location:login-form.php");
+  header("location:auth/login-form.php");
 }
 ?>
 <?php
@@ -10,7 +10,6 @@ require 'partial/sidebar.php';
 require 'partial/navbar.php';
 ?>
 <?php
-include "koneksi.php";
 $query = mysql_query("select * from data_training order by(id)");
 $jumlah = mysql_num_rows($query);
 
@@ -87,6 +86,7 @@ if ($jumlah == 0) {
                       <thead>
                         <tr>
                           <th>No</th>
+                          <th>JENIS KELAMIN</th>
                           <th>PPDB</th>
                           <th>BAHASA INDONESIA</th>
                           <th>MATEMATIKA</th>
@@ -112,8 +112,30 @@ if ($jumlah == 0) {
                         ?>
                           <tr bgcolor=<?php echo $warna; ?> class="text-center">
                             <td><?php echo $no; ?></td>
-                            <td><?php echo $row['ppdb']; ?>
 
+                            <td>
+                              <?php if ($row['jk'] == '1') {
+                                echo 'L';
+                              } else if ($row['jk'] == '2') {
+                                echo 'P';
+                              } ?>
+                            </td>
+                            <td><?php if ($row['ppdb'] == '1') {
+                                  echo "Perpindahan Orang tua";
+                                } else if ($row['ppdb'] == '2') {
+                                  echo 'Prestasi Akademik';
+                                } else if ($row['ppdb'] == '3') {
+                                  echo 'Prestasi Non-Akademik';
+                                } else if ($row['ppdb'] == '4') {
+                                  echo 'Prestasi Thafidz';
+                                } else if ($row['ppdb'] == '5') {
+                                  echo 'Afirmasi';
+                                } else if ($row['ppdb'] == '6') {
+                                  echo 'Zonasi';
+                                } else if ($row['ppdb'] == '7') {
+                                  echo 'PPLP';
+                                }
+                                ?>
                             </td>
                             <td>
                               <?php echo $row['bhs_indonesia']; ?>
@@ -168,26 +190,26 @@ if ($jumlah == 0) {
     </div>
   </div>
 
-  <script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
   <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
   <!-- DataTables  & Plugins -->
-  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="plugins/jszip/jszip.min.js"></script>
-  <script src="plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
   <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
+  <script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
 
   <!-- Page specific script -->
   <script>

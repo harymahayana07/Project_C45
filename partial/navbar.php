@@ -20,8 +20,8 @@
            <div class="card-footer">
              <div class="row">
                <div class="col">
-                 <a href="ubah_password.php" class="btn btn-secondary" role="button" data-bs-toggle="button"><i class="fas fa-key"></i> Ubah Sandi</a>
-                 <a href="logout.php" class="btn btn-danger" role="button" data-bs-toggle="button"><i class="fas fa-sign-out-alt"></i> LogOut</a>
+                 <a href="<?= base_url('auth/ubah_password.php') ?>" class="btn btn-secondary" role="button" data-bs-toggle="button"><i class="fas fa-key"></i> Ubah Sandi</a>
+                 <a href="<?= base_url('auth/logout.php') ?>" class="btn btn-danger" role="button" data-bs-toggle="button"><i class="fas fa-sign-out-alt"></i> LogOut</a>
                </div>
              </div>
            </div>

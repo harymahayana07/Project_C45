@@ -5,4 +5,3 @@
 	unset($_SESSION['lvl']);
     session_destroy();
     header("location:login-form.php");
-?>

@@ -55,14 +55,25 @@
 			if ($kasus != '') {
 				$data_kasus = $kasus . " AND ";
 			}
+			if ($kondisi2 == '') {
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
+				$jml1 = $j_mipa1 + $j_ips1;
+
+				//hitung entropy masing-masing kondisi
+				$jml_total = $jml1;
+				$ent1 = hitung_entropy($j_mipa1, $j_ips1);
+
+				$gain = $ent_all - ((($jml1 / $jml_total) * $ent1));
+			}
 			//untuk atribut 2 nilai atribut = ppdb
-			if ($kondisi3 == '') {
-				$j_mipa1 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi1");
-				$j_ips1 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi1");
+			else if ($kondisi3 == '') {
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
 				// 
-				$j_mipa2 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi2");
-				$j_ips2 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi2");
+				$j_mipa2 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi2");
+				$j_ips2 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi2");
 				$jml2 = $j_mipa2 + $j_ips2;
 
 				//hitung entropy masing-masing kondisi
@@ -73,16 +84,16 @@
 			}
 			//untuk atribut 3 nilai atribut
 			else if ($kondisi4 == '') {
-				$j_mipa1 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi1");
-				$j_ips1 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi1");
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
 				// 
-				$j_mipa2 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi2");
-				$j_ips2 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi2");
+				$j_mipa2 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi2");
+				$j_ips2 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi2");
 				$jml2 = $j_mipa2 + $j_ips2;
 				// 
-				$j_mipa3 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi3");
-				$j_ips3 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi3");
+				$j_mipa3 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi3");
+				$j_ips3 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi3");
 				$jml3 = $j_mipa3 + $j_ips3;
 				//hitung entropy masing-masing kondisi
 				$jml_total = $jml1 + $jml2 + $jml3;
@@ -94,20 +105,20 @@
 			}
 			//untuk atribut 4 nilai atribut
 			else if ($kondisi5 == '') {
-				$j_mipa1 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi1");
-				$j_ips1 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi1");
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
 				// 
-				$j_mipa2 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi2");
-				$j_ips2 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi2");
+				$j_mipa2 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi2");
+				$j_ips2 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi2");
 				$jml2 = $j_mipa2 + $j_ips2;
 				// 
-				$j_mipa3 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi3");
-				$j_ips3 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi3");
+				$j_mipa3 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi3");
+				$j_ips3 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi3");
 				$jml3 = $j_mipa3 + $j_ips3;
 				// 
-				$j_mipa4 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi4");
-				$j_ips4 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi4");
+				$j_mipa4 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi4");
+				$j_ips4 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi4");
 				$jml4 = $j_mipa4 + $j_ips4;
 				//hitung entropy masing-masing kondisi
 				$jml_total = $jml1 + $jml2 + $jml3 + $jml4;
@@ -118,29 +129,29 @@
 				$gain = $ent_all - ((($jml1 / $jml_total) * $ent1) + (($jml2 / $jml_total) * $ent2)
 					+ (($jml3 / $jml_total) * $ent3) + (($jml4 / $jml_total) * $ent4));
 			}
-			//untuk atribut 5 nilai atribut	
+			// untuk atribut 5 nilai atribut	
 			else if ($kondisi6 == '') {
-				$j_mipa1 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi1");
-				$j_ips1 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi1");
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
 				// 
-				$j_mipa2 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi2");
-				$j_ips2 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi2");
+				$j_mipa2 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi2");
+				$j_ips2 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi2");
 				$jml2 = $j_mipa2 + $j_ips2;
 				// 
-				$j_mipa3 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi3");
-				$j_ips3 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi3");
+				$j_mipa3 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi3");
+				$j_ips3 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi3");
 				$jml3 = $j_mipa3 + $j_ips3;
 				// 
-				$j_mipa4 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi4");
-				$j_ips4 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi4");
+				$j_mipa4 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi4");
+				$j_ips4 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi4");
 				$jml4 = $j_mipa4 + $j_ips4;
 				// 
-				$j_mipa5 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi5");
-				$j_ips5 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi5");
+				$j_mipa5 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi5");
+				$j_ips5 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi5");
 				$jml5 = $j_mipa5 + $j_ips5;
 
-				//hitung entropy masing-masing kondisi
+				// hitung entropy masing-masing kondisi
 				$jml_total = $jml1 + $jml2 + $jml3 + $jml4 + $jml5;
 				$ent1 = hitung_entropy($j_mipa1, $j_ips1);
 				$ent2 = hitung_entropy($j_mipa2, $j_ips2);
@@ -150,30 +161,30 @@
 				$gain = $ent_all - ((($jml1 / $jml_total) * $ent1) + (($jml2 / $jml_total) * $ent2)
 					+ (($jml3 / $jml_total) * $ent3) + (($jml4 / $jml_total) * $ent4) + (($jml5 / $jml_total) * $ent5));
 			}
-			//untuk atribut 6 nilai atribut	
+			// untuk atribut 6 nilai atribut	
 			else if ($kondisi7 == '') {
-				$j_mipa1 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi1");
-				$j_ips1 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi1");
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
 				// 
-				$j_mipa2 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi2");
-				$j_ips2 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi2");
+				$j_mipa2 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi2");
+				$j_ips2 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi2");
 				$jml2 = $j_mipa2 + $j_ips2;
 				// 
-				$j_mipa3 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi3");
-				$j_ips3 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi3");
+				$j_mipa3 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi3");
+				$j_ips3 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi3");
 				$jml3 = $j_mipa3 + $j_ips3;
 				// 
-				$j_mipa4 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi4");
-				$j_ips4 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi4");
+				$j_mipa4 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi4");
+				$j_ips4 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi4");
 				$jml4 = $j_mipa4 + $j_ips4;
 				// 
-				$j_mipa5 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi5");
-				$j_ips5 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi5");
+				$j_mipa5 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi5");
+				$j_ips5 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi5");
 				$jml5 = $j_mipa5 + $j_ips5;
 				//
-				$j_mipa6 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi6");
-				$j_ips6 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi6");
+				$j_mipa6 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi6");
+				$j_ips6 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi6");
 				$jml6 = $j_mipa6 + $j_ips6;
 
 				//hitung entropy masing-masing kondisi
@@ -189,32 +200,32 @@
 			}
 			// untuk atribut nilai 7 atribut
 			else {
-				$j_mipa1 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi1");
-				$j_ips1 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi1");
+				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
+				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
 				// 
-				$j_mipa2 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi2");
-				$j_ips2 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi2");
+				$j_mipa2 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi2");
+				$j_ips2 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi2");
 				$jml2 = $j_mipa2 + $j_ips2;
 				// 
-				$j_mipa3 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi3");
-				$j_ips3 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi3");
+				$j_mipa3 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi3");
+				$j_ips3 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi3");
 				$jml3 = $j_mipa3 + $j_ips3;
 				// 
-				$j_mipa4 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi4");
-				$j_ips4 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi4");
+				$j_mipa4 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi4");
+				$j_ips4 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi4");
 				$jml4 = $j_mipa4 + $j_ips4;
 				// 
-				$j_mipa5 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi5");
-				$j_ips5 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi5");
+				$j_mipa5 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi5");
+				$j_ips5 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi5");
 				$jml5 = $j_mipa5 + $j_ips5;
 				//
-				$j_mipa6 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi6");
-				$j_ips6 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi6");
+				$j_mipa6 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi6");
+				$j_ips6 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi6");
 				$jml6 = $j_mipa6 + $j_ips6;
 				//
-				$j_mipa7 = jumlah_data("$data_kasus jurusan='mipa' AND $kondisi7");
-				$j_ips7 = jumlah_data("$data_kasus jurusan='ips' AND $kondisi7");
+				$j_mipa7 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi7");
+				$j_ips7 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi7");
 				$jml7 = $j_mipa7 + $j_ips7;
 
 				//hitung entropy masing-masing kondisi
@@ -276,8 +287,56 @@
 			if ($nilai4 == '') {
 				$jmlNilai = 3;
 			}
+			if ($nilai3 == '') {
+				$jmlNilai = 2;
+			}
+
 			mysql_query("TRUNCATE rasio_gain");
-			if ($jmlNilai == 3) {
+
+			if ($jmlNilai == 2) {
+				$opsi11 = jumlah_data("$data_kasus ($atribut='$nilai2' OR $atribut='$nilai3')");
+				$opsi12 = jumlah_data("$data_kasus $atribut='$nilai1'");
+				$tot_opsi1 = $opsi11 + $opsi12;
+				$opsi21 = jumlah_data("$data_kasus ($atribut='$nilai3' OR $atribut='$nilai1')");
+				$opsi22 = jumlah_data("$data_kasus $atribut='$nilai2'");
+				$tot_opsi2 = $opsi21 + $opsi22;
+
+
+				//hitung split info
+				$opsi1 = (- ($opsi11 / $tot_opsi1) * (log(($opsi11 / $tot_opsi1), 2))) + (- ($opsi12 / $tot_opsi1) * (log(($opsi12 / $tot_opsi1), 2)));
+				$opsi2 = (- ($opsi21 / $tot_opsi2) * (log(($opsi21 / $tot_opsi2), 2))) + (- ($opsi22 / $tot_opsi2) * (log(($opsi22 / $tot_opsi2), 2)));
+
+
+				//desimal 3 angka dibelakang koma
+				$opsi1 = round($opsi1, 3);
+				$opsi2 = round($opsi2, 3);
+
+
+				//hitung rasio
+				$rasio1 = $gain / $opsi1;
+				$rasio2 = $gain / $opsi2;
+
+
+				//desimal 3 angka dibelakang koma
+				$rasio1 = round($rasio1, 3);
+				$rasio2 = round($rasio2, 3);
+
+
+				//cetak
+				echo "Opsi 1 : <br>jumlah " . $nilai2 . "/" . $nilai3 . " = " . $opsi11 .
+					"<br>jumlah " . $nilai1 . " = " . $opsi12 .
+					"<br>Split = " . $opsi1 .
+					"<br>Rasio = " . $rasio1 . "<br>";
+				echo "Opsi 2 : <br>jumlah " . $nilai3 . "/" . $nilai1 . " = " . $opsi21 .
+					"<br>jumlah " . $nilai2 . " = " . $opsi22 .
+					"<br>Split = " . $opsi2 .
+					"<br>Rasio = " . $rasio2 . "<br>";
+
+				//insert 
+				mysql_query("INSERT INTO rasio_gain VALUES 
+						('' , 'opsi1' , '$nilai1' , '$nilai2 , $nilai3' , '$rasio1'),
+						('' , 'opsi2' , '$nilai2' , '$nilai3 , $nilai1' , '$rasio2')");
+			} else if ($jmlNilai == 3) {
 				$opsi11 = jumlah_data("$data_kasus ($atribut='$nilai2' OR $atribut='$nilai3')");
 				$opsi12 = jumlah_data("$data_kasus $atribut='$nilai1'");
 				$tot_opsi1 = $opsi11 + $opsi12;

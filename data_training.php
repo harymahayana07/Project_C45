@@ -1,7 +1,7 @@
 <?php $thisPage = "DATA TRAINING";
-session_start();
+require_once 'conn/koneksi.php';
 if (!isset($_SESSION['usr'])) {
-  header("location:login-form.php");
+  header("location:auth/login-form.php");
 }
 ?>
 <!DOCTYPE html>
@@ -13,18 +13,18 @@ if (!isset($_SESSION['usr'])) {
   <title>SMANDA | DATA TRAINING</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
-  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+  <link rel="stylesheet" href="<?= base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>" />
 
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css') ?>">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+  <link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css') ?>">
 
 </head>
 <style>
@@ -50,7 +50,6 @@ if (!isset($_SESSION['usr'])) {
   }
 </style>
 <?php
-include "koneksi.php";
 if (isset($_GET['act'])) {
   $action = $_GET['act'];
   $id = $_GET['id'];
@@ -61,12 +60,12 @@ if (isset($_GET['act'])) {
   //delete data training
   else if ($action == 'delete') {
     mysql_query("DELETE FROM data_training WHERE id = '$id'");
-    header('location:index.php?menu=data');
+    header('location:data_training.php');
   }
   //delete semua data
   else if ($action == 'delete_all') {
     mysql_query("TRUNCATE data_training");
-    header('location:index.php?menu=data');
+    header('location:data_training.php');
   }
 } else {
   include "form_data_training.php";
@@ -127,7 +126,7 @@ if (isset($_GET['act'])) {
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
                         <!--  -->
-                        <a href="index.php?menu=data&act=delete_all" class="btn btn-primary"> Ya </a>
+                        <a href="data_training.php?act=delete_all" class="btn btn-primary"> Ya </a>
                         <!--  -->
                       </div>
 
@@ -202,6 +201,7 @@ if (isset($_GET['act'])) {
                       <thead>
                         <tr>
                           <th>No</th>
+                          <th>JK</th>
                           <th>PPDB</th>
                           <th>BAHASA INDONESIA</th>
                           <th>MATEMATIKA</th>
@@ -228,7 +228,30 @@ if (isset($_GET['act'])) {
                         ?>
                           <tr bgcolor=<?php echo $warna; ?> class="text-center">
                             <td><?php echo $no; ?></td>
-                            <td><?php echo $row['ppdb']; ?></td>
+                            <td>
+                              <?php if ($row['jk'] == '1') {
+                                echo 'L';
+                              } else if ($row['jk'] == '2') {
+                                echo 'P';
+                              } ?>
+                            </td>
+                            <td><?php if ($row['ppdb'] == '1') {
+                                  echo 'Perpindahan Orang tua';
+                                } else if ($row['ppdb'] == '2') {
+                                  echo 'Prestasi Akademik';
+                                } else if ($row['ppdb'] == '3') {
+                                  echo 'Prestasi Non-Akademik';
+                                } else if ($row['ppdb'] == '4') {
+                                  echo 'Prestasi Thafidz';
+                                } else if ($row['ppdb'] == '5') {
+                                  echo 'Afirmasi';
+                                } else if ($row['ppdb'] == '6') {
+                                  echo 'Zonasi';
+                                } else if ($row['ppdb'] == '7') {
+                                  echo 'PPLP';
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $row['bhs_indonesia']; ?></td>
                             <td><?php echo $row['matematika']; ?></td>
                             <td><?php echo $row['bhs_inggris']; ?></td>
@@ -237,11 +260,8 @@ if (isset($_GET['act'])) {
                             <td><?php echo $row['skhu']; ?></td>
                             <td><b><?php echo $row['jurusan']; ?></b></td>
                             <td>
-                              <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline"><i class="fas fa-edit"></i></a>
+                              <a href="data_training.php&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline"><i class="fas fa-edit"></i></a>
                               <!-- <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline" data-bs-toggle="modal" data-bs-target="#editDataTraining"><i class="fas fa-edit"></i></a> -->
-                              <!-- coba sweetalert -->
-
-                              <!--  -->
                               <a href="data_training.php?act=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-responsive btn-sm d-inline" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="fas fa-trash"></i></a>
                             </td>
                           </tr>
@@ -280,28 +300,28 @@ if (isset($_GET['act'])) {
       });
     });
   </script>
-  <script src="assets/js/sweetalert2.all.min.js"></script>
-  <script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url('assets/js/sweetalert2.all.min.js') ?>"></script>
+  <script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
   <!-- jQuery -->
 
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
   <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
   <!-- DataTables  & Plugins -->
-  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="plugins/jszip/jszip.min.js"></script>
-  <script src="plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
   <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
+  <script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
 
   <!-- Page specific script -->
   <script>

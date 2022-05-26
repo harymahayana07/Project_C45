@@ -26,7 +26,7 @@ if ($jumlah == 0) {
 	}
 	echo "Jumlah rule : " . $jumlah . "<br>";
 	//hanya kaprodi yang bisa menghapus pohon keputusan dan menguji akurasi
-	if ($_SESSION['lvl'] == '0') {
+	if ($_SESSION['lvl'] == 'admin') {
 ?>
 		<p>Opsi:
 			<a href="?menu=tree&act=delete" onClick="return confirm('Anda yakin akan hapus pohon keputusan?')">Hapus Pohon Keputusan</a> |
@@ -62,7 +62,7 @@ if ($jumlah == 0) {
 					if ($row['parent'] != '') {
 						echo $row['parent'] . " AND ";
 					}
-					echo $row['akar'] . " THEN Jurusan = " . $row['keputusan']; ?>
+					echo $row['akar'] . " THEN jurusan= " . $row['keputusan']; ?>
 				</td>
 			</tr>
 		<?php

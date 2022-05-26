@@ -53,15 +53,17 @@ require 'partial/sidebar.php';
           //$result = mysqli_query($conn, $query);
           $row = mysql_fetch_array($query);
           $ppdb = $row[1];
-          $bhs_indonesia = $row[2];
-          $matematika = $row[3];
-          $bhs_inggris = $row[4];
-          $ipa = $row[5];
-          $ips = $row[6];
-          $skhu = $row[7];
-          $jurusan = $row[8];
+          $ppdb = $row[2];
+          $bhs_indonesia = $row[3];
+          $matematika = $row[4];
+          $bhs_inggris = $row[5];
+          $ipa = $row[6];
+          $ips = $row[7];
+          $skhu = $row[8];
+          $jurusan = $row[9];
           if (isset($_POST['submit_data_training'])) {
             mysql_query("UPDATE data_training SET
+                     jk = '$_POST[jk]',
                      ppdb = '$_POST[txtppdb]',
                      bhs_indonesia = '$_POST[txtbhs_id]',
                      matematika = '$_POST[txtmtk]',
@@ -75,38 +77,47 @@ require 'partial/sidebar.php';
           } else {
           ?>
             <!-- Input addon -->
-            <!--  -->
             <div class="card">
-
               <div class="card-body">
 
-                <!-- ppdb -->
+                <!-- jk -->
                 <form method="post" action="">
                   <div class="form-group">
+                    <label for="jk1">PPDB :</label>
+                    <select id="jk1" name="jk" class="form-control" required autofocus>
+                      <option value="1" <?php if ($jk == '1') {
+                                          echo 'selected';
+                                        } ?>>Laki-laki</option>
+                      <option value="2" <?php if ($jk == '2') {
+                                          echo 'selected';
+                                        } ?>>Perempuan</option>
+                    </select>
+                  </div>
 
+                  <div class="form-group">
                     <label for="ppdb">PPDB :</label>
-                    <select name="txtppdb" id="ppdb" class="form-control" required autofocus>
-                      <option value="Prestasi Akademik" <?php if ($ppdb == 'Prestasi Akademik') {
-                                                          echo 'selected';
-                                                        } ?>>Prestasi Akademik</option>
-                      <option value="Prestasi Non-Akademik" <?php if ($ppdb == 'Prestasi Non-Akademik') {
-                                                              echo 'selected';
-                                                            } ?>>Prestasi Non-Akademik</option>
-                      <option value="Prestasi Tahfidz" <?php if ($ppdb == 'Prestasi Tahfidz') {
-                                                          echo 'selected';
-                                                        } ?>>Prestasi Tahfidz</option>
-                      <option value="Afirmasi" <?php if ($ppdb == 'Afirmasi') {
-                                                  echo 'selected';
-                                                } ?>>Afirmasi</option>
-                      <option value="PPLP" <?php if ($ppdb == 'PPLP') {
-                                              echo 'selected';
-                                            } ?>>PPLP</option>
-                      <option value="Zonasi" <?php if ($ppdb == 'Zonasi') {
-                                                echo 'selected';
-                                              } ?>>Zonasi</option>
-                      <option value="Perpindahan Orang tua" <?php if ($ppdb == 'Perpindahan Orang tua') {
-                                                              echo 'selected';
-                                                            } ?>>Perpindahan Orang tua</option>
+                    <select name="txtppdb" id="ppdb" class="form-control" required>
+                      <option value="1" <?php if ($ppdb == '1') {
+                                          echo 'selected';
+                                        } ?>>Perpindahan Orang tua</option>
+                      <option value="2" <?php if ($ppdb == '2') {
+                                          echo 'selected';
+                                        } ?>>Prestasi Akademik</option>
+                      <option value="3" <?php if ($ppdb == '3') {
+                                          echo 'selected';
+                                        } ?>>Prestasi Non-Akademik</option>
+                      <option value="4" <?php if ($ppdb == '4') {
+                                          echo 'selected';
+                                        } ?>>Prestasi Thafidz</option>
+                      <option value="5" <?php if ($ppdb == '5') {
+                                          echo 'selected';
+                                        } ?>>Afirmasi</option>
+                      <option value="6" <?php if ($ppdb == '6') {
+                                          echo 'selected';
+                                        } ?>>Zonasi</option>
+                      <option value="7" <?php if ($ppdb == '7') {
+                                          echo 'selected';
+                                        } ?>>PPLP</option>
                     </select>
                   </div>
                   <!-- Nilai bahasa indonesia -->

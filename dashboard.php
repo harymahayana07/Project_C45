@@ -1,7 +1,7 @@
 <?php $thisPage = "Dashboard";
-session_start();
+require_once 'conn/koneksi.php';
 if (!isset($_SESSION['usr'])) {
-  header("location:login-form.php");
+  header("location:auth/login-form.php");
 }
 ?>
 <?php
@@ -13,7 +13,6 @@ if ($level == 'siswa') {
   require 'partial/header.php';
   require 'partial/navbar.php';
   require 'partial/sidebar.php';
-  include 'koneksi.php';
   $query_data = mysql_query("select * from data_training order by(id)");
   $jumlah_data = mysql_num_rows($query_data);
 ?>

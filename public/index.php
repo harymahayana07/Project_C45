@@ -1,3 +1,4 @@
+<?php require_once '../conn/koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -10,13 +11,13 @@
 
   <title>C45 | Home</title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
-  <link rel="manifest" href="assets/img/favicons/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('public/assets/img/favicons/apple-touch-icon.png') ?>">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('public/assets/img/favicons/favicon-32x32.png') ?>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('public/assets/img/favicons/favicon-16x16.png') ?>">
+  <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('public/assets/img/favicons/favicon.ico') ?>">
+  <link rel="manifest" href="<?= base_url('public/assets/img/favicons/manifest.json') ?>">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.css" integrity="sha384-AvIUz0OeqILp4fNEi51z9HqDHi/FXyvB54l4CFzgP3pV8V67SxE8j0CEmLHWIu/e" crossorigin="anonymous" />
-  <link href="assets/css/theme.css" rel="stylesheet" />
+  <link href="<?= base_url('public/assets/css/theme.css') ?>" rel="stylesheet" />
 </head>
 
 <body>
@@ -24,7 +25,7 @@
   <main class="main" id="top">
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
-      <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="index.html"> <img class="me-3" src="assets/img/logo_sma2.png" alt="" /></a>
+      <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="<?= base_url('public/index.php') ?>"> <img class="me-3" src="<?= base_url('public/assets/img/logo_sma2.png') ?>" alt="" /></a>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
@@ -35,7 +36,7 @@
 
           </ul>
           <form class="ps-lg-5">
-            <a class="btn btn-outline-primary order-0" type="submit" href="../login-form.php"> Login </a>
+            <a class="btn btn-outline-primary order-0" type="submit" href="<?= base_url('auth/login-form.php') ?>"> Login </a>
           </form>
         </div>
       </div>
@@ -157,15 +158,15 @@
                   <div class="row h-100 justify-content-center">
 
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide10.jpg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide10.jpg') ?>" alt="news" />
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide2.jpeg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide2.jpeg') ?>" alt="news" />
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide3.jpeg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide3.jpeg') ?>" alt="news" />
                       </div>
                     </div>
                   </div>
@@ -173,15 +174,15 @@
                 <div class="carousel-item" data-bs-interval="5000">
                   <div class="row h-100 justify-content-center">
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide4.jpg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide4.jpg') ?>" alt="news" />
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide5.jpeg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide5.jpeg') ?>" alt="news" />
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide6.jpg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide6.jpg') ?>" alt="news" />
                       </div>
                     </div>
                   </div>
@@ -189,15 +190,15 @@
                 <div class="carousel-item" data-bs-interval="3000">
                   <div class="row h-100 justify-content-center">
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide7.jpg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide7.jpg') ?>" alt="news" />
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide8.jpg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide8.jpg') ?>" alt="news" />
                       </div>
                     </div>
                     <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="assets/img/slide9.jpg" alt="news" />
+                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide9.jpg') ?>" alt="news" />
                       </div>
                     </div>
                   </div>
@@ -248,7 +249,7 @@
 
       <div class="container">
         <div class="row justify-content-between pb-2 pt-5">
-          <div class="col-12 col-lg-auto mb-5 mb-lg-0"><a class="d-flex align-items-center fw-semi-bold fs-3" href="#"> <img class="me-3" src="assets/img/logo_sma2.png" alt="..." /></a>
+          <div class="col-12 col-lg-auto mb-5 mb-lg-0"><a class="d-flex align-items-center fw-semi-bold fs-3" href="#"> <img class="me-3" src="<?= base_url('public/assets/img/logo_sma2.png') ?>" alt="..." /></a>
             <p class="my-3 text-100 fw-light">Jl. Panji Tilar Negara No.25, Kekalik Jaya, Kec. Sekarbela, Kota Mataram, Nusa Tenggara Barat </p>
           </div>
           <div class="col-auto mb-3">
@@ -284,11 +285,11 @@
   <!-- ===============================================-->
   <!--    JavaScripts-->
   <!-- ===============================================-->
-  <script src="vendors/@popperjs/popper.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.min.js"></script>
-  <script src="vendors/is/is.min.js"></script>
+  <script src="<?= base_url('public/vendors/@popperjs/popper.min.js') ?>"></script>
+  <script src="<?= base_url('public/vendors/bootstrap/bootstrap.min.js') ?>"></script>
+  <script src="<?= base_url('public/vendors/is/is.min.js') ?>"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-  <script src="assets/js/theme.js"></script>
+  <script src="<?= base_url('public/assets/js/theme.js') ?>"></script>
   <script src="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.js" integrity="sha384-1mHmu4fyyExEnjX4DGx0QsSsPWPIaJ7oFcQ3LIL/gAT7t5i6mNfW80xJOzEHfNgv" crossorigin="anonymous"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">

@@ -1,5 +1,5 @@
 <?php
-include "koneksi.php";
+include "conn/koneksi.php";
 //menggunakan class phpExcelReader
 include "import/excel_reader2.php";
 
@@ -14,24 +14,26 @@ if ($dataUpload == 'training') {
 	$gagal = 0;
 	//import data excel dari baris kedua, karena baris pertama adalah nama kolom
 	for ($i = 2; $i <= $baris; $i++) {
-		$ppdb = $data->val($i, 2);
-		$bhs_indonesia = $data->val($i, 3);
-		$matematika = $data->val($i, 4);
-		$bhs_inggris = $data->val($i, 5);
-		$ipa = $data->val($i, 6);
-		$ips = $data->val($i, 7);
-		$skhu = $data->val($i, 8);
-		$jurusan = $data->val($i, 9);
+		$jk = $data->val($i, 2);
+		$ppdb = $data->val($i, 3);
+		$bhs_indonesia = $data->val($i, 4);
+		$matematika = $data->val($i, 5);
+		$bhs_inggris = $data->val($i, 6);
+		$ipa = $data->val($i, 7);
+		$ips = $data->val($i, 8);
+		$skhu = $data->val($i, 9);
+		$jurusan = $data->val($i, 10);
 
 		//setelah data dibaca, sisipkan ke dalam tabel 
-		$query = "INSERT INTO data_training (ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,jurusan) 
-			VALUES ('$ppdb','$bhs_indonesia','$matematika','$bhs_inggris','$ipa','$ips','$skhu','$jurusan')";
+		$query = "INSERT INTO data_training (jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,jurusan) 
+			VALUES ('$jk','$ppdb','$bhs_indonesia','$matematika','$bhs_inggris','$ipa','$ips','$skhu','$jurusan')";
 		$hasil = mysql_query($query);
 		//menambah counter jika berhasil atau gagal
 		if ($hasil) $sukses++;
 		else $gagal++;
 	}
-	header('location:index.php?menu=data');
+	header('location:data_training.php');
+	// 
 } else if ($dataUpload == 'uji') {
 	//membaca file excel yang diupload
 	$data = new Spreadsheet_Excel_Reader($_FILES['userfile']['tmp_name']);
@@ -42,9 +44,10 @@ if ($dataUpload == 'training') {
 	$gagal = 0;
 	//import data excel dari baris kedua, karena baris pertama adalah nama kolom
 	for ($i = 2; $i <= $baris; $i++) {
-		$ppdb = $data->val($i, 2);
+		$jk = $data->val($i, 2);
+		$ppdb = $data->val($i, 3);
 		// 
-		$bhs_indonesia = $data->val($i, 3);
+		$bhs_indonesia = $data->val($i, 4);
 		if ($bhs_indonesia >= 92 && $bhs_indonesia <= 100) {
 			return $bhs_indonesia = "A";
 		} else if ($bhs_indonesia >= 84 && $bhs_indonesia < 92) {
@@ -59,7 +62,7 @@ if ($dataUpload == 'training') {
 			return $bhs_indonesia = "Tidak Lulus";
 		}
 		// 
-		$matematika = $data->val($i, 4);
+		$matematika = $data->val($i, 5);
 		if ($matematika >= 92 && $matematika <= 100) {
 			return $matematika = "A";
 		} else if ($matematika >= 84 && $matematika < 92) {
@@ -74,7 +77,7 @@ if ($dataUpload == 'training') {
 			return $matematika = "Tidak Lulus";
 		}
 		// 
-		$bhs_inggris = $data->val($i, 5);
+		$bhs_inggris = $data->val($i, 6);
 		if ($bhs_inggris >= 92 && $bhs_inggris <= 100) {
 			return $bhs_inggris = "A";
 		} else if ($bhs_inggris >= 84 && $bhs_inggris < 92) {
@@ -89,7 +92,7 @@ if ($dataUpload == 'training') {
 			return $bhs_inggris = "Tidak Lulus";
 		}
 		// 
-		$ipa = $data->val($i, 6);
+		$ipa = $data->val($i, 7);
 		if ($ipa >= 92 && $ipa <= 100) {
 			return $ipa = "A";
 		} else if ($ipa >= 84 && $ipa < 92) {
@@ -104,7 +107,7 @@ if ($dataUpload == 'training') {
 			return $ipa = "Tidak Lulus";
 		}
 		// 
-		$ips = $data->val($i, 7);
+		$ips = $data->val($i, 8);
 		if ($ips >= 92 && $ips <= 100) {
 			return $ips = "A";
 		} else if ($ips >= 84 && $ips < 92) {
@@ -119,7 +122,7 @@ if ($dataUpload == 'training') {
 			return $ips = "Tidak Lulus";
 		}
 		// 
-		$skhu = $data->val($i, 8);
+		$skhu = $data->val($i, 9);
 		if ($skhu >= 92 && $skhu <= 100) {
 			return $skhu = "A";
 		} else if ($skhu >= 84 && $skhu < 92) {
@@ -133,10 +136,10 @@ if ($dataUpload == 'training') {
 		} else {
 			return $skhu = "Tidak Lulus";
 		}
-		$jurusan = $data->val($i, 9);
+		$jurusan = $data->val($i, 10);
 		//setelah data dibaca, sisipkan ke dalam tabel 
-		$query = "INSERT INTO data_uji (ppdb,skhu,matematika,bhs_inggris,ipa,ips,skhu,jurusan) 
-			VALUES ('$ppdb','$bhs_indonesia','$matematika','$bhs_inggris','$ipa','$ips','$skhu','$jurusan')";
+		$query = "INSERT INTO data_uji (jk,ppdb,skhu,matematika,bhs_inggris,ipa,ips,skhu,jurusan) 
+			VALUES ('$jk','$ppdb','$bhs_indonesia','$matematika','$bhs_inggris','$ipa','$ips','$skhu','$jurusan')";
 		$hasil = mysql_query($query);
 		//menambah counter jika berhasil atau gagal
 		if ($hasil) $sukses++;
@@ -165,5 +168,5 @@ if ($dataUpload == 'training') {
 		if ($hasil) $sukses++;
 		else $gagal++;
 	}
-	header('location:index.php?menu=user');
+	header('location:data_user.php');
 }

@@ -1,8 +1,8 @@
 	<?php $thisPage = "DATA SISWA";
-	session_start();
+	require_once 'conn/koneksi.php';
 	if (!isset($_SESSION['usr'])) {
 
-		header("location:login-form.php");
+		header("location:auth/login-form.php");
 	}
 	?>
 	<!DOCTYPE html>
@@ -14,23 +14,20 @@
 		<title>SMANDA | DATA USER </title>
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
 		<!-- Font Awesome -->
-		<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+		<link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
 		<!-- DataTables -->
-		<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
-		<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
-		<link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+		<link rel="stylesheet" href="<?= base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>" />
+		<link rel="stylesheet" href="<?= base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>" />
+		<link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>" />
 
-		<link rel="stylesheet" href="dist/css/adminlte.min.css">
+		<link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css') ?>">
 		<!-- overlayScrollbars -->
-		<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+		<link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
 	</head>
 	<?php
-	require 'partial/sidebar.php';
-	require 'partial/navbar.php';
 
-	include "koneksi.php";
 	if (isset($_GET['act'])) {
 		$action = $_GET['act'];
 		$id = $_GET['id'];
@@ -38,15 +35,17 @@
 		if ($action == 'delete') {
 			mysql_query("DELETE FROM user WHERE user_id = '$id'");
 			mysql_query("DELETE FROM data_siswa WHERE nisn = '$id'");
-			header('location:index.php?menu=user');
+			header('location:data_user.php');
 		}
 		//delete semua data
 		else if ($action == 'delete_all') {
 			mysql_query("TRUNCATE data_siswa");
 			mysql_query("DELETE FROM user WHERE type ='siswa'");
-			header('location:index.php?menu=user');
+			header('location:data_user.php');
 		}
 	} else {
+		require 'partial/sidebar.php';
+		require 'partial/navbar.php';
 		include 'form_data_user.php';
 		$query = mysql_query("SELECT * FROM data_siswa ORDER BY (nisn)");
 		$jumlah = mysql_num_rows($query);
@@ -74,7 +73,6 @@
 				}
 			}
 		</style>
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -118,10 +116,6 @@
 					</div>
 					<!--  -->
 				</div>
-
-
-
-				<!--  -->
 				<div class="wrapper">
 					<section class="content">
 						<div class="container-fluid">
@@ -236,7 +230,7 @@
 					<form method="POST" enctype="multipart/form-data" action="upload.php?data=training">
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-							<a href="index.php?menu=user&act=delete_all" type="button" class="btn btn-primary"> Ya </a>
+							<a href="data_user.php?act=delete_all" type="button" class="btn btn-primary"> Ya </a>
 						</div>
 					</form>
 				</div>
@@ -272,27 +266,26 @@
 		</div>
 		<!--  -->
 		<!-- /.content-header -->
-
-		<script src="assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+		<script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
 		<!-- jQuery -->
-		<script src="plugins/jquery/jquery.min.js"></script>
+		<script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
 		<!-- Bootstrap 4 -->
-		<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 		<!-- DataTables  & Plugins -->
-		<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-		<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-		<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-		<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-		<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-		<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-		<script src="plugins/jszip/jszip.min.js"></script>
-		<script src="plugins/pdfmake/pdfmake.min.js"></script>
-		<script src="plugins/pdfmake/vfs_fonts.js"></script>
-		<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-		<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-		<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+		<script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
+		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
 		<!-- AdminLTE App -->
-		<script src="dist/js/adminlte.min.js"></script>
+		<script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
 
 		<!-- Page specific script -->
 		<script>
