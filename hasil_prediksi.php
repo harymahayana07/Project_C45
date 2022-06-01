@@ -26,52 +26,51 @@ if (!isset($_SESSION['usr'])) {
 	<link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
 </head>
 <?php
-require 'partial/navbar.php';
-require 'partial/sidebar.php';
-?>
 
-<body class="hold-transition sidebar-mini">
-
-	<div class="wrapper">
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1>POHON KEPUTUSAN</h1>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Pohon Keputusan</li>
-							</ol>
-						</div>
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-			</section>
-			<?php
-			if (isset($_GET['act'])) {
-				$action = $_GET['act'];
-				//delete semua data
-				if ($action == 'delete_all') {
-					mysql_query("TRUNCATE hasil_prediksi");
-					header('location:hasil_prediksi.php');
-				}
-			} else {
-				$query = mysql_query("SELECT a.nisn,b.nama,b.jenis_kelamin,b.asal_sekolah,a.hasil 
+if (isset($_GET['act'])) {
+	$action = $_GET['act'];
+	//delete semua data
+	if ($action == 'delete_all') {
+		mysql_query("TRUNCATE hasil_prediksi");
+		header('location:hasil_prediksi.php');
+	}
+} else {
+	require 'partial/navbar.php';
+	require 'partial/sidebar.php';
+	$query = mysql_query("SELECT a.nisn,b.nama,b.jenis_kelamin,b.asal_sekolah,a.hasil 
 								FROM hasil_prediksi a INNER JOIN data_siswa b ON (a.nisn=b.nisn) 
 								ORDER BY(a.nisn)");
-				$jumlah = mysql_num_rows($query);
-				//jika hasil_prediksi kosong
-				if ($jumlah == 0) {
-					echo "<center><h3>Hasil Prediksi Kosong...</h3></center>";
-				}
-				//jika hasil prediksi sudah terisi
-				else {
-			?>
+	$jumlah = mysql_num_rows($query);
+	//jika hasil_prediksi kosong
+	if ($jumlah == 0) {
+		echo "<center><h3>Hasil Prediksi Kosong...</h3></center>";
+	}
+	//jika hasil prediksi sudah terisi
+	else {
+?>
+
+		<body class="hold-transition sidebar-mini">
+
+			<div class="wrapper">
+				<!-- Content Wrapper. Contains page content -->
+				<div class="content-wrapper">
+					<!-- Content Header (Page header) -->
+					<section class="content-header">
+						<div class="container-fluid">
+							<div class="row mb-2">
+								<div class="col-sm-6">
+									<h1>HASIL PREDIKSI</h1>
+								</div>
+								<div class="col-sm-6">
+									<ol class="breadcrumb float-sm-right">
+										<li class="breadcrumb-item"><a href="#">Home</a></li>
+										<li class="breadcrumb-item active">Hasil</li>
+									</ol>
+								</div>
+							</div>
+						</div>
+						<!-- /.container-fluid -->
+					</section>
 
 					<!--  -->
 					<section class="content">
@@ -91,8 +90,8 @@ require 'partial/sidebar.php';
 												?>
 												<p>
 													Opsi:
-													<a href="index.php?menu=hasil&act=delete_all" onClick="return confirm('Anda yakin akan hapus semua data?')">Hapus Semua Data</a> |
-													<a href="export/CLP.php?format=3">Download Laporan</a>
+													<a href="<?= base_url('hasil_prediksi.php?act=delete_all') ?>" onClick="return confirm('Anda yakin akan hapus semua data?')">Hapus Semua Data</a> |
+													<a href="<?= base_url('export/CLP.php?format=3') ?>">Download Laporan</a>
 												</p>
 											</h3>
 										</div>
@@ -154,63 +153,63 @@ require 'partial/sidebar.php';
 						<!-- /.container-fluid -->
 					</section>
 					<!--  -->
-		</div>
-		<!--  -->
-		<script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
-		<!-- jQuery -->
-		<script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
-		<!-- Bootstrap 4 -->
-		<script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-		<!-- DataTables  & Plugins -->
-		<script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
-		<script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
-		<!-- AdminLTE App -->
-		<script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
+				</div>
+				<!--  -->
+				<script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
+				<!-- jQuery -->
+				<script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
+				<!-- Bootstrap 4 -->
+				<script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+				<!-- DataTables  & Plugins -->
+				<script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
+				<script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
+				<!-- AdminLTE App -->
+				<script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
 
-		<!-- Page specific script -->
-		<script>
-			$(function() {
-				$("#example1")
-					.DataTable({
-						responsive: true,
-						lengthChange: false,
-						autoWidth: false,
-						buttons: ["copy", "excel", "pdf", "print", "colvis"],
-					})
-					.buttons()
-					.container()
-					.appendTo("#example1_wrapper .col-md-6:eq(0)");
-				$("#example2").DataTable({
-					paging: true,
-					lengthChange: false,
-					searching: false,
-					ordering: true,
-					info: true,
-					autoWidth: false,
-					responsive: true,
-				});
-			});
-		</script>
+				<!-- Page specific script -->
+				<script>
+					$(function() {
+						$("#example1")
+							.DataTable({
+								responsive: true,
+								lengthChange: false,
+								autoWidth: false,
+								buttons: ["copy", "excel", "pdf", "print", "colvis"],
+							})
+							.buttons()
+							.container()
+							.appendTo("#example1_wrapper .col-md-6:eq(0)");
+						$("#example2").DataTable({
+							paging: true,
+							lengthChange: false,
+							searching: false,
+							ordering: true,
+							info: true,
+							autoWidth: false,
+							responsive: true,
+						});
+					});
+				</script>
 
-		<footer class="main-footer">
-			<strong>Copyright &copy; 2021-2022 <i>Ni Luh Putu Sri Astiti</i> </strong>
-		</footer>
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-	</div>
-</body>
+				<footer class="main-footer">
+					<strong>Copyright &copy; 2021-2022 <i>Ni Luh Putu Sri Astiti</i> </strong>
+				</footer>
+				<!-- Control Sidebar -->
+				<aside class="control-sidebar control-sidebar-dark">
+					<!-- Control sidebar content goes here -->
+				</aside>
+			</div>
+		</body>
 
 </html>
 <!--  -->

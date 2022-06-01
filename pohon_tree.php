@@ -40,14 +40,13 @@ require 'partial/navbar.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title"><a href="?menu=tree">Lihat Rule/Aturan yang terbentuk</a></h3>
+                                    <a href="<?= base_url('tree.php')?>" type="button" class="btn btn-warning btn-sm btn-responsive"><i class="fas fa-eye"></i>&emsp; Lihat Rule/Aturan Yang terbentuk</a> &emsp;
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <!--  -->
                                     <?php
                                     error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-                                    include "koneksi.php";
                                     //select id dari pohon keputusan
                                     $que_sql = mysql_query("SELECT id FROM pohon_keputusan");
                                     $id = array();

@@ -1,5 +1,4 @@
-<div class="content-wrapper">
-	<div class="container-fluid mt-2">
+
 		<?php
 		//fungsi cek nilai atribut
 		function cek_nilaiAtribut($field, $kondisi)
@@ -719,5 +718,4 @@
 			return $opsiMax;
 		}
 		?>
-	</div>
-</div>
+	

@@ -25,6 +25,8 @@ if (!isset($_SESSION['usr'])) {
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css') ?>">
+  <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/loading.css') ?>" /> -->
+
 
 </head>
 <style>
@@ -50,6 +52,8 @@ if (!isset($_SESSION['usr'])) {
   }
 </style>
 <?php
+require_once "partial/navbar.php";
+
 if (isset($_GET['act'])) {
   $action = $_GET['act'];
   $id = $_GET['id'];
@@ -68,13 +72,13 @@ if (isset($_GET['act'])) {
     header('location:data_training.php');
   }
 } else {
+  require 'partial/sidebar.php';
   include "form_data_training.php";
   $query = mysql_query("select * from data_training order by(id)");
 
   $jumlah = mysql_num_rows($query);
 
-  require 'partial/navbar.php';
-  require 'partial/sidebar.php';
+
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

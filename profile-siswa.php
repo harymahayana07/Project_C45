@@ -50,7 +50,7 @@ if (!isset($_SESSION['usr'])) {
             <h1>Profile</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="<?= base_url('dashboard-siswa.php') ?>">Home</a></li>
                     <li class="breadcrumb-item">Users</li>
                     <li class="breadcrumb-item active">Profile</li>
                 </ol>
@@ -125,17 +125,43 @@ if (!isset($_SESSION['usr'])) {
                                                 <div class="col-lg-1 col-md-1 label ">:</div>
                                                 <div class="col-lg-7 col-md-7"><?= $_SESSION['usr'] ?></div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 label ">Nama Lengkap </div>
                                                 <div class="col-lg-1 col-md-1 label ">:</div>
                                                 <div class="col-lg-7 col-md-7"><?= $_SESSION['nama'] ?></div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 label">Jenis Kelamin </div>
+                                                <div class="col-lg-1 col-md-1 label ">:</div>
 
+                                                <div class="col-lg-7 col-md-7"> <?php if ($baris['jk'] == '1') {
+                                                                                    echo 'Laki-laki';
+                                                                                } else if ($baris['jk'] == '2') {
+                                                                                    echo 'Perempuan';
+                                                                                } ?></div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 label">PPBD </div>
                                                 <div class="col-lg-1 col-md-1 label ">:</div>
 
-                                                <div class="col-lg-7 col-md-7"><?= $baris['ppdb'] ?></div>
+                                                <div class="col-lg-7 col-md-7"><?php if ($baris['ppdb'] == '1') {
+                                                                                    echo 'Perpindahan Orang tua';
+                                                                                } else if ($baris['ppdb'] == '2') {
+                                                                                    echo 'Prestasi Akademik';
+                                                                                } else if ($baris['ppdb'] == '3') {
+                                                                                    echo 'Prestasi Non-Akademik';
+                                                                                } else if ($baris['ppdb'] == '4') {
+                                                                                    echo 'Prestasi Thafidz';
+                                                                                } else if ($baris['ppdb'] == '5') {
+                                                                                    echo 'Afirmasi';
+                                                                                } else if ($baris['ppdb'] == '6') {
+                                                                                    echo 'Zonasi';
+                                                                                } else if ($baris['ppdb'] == '7') {
+                                                                                    echo 'PPLP';
+                                                                                }
+                                                                                ?>
+                                                </div>
                                             </div>
 
                                             <div class="row">
@@ -187,6 +213,7 @@ if (!isset($_SESSION['usr'])) {
 
                                             <?php
                                             //menyajikan rule
+                                            $n_jk = $baris['jk'];
                                             $n_ppdb = $baris['ppdb'];
                                             $n_bhs_indonesia = $baris['bhs_indonesia'];
                                             $n_matematika = $baris['matematika'];
@@ -209,6 +236,7 @@ if (!isset($_SESSION['usr'])) {
                                                 $rule = str_replace("=", " s ", $rule);
                                                 $rule = str_replace(">", " l ", $rule);
                                                 //mengganti nilai
+                                                $rule = str_replace("jk", "'$n_jk'", $rule);
                                                 $rule = str_replace("ppdb", "'$n_ppdb'", $rule);
                                                 $rule = str_replace("bhs_indonesia", "'$n_bhs_indonesia'", $rule);
                                                 $rule = str_replace("matematika", "'$n_matematika'", $rule);
@@ -301,22 +329,22 @@ if (!isset($_SESSION['usr'])) {
                                             }
                                             if ($keputusan == '') {
                                             ?>
-                                                <div class="row mt-3" style="text-align: center;">
+                                                <!-- <div class="row mt-3" style="text-align: center;">
                                                     <div class="col-lg-12 col-md-4 label"><b>Rule yang terpilih adalah rule terakhir karena tidak memenuhi semua rule</b></div>
-                                                </div>
+                                                </div> -->
                                             <?php
                                             } else {
                                                 $sql_que = mysql_query("SELECT * FROM pohon_keputusan WHERE id=$id_rule");
                                                 $row_bar = mysql_fetch_array($sql_que);
                                                 $rule_terpilih = "IF " . $row_bar[1] . " AND " . $row_bar[2] . " THEN jurusan = " . $row_bar[3];
                                             ?>
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-lg-3 col-md-4 label">Rule yang terpilih adalah rule ke :</div>
                                                     <div class="col-lg-9 col-md-8"><?= $row_bar[0] . $rule_terpilih ?></div>
-                                                </div>
+                                                </div> -->
                                             <?php
                                             }
-                                            echo "<center><a href='delete_prediksi.php?id=$nisn' accesskey='5' title='ubah jawaban' onClick=\"return confirm('Anda yakin akan mengedit data?')\">Klik disini untuk kembali lakukan prediksi</a></center>";
+                                            // echo "<center><a href='delete_prediksi.php?id=$nisn' accesskey='5' title='ubah jawaban' onClick=\"return confirm('Anda yakin akan mengedit data?')\">Klik disini untuk kembali lakukan prediksi</a></center>";
                                         }
                                         //jika belum melakukan prediksi
                                         else if ($jmlque == 0) {
@@ -326,49 +354,75 @@ if (!isset($_SESSION['usr'])) {
                                                 <form method="post" action="">
                                                     <div class="form-group">
 
-                                                        <label for="ppdb">PPDB :</label>
+                                                        <label for="jk1">Jenis Kelamin:</label>
 
-                                                        <select name="txtppdb" id="ppdb" class="form-control" required autofocus>
+                                                        <select name="jk" id="jk1" class="form-control" required autofocus>
                                                             <option value=""> <i>---Pilih--- <i class="bi bi-caret-down-fill"></i></i> </option>
-                                                            <option value="Prestasi Akademik">Prestasi Akademik</option>
-                                                            <option value="Prestasi Non-Akademik">Prestasi Non-Akademik</option>
-                                                            <option value="Prestasi Tahfidz">Prestasi Tahfidz</option>
-                                                            <option value="Afirmasi">Afirmasi</option>
-                                                            <option value="PPLP">PPLP</option>
-                                                            <option value="Zonasi">Zonasi</option>
-                                                            <option value="Perpindahan Orang tua">Perpindahan Orang tua</option>
+                                                            <option value="1">Laki-Laki</option>
+                                                            <option value="2">Perempuan</option>
+
                                                         </select>
                                                     </div>
+                                                    <div class="form-group">
+
+                                                        <label for="ppdb">PPDB :</label>
+
+                                                        <select name="txtppdb" id="ppdb" class="form-control" required>
+                                                            <option value=""><i>---Pilih--- <i class="bi bi-caret-down-fill"></i></i> </option>
+                                                            <option value="1">Perpindahan Orang tua</option>
+                                                            <option value="2">Prestasi Akademik</option>
+                                                            <option value="3">Prestasi Non-Akademik</option>
+                                                            <option value="4">Prestasi Tahfidz</option>
+                                                            <option value="5">Afirmasi</option>
+                                                            <option value="6">Zonasi</option>
+                                                            <option value="7">PPLP</option>
+                                                        </select>
+                                                    </div>
+                                                    <!--  -->
+                                                    <!--  -->
                                                     <!-- Nilai bahasa indonesia -->
+
                                                     <div class="form-group">
                                                         <label for="indo">Nilai Bahasa Indonesia :</label>
-                                                        <input type="number" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                                                        <input type="text" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                                                     </div>
+                                                    <p><i>*validasi angka belum dibuatkan, silahkan input manual dengan format titik <b>92.6</b></i></p>
+
                                                     <!-- Nilai Matematika -->
                                                     <div class="form-group">
                                                         <label for="math">Nilai Matematika :</label>
-                                                        <input type="number" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                                                        <input type="text" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                                                     </div>
+                                                    <p><i>*validasi angka belum dibuatkan, silahkan input manual dengan format titik <b>92.6</b></i></p>
+
                                                     <!-- Nilai bahasa inggris -->
                                                     <div class="form-group">
                                                         <label for="ing">Nilai Bahasa Inggris :</label>
-                                                        <input type="number" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                                                        <input type="text" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                                                     </div>
+                                                    <p><i>*validasi angka belum dibuatkan, silahkan input manual dengan format titik <b>92.6</b></i></p>
+
                                                     <!-- Nilai ipa -->
                                                     <div class="form-group">
                                                         <label for="alam">Nilai Ilmu Pengetahuan Alam :</label>
-                                                        <input type="number" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                                                        <input type="text" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                                                     </div>
+                                                    <p><i>*validasi angka belum dibuatkan, silahkan input manual dengan format titik <b>92.6</b></i></p>
+
                                                     <!-- Nilai ips -->
                                                     <div class="form-group">
                                                         <label for="sosial">Nilai Ilmu Pengetahuan Sosial :</label>
-                                                        <input type="number" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                                                        <input type="text" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                                                     </div>
+                                                    <p><i>*validasi angka belum dibuatkan, silahkan input manual dengan format titik <b>92.6</b></i></p>
+
                                                     <!-- Nilai skhu -->
                                                     <div class="form-group">
                                                         <label for="hu">Nilai SKHU :</label>
-                                                        <input type="number" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                                                        <input type="text" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                                                     </div>
+                                                    <p><i>*validasi angka belum dibuatkan, silahkan input manual dengan format titik <b>92.6</b></i></p>
+
 
                                                     <!--  -->
                                                     <div class="modal-footer">
@@ -379,6 +433,7 @@ if (!isset($_SESSION['usr'])) {
 
                                     <?php
                                             } else {
+                                                $n_jk = $_POST['jk'];
                                                 $n_ppdb = $_POST['txtppdb'];
                                                 $n_bhs_indonesia = $_POST['txtbhs_id'];
                                                 $n_matematika = $_POST['txtmtk'];
@@ -387,6 +442,7 @@ if (!isset($_SESSION['usr'])) {
                                                 $n_ips = $_POST['txtips'];
                                                 $n_skhu = $_POST['txtskhu'];
                                                 echo "<h4><center>Hasil Jawaban Anda...<br>";
+                                                echo "jk: " . $n_jk . "<br>";
                                                 echo "ppdb: " . $n_ppdb . "<br>";
                                                 echo "bhs_indonesia: " . $n_bhs_indonesia . "<br>";
                                                 echo "matematika: " . $n_matematika . "<br>";
@@ -410,12 +466,14 @@ if (!isset($_SESSION['usr'])) {
                                                     $rule = str_replace("=", " s ", $rule);
                                                     $rule = str_replace(">", " l ", $rule);
                                                     //mengganti nilai
-                                                    $rule = str_replace("instansi", "'$n_instansi'", $rule);
-                                                    $rule = str_replace("status", "'$n_status'", $rule);
-                                                    $rule = str_replace("jurusan", "'$n_jurusan'", $rule);
-                                                    $rule = str_replace("rata_un", "$n_rataUN", $rule);
-                                                    $rule = str_replace("kerja", "'$n_kerja'", $rule);
-                                                    $rule = str_replace("motivasi", "'$n_motivasi'", $rule);
+                                                    $rule = str_replace("jk", "'$n_jk'", $rule);
+                                                    $rule = str_replace("ppdb", "'$n_ppdb'", $rule);
+                                                    $rule = str_replace("bhs_indonesia", "'$n_bhs_indonesia'", $rule);
+                                                    $rule = str_replace("matematika", "'$n_matematika'", $rule);
+                                                    $rule = str_replace("bhs_inggris", "$n_bhs_inggris", $rule);
+                                                    $rule = str_replace("ipa", "'$n_ipa'", $rule);
+                                                    $rule = str_replace("ips", "'$n_ips'", $rule);
+                                                    $rule = str_replace("skhu", "'$n_skhu'", $rule);
                                                     //menghilangkan '
                                                     $rule = str_replace("'", "", $rule);
                                                     //menggabungkan kata ortu dan orang lain
@@ -520,18 +578,18 @@ if (!isset($_SESSION['usr'])) {
                                                             $id_rule = $bar_row['id'];
                                                         }
                                                     }
-                                                    echo "<h1><center>Anda diprediksi masuk kelas " . $keputusan . "</center></h1>";
-                                                    echo "<h4><center>Rule terpilih adalah rule yang terakhir karena tidak memenuhi semua rule</center></h4>";
-                                                    mysql_query("INSERT INTO hasil_prediksi (nisn,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) VALUES 
-				('$nisn','$n_ppdb','$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
+                                                    echo "<h1><center>Anda Akan masuk kelas " . $keputusan . "</center></h1>";
+                                                    // echo "<h4><center>Rule terpilih adalah rule yang terakhir karena tidak memenuhi semua rule</center></h4>";
+                                                    mysql_query("INSERT INTO hasil_prediksi (nisn,jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) VALUES 
+				('$nisn','$n_jk','$n_ppdb','$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
                                                 } else {
                                                     echo "<h1><center>Anda diprediksi masuk kelas " . $keputusan . "</center></h1>";
                                                     $sql_que = mysql_query("SELECT * FROM pohon_keputusan WHERE id=$id_rule");
                                                     $row_bar = mysql_fetch_array($sql_que);
                                                     $rule_terpilih = "IF " . $row_bar[1] . " AND " . $row_bar[2] . " THEN jurusan = " . $row_bar[3];
-                                                    echo "<h4><center>Rule yang terpilih adalah rule ke-" . $row_bar[0] . "<br>" . $rule_terpilih . "</center></h4>";
-                                                    mysql_query("INSERT INTO hasil_prediksi (nisn,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) VALUES 
-				('$nisn','$n_ppdb','$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
+                                                    // echo "<h4><center>Rule yang terpilih adalah rule ke-" . $row_bar[0] . "<br>" . $rule_terpilih . "</center></h4>";
+                                                    mysql_query("INSERT INTO hasil_prediksi (nisn,jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) VALUES 
+				('$nisn','$n_jk','$n_ppdb','$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
                                                 }
                                             }
                                         }

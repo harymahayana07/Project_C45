@@ -28,6 +28,8 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css') ?>">
+    <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/loading.css') ?>" /> -->
+
     <!-- Daterange picker -->
     <!-- <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css"> -->
     <!-- summernote -->

@@ -50,7 +50,7 @@ if ($level == 'siswa') {
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url('data_training.php')?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -59,7 +59,7 @@ if ($level == 'siswa') {
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>53<sup style="font-size: 20px"></sup></h3>
-                <p>Jumlah Data Mipa</p>
+                <p>Data Siswa</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -74,7 +74,7 @@ if ($level == 'siswa') {
               <div class="inner">
                 <h3>44</h3>
 
-                <p>Jumlah Data Ips</p>
+                <p>Data Uji</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -88,7 +88,7 @@ if ($level == 'siswa') {
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>65</h3>
-                <p>Hasil Entropy </p>
+                <p>Download Data Perkelas</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>

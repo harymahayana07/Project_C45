@@ -44,7 +44,7 @@
 
 
     <section class="py-0" id="home">
-      <div class="bg-holder d-none d-md-block" style="background-image:url(assets/img/gallery/siswa_bg.png);background-position:right bottom;background-size:contain;margin-top:6.200rem;">
+      <div class="bg-holder d-none d-md-block" style="background-image:url(../assets/bg-siswa-io2.png);background-position:right bottom;background-size:contain;margin-top:6.200rem;">
       </div>
       <!--/.bg-holder-->
       <!-- <div class="bg-holder d-block d-md-none" style="background-image:url(assets/img/illustrations/hero-bg.png);background-position:right bottom;background-size:contain;margin-top:5.625rem;">

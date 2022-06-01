@@ -8,10 +8,10 @@ if (!isset($_SESSION['usr'])) {
 require 'partial/header.php';
 require 'partial/sidebar.php';
 require 'partial/navbar.php';
-?>
-<?php
 $query = mysql_query("select * from data_training order by(id)");
+$query2 = mysql_query("select * from data_training_konversi order by(id)");
 $jumlah = mysql_num_rows($query);
+$jumlah2 = mysql_num_rows($query2);
 
 if ($jumlah == 0) {
   echo "<center><h3>Data Masih Kosong...</h3></center>";
@@ -48,10 +48,14 @@ if ($jumlah == 0) {
               <div class="col-lg-12 col-md-4">
 
                 <a href="mining_konversi.php" type="button" class="btn btn-warning btn-sm btn-responsive"><i class="fas fa-eye"></i>&emsp; Lihat Hasil Konversi</a> &emsp;
-                <form action="mining_konversi.php" method="POST" class="d-inline">
-                  <button name="submit_konversi" type="submit" class="btn btn-success btn-sm btn-responsive"><i class="fab fa-cloudscale"></i>&emsp; Konversi Data Ke Huruf</button>
-                </form>
-
+                <?php if ($jumlah2 == 0) {
+                ?>
+                  <form action="mining_konversi.php" method="POST" class="d-inline">
+                    <button name="submit_konversi" type="submit" class="btn btn-success btn-sm btn-responsive"><i class="fab fa-cloudscale"></i>&emsp; Konversi Data Ke Huruf</button>
+                  </form>
+                <?php
+                }
+                ?>
               </div>
 
             </div>
@@ -171,7 +175,6 @@ if ($jumlah == 0) {
                 <?php
                       }
                     }
-
                 ?>
                   </div>
                   <!-- /.card-body -->

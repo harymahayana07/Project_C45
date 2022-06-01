@@ -27,44 +27,44 @@
                  <label for="ppdb">PPDB :</label>
                  <select name="txtppdb" id="ppdb" class="form-control" required autofocus>
                    <option value=""> <i> ---Pilih--- <i class="bi bi-caret-down-fill"></i></i> </option>
-                   <option value="1">Prestasi Akademik</option>
-                   <option value="2">Prestasi Non-Akademik</option>
-                   <option value="3">Prestasi Tahfidz</option>
-                   <option value="4">Afirmasi</option>
-                   <option value="5">PPLP</option>
+                   <option value="1">Perpindahan Orang tua</option>
+                   <option value="2">Prestasi Akademik</option>
+                   <option value="3">Prestasi Non-Akademik</option>
+                   <option value="4">Prestasi Tahfidz</option>
+                   <option value="5">Afirmasi</option>
                    <option value="6">Zonasi</option>
-                   <option value="7">Perpindahan Orang tua</option>
+                   <option value="7">PPLP</option>
                  </select>
                </div>
                <!-- Nilai bahasa indonesia -->
                <div class="form-group">
                  <label for="indo">Nilai Bahasa Indonesia :</label>
-                 <input type="number" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                 <input type="text" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai Matematika -->
                <div class="form-group">
                  <label for="math">Nilai Matematika :</label>
-                 <input type="number" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                 <input type="text" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai bahasa inggris -->
                <div class="form-group">
                  <label for="ing">Nilai Bahasa Inggris :</label>
-                 <input type="number" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                 <input type="text" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai ipa -->
                <div class="form-group">
                  <label for="alam">Nilai Ilmu Pengetahuan Alam :</label>
-                 <input type="number" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                 <input type="text" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai ips -->
                <div class="form-group">
                  <label for="sosial">Nilai Ilmu Pengetahuan Sosial :</label>
-                 <input type="number" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                 <input type="text" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai skhu -->
                <div class="form-group">
                  <label for="hu">Nilai SKHU :</label>
-                 <input type="number" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                 <input type="text" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- jurusan jurusan -->
                <div class="form-group">

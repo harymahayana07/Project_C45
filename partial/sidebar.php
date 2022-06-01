@@ -1,14 +1,19 @@
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
-
     <!-- Preloader -->
-    <!-- <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="<?= base_url('dist/img/logo.png') ?>" alt="AdminLTELogo" height="200" width="200">
+
+    <!-- <div class=" preloader flex-column justify-content-center align-items-center">
+      <div class="loading-area">
+        <span class="loader"><img src="<?= base_url('dist/img/logo.png') ?>" alt="AdminLTELogo" height="120" width="120">Loading...</span>
+        <span class="load_anim1"></span>
+        <span class="load_anim2"></span>
+      </div>
     </div> -->
+
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="<?= base_url('dashboard.php') ?>" class="brand-link">
         <img src="<?= base_url('dist/img/logo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">SMAN 2 MATARAM</span>
       </a>
@@ -80,12 +85,18 @@
                 <p> Data Siswa </p>
               </a>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
+              <a href="<?= base_url('uji_rule.php') ?>" accesskey='7' class="nav-link <?php if ($thisPage == "DATA UJI") echo "active"; ?>">
+                <i class="nav-icon fas fa-graduation-cap"></i>
+                <p> Data Uji </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="<?= base_url('auth/logout.php') ?>" accesskey='7' class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p style="color: red;"> LogOut </p>
               </a>
-            </li> -->
+            </li>
 
           </ul>
         </nav>

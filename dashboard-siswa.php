@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "conn/koneksi.php";
 if (!isset($_SESSION['usr'])) {
   header("location:auth/login-form.php");
 }
@@ -57,7 +57,7 @@ if (!isset($_SESSION['usr'])) {
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-lg-4">
           <div class="row">
 
             <!-- Sales Card -->
@@ -65,7 +65,7 @@ if (!isset($_SESSION['usr'])) {
               <div class="card info-card sales-card">
 
                 <div class="card-body">
-                  <h5 class="card-title">Siswa <span>| Data</span></h5>
+                  <h5 class="card-title">Data<span></span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -73,7 +73,7 @@ if (!isset($_SESSION['usr'])) {
                     </div>
                     <div class="ps-3">
                       <h6>405</h6>
-                      <span class="text-success small pt-1 fw-bold">98%</span> <span class="text-muted small pt-2 ps-1">Akurasi</span>
+                      <span class="text-success small pt-1 fw-bold">Data</span> <span class="text-muted small pt-2 ps-1">Siswa</span>
 
                     </div>
                   </div>
@@ -83,33 +83,36 @@ if (!isset($_SESSION['usr'])) {
             </div><!-- End Sales Card -->
 
             <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
+
+          </div>
+        </div><!-- End Left side columns -->
+        <div class="col-lg-4">
+          <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-lg-12 col-md-6">
+              <div class="card info-card sales-card">
 
                 <div class="card-body">
-                  <h5 class="card-title">Prediksi Data Siswa <span>| Today</span></h5>
+                  <h5 class="card-title">Data<span></span></h5>
 
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nisn</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>2457</td>
-                        <td>Brandon Jacob</td>
-                        <td><span class="badge bg-success">Sudah</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-cart"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>405</h6>
+                      <span class="text-success small pt-1 fw-bold">Data</span> <span class="text-muted small pt-2 ps-1">Siswa</span>
 
+                    </div>
+                  </div>
                 </div>
 
               </div>
-            </div><!-- End Recent Sales -->
+            </div><!-- End Sales Card -->
+
+            <!-- Recent Sales -->
+
           </div>
         </div><!-- End Left side columns -->
 
@@ -139,37 +142,7 @@ if (!isset($_SESSION['usr'])) {
                   </div>
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 hrs</div>
-                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                  <div class="activity-content">
-                    Voluptates corrupti molestias voluptatem
-                  </div>
-                </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">1 day</div>
-                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                  <div class="activity-content">
-                    Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 days</div>
-                  <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                  <div class="activity-content">
-                    Est sit eum reiciendis exercitationem
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">4 weeks</div>
-                  <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                  <div class="activity-content">
-                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                  </div>
-                </div><!-- End activity item-->
 
               </div>
 
