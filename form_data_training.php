@@ -39,32 +39,32 @@
                <!-- Nilai bahasa indonesia -->
                <div class="form-group">
                  <label for="indo">Nilai Bahasa Indonesia :</label>
-                 <input type="text" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
+                 <input type="number" name="txtbhs_id" id="indo" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai Matematika -->
                <div class="form-group">
                  <label for="math">Nilai Matematika :</label>
-                 <input type="text" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
+                 <input type="number" name="txtmtk" id="math" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai bahasa inggris -->
                <div class="form-group">
                  <label for="ing">Nilai Bahasa Inggris :</label>
-                 <input type="text" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
+                 <input type="number" name="txtbhs_ing" id="ing" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai ipa -->
                <div class="form-group">
                  <label for="alam">Nilai Ilmu Pengetahuan Alam :</label>
-                 <input type="text" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
+                 <input type="number" name="txtipa" id="alam" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai ips -->
                <div class="form-group">
                  <label for="sosial">Nilai Ilmu Pengetahuan Sosial :</label>
-                 <input type="text" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
+                 <input type="number" name="txtips" id="sosial" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- Nilai skhu -->
                <div class="form-group">
                  <label for="hu">Nilai SKHU :</label>
-                 <input type="text" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
+                 <input type="number" name="txtskhu" id="hu" style="width: 100px;" class="form-control" placeholder="98" required autocomplete="off">
                </div>
                <!-- jurusan jurusan -->
                <div class="form-group">
@@ -72,7 +72,6 @@
                  <br>
                  <input type='radio' name='peminatan' value='MIPA' required="required"> MIPA &nbsp;&nbsp;&nbsp;
                  <input type='radio' name='peminatan' value='IPS' required="required"> IPS &nbsp;&nbsp;&nbsp;
-
                </div>
                <!--  -->
            </div>

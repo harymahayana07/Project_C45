@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url("bg-gradient2.jpg");
+  background-image: url("bg-login.jpg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -20,7 +20,7 @@ body {
   padding: 40px 30px 30px 30px;
   background-color: #ecf0f3;
   border-radius: 15px;
-  box-shadow: 13px 13px 20px #3909a0, -13px -13px 20px rgb(42, 33, 212);
+  box-shadow: 13px 13px 20px #29262c, -13px -13px 20px rgb(91, 91, 94);
 }
 
 .logo {

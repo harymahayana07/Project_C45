@@ -29,7 +29,7 @@
         if (mysql_num_rows($query) == 0) {
       ?>
           <div class="row">
-            <div class="col-lg-12 col-lg-offset-2">
+            <div class="col-lg-12 col-lg-offset-1">
               <div class="alert alert-danger alert-dismissable" role="alert">
                 <a href="<?= base_url('auth/login-form.php') ?>" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

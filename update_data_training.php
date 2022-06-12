@@ -7,21 +7,21 @@
   <title>SMANDA | DATA TRAINING</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
-  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
-  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
+  <link rel="stylesheet" href="<?= base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>" />
 
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css') ?>">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
 </head>
 <?php
-require 'partial/navbar.php';
-require 'partial/sidebar.php';
+require "partial/navbar.php";
+require "partial/sidebar.php";
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -123,32 +123,32 @@ require 'partial/sidebar.php';
                   <!-- Nilai bahasa indonesia -->
                   <div class="form-group">
                     <label for="indo">Nilai Bahasa Indonesia :</label>
-                    <input type="text" name="txtbhs_id" value=<?php echo $bhs_indonesia; ?> id="indo" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                    <input type="number" name="txtbhs_id" value=<?php echo $bhs_indonesia; ?> id="indo" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                   </div>
                   <!-- Nilai Matematika -->
                   <div class="form-group">
                     <label for="math">Nilai Matematika :</label>
-                    <input type="text" name="txtmtk" value=<?php echo $matematika; ?> id="math" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                    <input type="number" name="txtmtk" value=<?php echo $matematika; ?> id="math" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                   </div>
                   <!-- Nilai bahasa inggris -->
                   <div class="form-group">
                     <label for="ing">Nilai Bahasa Inggris :</label>
-                    <input type="text" name="txtbhs_ing" value=<?php echo $bhs_inggris; ?> id="ing" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                    <input type="number" name="txtbhs_ing" value=<?php echo $bhs_inggris; ?> id="ing" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                   </div>
                   <!-- Nilai ipa -->
                   <div class="form-group">
                     <label for="alam">Nilai Ilmu Pengetahuan Alam :</label>
-                    <input type="text" name="txtipa" value=<?php echo $ipa; ?> id="alam" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                    <input type="number" name="txtipa" value=<?php echo $ipa; ?> id="alam" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                   </div>
                   <!-- Nilai ips -->
                   <div class="form-group">
                     <label for="sosial">Nilai Ilmu Pengetahuan Sosial :</label>
-                    <input type="text" name="txtips" value=<?php echo $ips; ?> id="sosial" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                    <input type="number" name="txtips" value=<?php echo $ips; ?> id="sosial" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                   </div>
                   <!-- Nilai skhu -->
                   <div class="form-group">
                     <label for="hu">Nilai SKHU :</label>
-                    <input type="text" name="txtskhu" value=<?php echo $skhu; ?> id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
+                    <input type="number" name="txtskhu" value=<?php echo $skhu; ?> id="hu" style="width: 100px;" class="form-control" placeholder="98.5" required autocomplete="off">
                   </div>
                   <!-- jurusan jurusan -->
                   <div class="form-group">
@@ -167,7 +167,7 @@ require 'partial/sidebar.php';
             </div>
 
             <div>
-              <a href='index.php?menu=data' class="btn btn-secondary" accesskey='5' title='Kembali'> Kembali </a>
+              <a href="<?= base_url('data_training.php') ?>" class="btn btn-secondary" accesskey='5' title='Kembali'> Kembali </a>
               <input type="submit" name="submit_data_training" class="btn btn-primary" value="Simpan">
             </div>
             </form>

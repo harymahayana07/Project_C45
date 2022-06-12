@@ -198,7 +198,7 @@
 					+ (($jml3 / $jml_total) * $ent3) + (($jml4 / $jml_total) * $ent4) + (($jml5 / $jml_total) * $ent5) + (($jml6 / $jml_total) * $ent6));
 			}
 			// untuk atribut nilai 7 atribut
-			else {
+			else{
 				$j_mipa1 = jumlah_data("$data_kasus jurusan='MIPA' AND $kondisi1");
 				$j_ips1 = jumlah_data("$data_kasus jurusan='IPS' AND $kondisi1");
 				$jml1 = $j_mipa1 + $j_ips1;
@@ -241,7 +241,8 @@
 			}
 			//desimal 3 angka dibelakang koma
 			$gain = round($gain, 3);
-			if ($gain > 0) {
+			
+			if($gain>0){
 				echo "Gain " . $atribut . " = " . $gain . "<br>";
 			}
 			mysql_query("INSERT INTO gain VALUES ('','$atribut','$gain')");
@@ -493,35 +494,35 @@
 				$rasio5 = round($rasio5, 3);
 
 				//cetak
-				echo "Opsi 1 : <br>jumlah " . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai5 . "/" . $nilai6 . " = " . $opsi11 .
+				echo "Opsi 1 : <br>jumlah " . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai5 . " = " . $opsi11 .
 					"<br>jumlah " . $nilai1 . " = " . $opsi12 .
 					"<br>Split = " . $opsi1 .
 					"<br>Rasio = " . $rasio1 . "<br>";
-				echo "Opsi 2 : <br>jumlah " . $nilai3 . "/" . $nilai4 . "/" . $nilai5 . "/" . $nilai6 . "/" . $nilai1 . " = " . $opsi21 .
+				echo "Opsi 2 : <br>jumlah " . $nilai3 . "/" . $nilai4 . "/" . $nilai5 . "/" . $nilai1 . " = " . $opsi21 .
 					"<br>jumlah " . $nilai2 . " = " . $opsi22 .
 					"<br>Split = " . $opsi2 .
 					"<br>Rasio = " . $rasio2 . "<br>";
-				echo "Opsi 3 : <br>jumlah " . $nilai4 . "/" . $nilai5 . "/" . $nilai6 . "/" . $nilai1 . "/" . $nilai2 . " = " . $opsi31 .
+				echo "Opsi 3 : <br>jumlah " . $nilai4 . "/" . $nilai5 . "/" . $nilai1 . "/" . $nilai2 . " = " . $opsi31 .
 					"<br>jumlah " . $nilai3 . " = " . $opsi32 .
 					"<br>Split = " . $opsi3 .
 					"<br>Rasio = " . $rasio3 . "<br>";
-				echo "Opsi 4 : <br>jumlah " . $nilai5 . "/" . $nilai6 . "/" . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . " = " . $opsi41 .
+				echo "Opsi 4 : <br>jumlah " . $nilai5 . "/" . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . " = " . $opsi41 .
 					"<br>jumlah " . $nilai4 . " = " . $opsi42 .
 					"<br>Split = " . $opsi4 .
 					"<br>Rasio = " . $rasio4 . "<br>";
-				echo "Opsi 5 : <br>jumlah " . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai6 . " = " . $opsi51 .
+				echo "Opsi 5 : <br>jumlah " . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . " = " . $opsi51 .
 					"<br>jumlah " . $nilai5 . " = " . $opsi52 .
 					"<br>Split = " . $opsi5 .
 					"<br>Rasio = " . $rasio5 . "<br>";
 
 				//insert 
 				mysql_query("INSERT INTO rasio_gain VALUES 
-						('' , 'opsi1' , '$nilai1' , '$nilai2 , $nilai3 , $nilai4 , $nilai5 , $nilai6' , '$rasio1'),
-						('' , 'opsi2' , '$nilai2' , '$nilai3 , $nilai4 , $nilai5 , $nilai6 , $nilai1' , '$rasio2'),
-						('' , 'opsi3' , '$nilai3' , '$nilai4 , $nilai5 , $nilai6 , $nilai1 , $nilai2' , '$rasio3'),
-						('' , 'opsi4' , '$nilai4' , '$nilai5 , $nilai6 , $nilai1 , $nilai2 , $nilai3' , '$rasio4'),
-						('' , 'opsi5' , '$nilai5' , '$nilai6 , $nilai1 , $nilai2 , $nilai3 , $nilai4' , '$rasio5')");
-			} else if ($jmlNilai == 6) {
+						('' , 'opsi1' , '$nilai1' , '$nilai2 , $nilai3 , $nilai4 , $nilai5' , '$rasio1'),
+						('' , 'opsi2' , '$nilai2' , '$nilai3 , $nilai4 , $nilai5 , $nilai1' , '$rasio2'),
+						('' , 'opsi3' , '$nilai3' , '$nilai4 , $nilai5 , $nilai1 , $nilai2' , '$rasio3'),
+						('' , 'opsi4' , '$nilai4' , '$nilai5 , $nilai1 , $nilai2 , $nilai3' , '$rasio4'),
+						('' , 'opsi5' , '$nilai5' , '$nilai1 , $nilai2 , $nilai3 , $nilai4' , '$rasio5')");
+			} else if($jmlNilai == 6) {
 				$opsi11 = jumlah_data("$data_kasus ($atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai6')");
 				$opsi12 = jumlah_data("$data_kasus $atribut='$nilai1'");
 				$tot_opsi1 = $opsi11 + $opsi12;
@@ -590,7 +591,7 @@
 					"<br>jumlah " . $nilai4 . " = " . $opsi42 .
 					"<br>Split = " . $opsi4 .
 					"<br>Rasio = " . $rasio4 . "<br>";
-				echo "Opsi 5 : <br>jumlah " . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai6 . " = " . $opsi51 .
+				echo "Opsi 5 : <br>jumlah " . $nilai6 . "/" . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . " = " . $opsi51 .
 					"<br>jumlah " . $nilai5 . " = " . $opsi52 .
 					"<br>Split = " . $opsi5 .
 					"<br>Rasio = " . $rasio5 . "<br>";
@@ -607,11 +608,11 @@
 						('' , 'opsi4' , '$nilai4' , '$nilai5 , $nilai6 , $nilai1 , $nilai2 , $nilai3' , '$rasio4'),
 						('' , 'opsi5' , '$nilai5' , '$nilai6 , $nilai1 , $nilai2 , $nilai3 , $nilai4' , '$rasio5'),
 						('' , 'opsi6' , '$nilai6' , '$nilai1 , $nilai2 , $nilai3 , $nilai4 , $rasio5' , '$rasio6')");
-			} else if ($jmlNilai == 7) {
-				$opsi11 = jumlah_data("$data_kasus ($atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai6 OR $atribut='$nilai7')");
+			} else if($jmlNilai==7) {
+				$opsi11 = jumlah_data("$data_kasus ($atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai6' OR $atribut='$nilai7')");
 				$opsi12 = jumlah_data("$data_kasus $atribut='$nilai1'");
 				$tot_opsi1 = $opsi11 + $opsi12;
-				$opsi21 = jumlah_data("$data_kasus ($atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai7' OR $atribut='$nilai6' OR $atribut='$nilai1')");
+				$opsi21 = jumlah_data("$data_kasus ($atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai6' OR $atribut='$nilai7' OR $atribut='$nilai1')");
 				$opsi22 = jumlah_data("$data_kasus $atribut='$nilai2'");
 				$tot_opsi2 = $opsi21 + $opsi22;
 				$opsi31 = jumlah_data("$data_kasus ($atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai6' OR $atribut='$nilai7' OR $atribut='$nilai1' OR $atribut='$nilai2')");
@@ -623,7 +624,7 @@
 				$opsi51 = jumlah_data("$data_kasus ($atribut='$nilai6' OR $atribut='$nilai7' OR $atribut='$nilai1' OR $atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4')");
 				$opsi52 = jumlah_data("$data_kasus $atribut='$nilai5'");
 				$tot_opsi5 = $opsi51 + $opsi52;
-				$opsi61 = jumlah_data("$data_kasus ($atribut='$nilai1' OR $atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai7')");
+				$opsi61 = jumlah_data("$data_kasus ($atribut='$nilai7' OR $atribut='$nilai1' OR $atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5')");
 				$opsi62 = jumlah_data("$data_kasus $atribut='$nilai6'");
 				$tot_opsi6 = $opsi61 + $opsi62;
 				$opsi71 = jumlah_data("$data_kasus ($atribut='$nilai1' OR $atribut='$nilai2' OR $atribut='$nilai3' OR $atribut='$nilai4' OR $atribut='$nilai5' OR $atribut='$nilai6')");
@@ -683,11 +684,11 @@
 					"<br>jumlah " . $nilai4 . " = " . $opsi42 .
 					"<br>Split = " . $opsi4 .
 					"<br>Rasio = " . $rasio4 . "<br>";
-				echo "Opsi 5 : <br>jumlah " . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai6 . "/" . $nilai7 . " = " . $opsi51 .
+				echo "Opsi 5 : <br>jumlah " . $nilai6 . "/" . $nilai7 . "/" . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . " = " . $opsi51 .
 					"<br>jumlah " . $nilai5 . " = " . $opsi52 .
 					"<br>Split = " . $opsi5 .
 					"<br>Rasio = " . $rasio5 . "<br>";
-				echo "Opsi 6 : <br>jumlah " . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai5 . "/" . $nilai7 . " = " . $opsi61 .
+				echo "Opsi 6 : <br>jumlah " . $nilai7 . "/" . $nilai1 . "/" . $nilai2 . "/" . $nilai3 . "/" . $nilai4 . "/" . $nilai5 . " = " . $opsi61 .
 					"<br>jumlah " . $nilai6 . " = " . $opsi62 .
 					"<br>Split = " . $opsi6 .
 					"<br>Rasio = " . $rasio6 . "<br>";

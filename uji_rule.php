@@ -18,6 +18,8 @@ if (isset($_GET['act'])) {
 	<?php
 	
 	if (isset($_POST['submit_akurasi'])) {
+		require 'partial/sidebar.php';
+		require 'partial/navbar.php';
 	?>
 		<div class="content-wrapper">
 			<div class=" card">
@@ -82,7 +84,7 @@ if (isset($_GET['act'])) {
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
 													<!--  -->
-													<a href="uji_rule.php?act=delete_all" class="btn btn-primary"> Ya </a>
+													<a href="<?= base_url('uji_rule.php?act=delete_all')?>" class="btn btn-primary"> Ya </a>
 													<!--  -->
 												</div>
 
@@ -108,7 +110,7 @@ if (isset($_GET['act'])) {
 														<label for="exampleInputFile">Input File : </label>
 														<div class="input-group">
 
-															<form method="POST" enctype="multipart/form-data" action="upload.php?data=uji">
+															<form method="POST" enctype="multipart/form-data" action="<?= base_url('upload.php?data=uji')?>">
 																<div class="custom-file">
 																	<input type="file" name="userfile">
 																</div>

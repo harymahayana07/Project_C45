@@ -16,22 +16,27 @@
   <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('public/assets/img/favicons/favicon-16x16.png') ?>">
   <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('public/assets/img/favicons/favicon.ico') ?>">
   <link rel="manifest" href="<?= base_url('public/assets/img/favicons/manifest.json') ?>">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.css" integrity="sha384-AvIUz0OeqILp4fNEi51z9HqDHi/FXyvB54l4CFzgP3pV8V67SxE8j0CEmLHWIu/e" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.css" integrity="sha384-AvIUz0OeqILp4fNEi51z9HqDHi/FXyvB54l4CFzgP3pV8V67SxE8j0CEmLHWIu/e" crossorigin="anonymous" /> -->
   <link href="<?= base_url('public/assets/css/theme.css') ?>" rel="stylesheet" />
+  <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/carousel-style.css') ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 
 <body>
 
   <main class="main" id="top">
-
+    <!-- nav -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
       <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="<?= base_url('public/index.php') ?>"> <img class="me-3" src="<?= base_url('public/assets/img/logo_sma2.png') ?>" alt="" /></a>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
             <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Beranda</a></li>
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#events">Visi & Misi</a></li>
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#country">Foto</a></li>
+            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#visiMisi">Visi & Misi</a></li>
+            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#photos">Foto</a></li>
             <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#services">Lokasi</a></li>
 
           </ul>
@@ -41,47 +46,57 @@
         </div>
       </div>
     </nav>
+    <!-- end nav -->
 
-
-    <section class="py-0" id="home">
-      <div class="bg-holder d-none d-md-block" style="background-image:url(../assets/bg-siswa-io2.png);background-position:right bottom;background-size:contain;margin-top:6.200rem;">
+    <!-- home -->
+    <section class="py-3" id="home">
+      <div class="bg-holder d-none d-md-block" style="background-image:url(../assets/bg-siswa-io2.png);
+      background-position:right top;
+      background-size:650px;
+      margin-top:6em;">
       </div>
       <!--/.bg-holder-->
-      <!-- <div class="bg-holder d-block d-md-none" style="background-image:url(assets/img/illustrations/hero-bg.png);background-position:right bottom;background-size:contain;margin-top:5.625rem;">
-      </div>-->
+      <!-- <div class="bg-holder d-block d-md-none" style="background-image:url(assets/img/illustrations/hero-bg.png);background-position:right bottom;background-size:contain;margin-top:4.625rem;">
+      </div> -->
       <!--/.bg-holder-->
 
       <div class="container">
         <div class="row align-items-center min-vh-md-75 mt-7">
           <div class="col-md-7 col-lg-6 py-4 text-sm-start ">
             <h1 class="mt-3 mb-sm-4 display-4 fw-light lh-sm fs-4 fs-lg-6 fs-xxl-7"> SISTEM PENENTUAN JURUSAN <span class=""> SISWA BARU</span><br class="d-block d-lg-none d-xl-block" /> SMAN 2 MATARAM </h1>
-            <p class="mb-5 fs-1 lh-lg text-justify">
+            <p class="mb-2 lh-lg text-justify">
               SMA Negeri 2 Mataram adalah Sekolah Menengah Atas unggulan
-              yang berada di Kota Mataram, Nusa Tenggara Barat. Sekolah ini sudah
-              menerapkan kurikulum 2013 sebagai dasar dalam proses penentuan jurusan.
-              Penentuan jurusan dilaksanakan pada semester ganjil oleh siswa baru kelas X.
-              Sistem ini digunakan untuk menentukan jurusan dengan kriteria : <br>
-              1. Jalur PPDB <br>
-              2. Nilai rata-rata raport pada mata pelajaran : <br>
-              - Bahasa Indonesia <br>
-              - Matematika <br>
-              - Bahasa Inggris <br>
-              - IPA <br>
-              - IPS <br>
-              3. Nilai SKHU </p>
+              yang berada di Kota Mataram, Nusa Tenggara Barat.
+              Aplikasi Web ini digunakan untuk menentukan jurusan dengan kriteria :
+            </p>
+            <ol type="1" class="mb-2">
+              <li class="mt-1">Jalur PPDB</li>
+              <li class="mt-1">Nilai rata-rata raport pada mata pelajaran :
+                <ol type="a">
+                  <li>Bahasa Indonesia</li>
+                  <li>Matematika</li>
+                  <li>Bahasa Inggris</li>
+                  <li>Bahasa Indonesia</li>
+                  <li>IPA</li>
+                  <li>IPS</li>
+                </ol>
+              </li>
+              <li class="mt-1">Nilai SKHU</li>
+            </ol>
           </div>
         </div>
       </div>
+      <div class="py-6">
+      </div>
     </section>
+    <!-- home -->
 
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    <section id="events">
-
+    <!-- visimisi -->
+    <section id="visiMisi" class="py-3">
       <div class="container">
         <div class="row">
           <div class="col-lg-7 mx-auto text-center mb-4">
-            <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3">VISI & MISI</h5>
+            <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3"><b>VISI & MISI</b></h5>
           </div>
         </div>
         <div class="row flex-center h-100">
@@ -120,8 +135,7 @@
                               <br>7. Menyelenggarakan Kegiatan Imtaq Dan Kegiatan Keagamaan Lainnya Untuk Membina Keimanan, Ketaqwaan Dan Akhlaq Terpuji Bagi Siswa<br>
                               <br>8. Membangun Hubungan Yang Lebih Komunikatif Antara Sekolah Dengan Masyarakat Dalam Menyusun Program Sekolah Dan Juga Pihak Lain Yang Berkiprah Dan Memiliki Katian Dengan Masalah Pendidikan
                             </p>
-                            <div class="d-flex flex-between-center">
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -129,128 +143,118 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-3 flex-center">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><!-- end of .container-->
-
-    </section>
-    <!-- <section> close ============================-->
-    <!-- ============================================-->
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    <section class="bg-100" id="country">
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-7 mx-auto text-center my-5">
-            <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3">Foto</h5>
-          </div>
-        </div>
-        <div class="row flex-center h-100">
-          <div class="col-xl-9">
-            <div class="carousel slide" id="carouselCountries" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                  <div class="row h-100 justify-content-center">
-
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide10.jpg') ?>" alt="news" />
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide2.jpeg') ?>" alt="news" />
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide3.jpeg') ?>" alt="news" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                  <div class="row h-100 justify-content-center">
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide4.jpg') ?>" alt="news" />
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide5.jpeg') ?>" alt="news" />
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide6.jpg') ?>" alt="news" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row h-100 justify-content-center">
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide7.jpg') ?>" alt="news" />
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide8.jpg') ?>" alt="news" />
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                      <div class="card h-100 shadow card-span bg-100"><img class="card-img-top" src="<?= base_url('public/assets/img/slide9.jpg') ?>" alt="news" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row mt-3 mb-7 flex-center">
-                <div class="col-auto position-relative z-index-2">
-                  <ol class="carousel-indicators">
-                    <li class="active mx-2" data-bs-target="#carouselCountries" data-bs-slide-to="0"></li>
-                    <li class="mx-2" data-bs-target="#carouselCountries" data-bs-slide-to="1"></li>
-                    <li class="mx-2" data-bs-target="#carouselCountries" data-bs-slide-to="2"></li>
-                  </ol>
-                </div>
-              </div>
 
             </div>
           </div>
         </div>
-      </div><!-- end of .container-->
-
+      </div>
     </section>
+    <!-- end visimisi -->
 
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
-    <section class="py-4 bg-100" id="services">
-
+    <!--carousel.owl  -->
+    <section class="bg-100" id="photos" class="py-0">
+      <? $section = "photos"; ?>
       <div class="container">
-        <div class="row flex-center">
-          <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3 text-center">Lokasi</h5>
-          <div class="col-md-12 mx-auto text-center my-4">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.388959315234!2d116.086003!3d-8.586649!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf0e079a69a4adf4a!2sState%20Senior%20High%20School%202%20Mataram!5e0!3m2!1sen!2sus!4v1649077191710!5m2!1sen!2sus" width="1000" height="520" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+        <div class="row">
+          <div class="col-lg-7 mx-auto text-center my-3">
+            <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3"><b>Foto</b></h5>
+            <p>Sekilas Foto Tentang Sma Negeri 2 Mataram</p>
           </div>
-
         </div>
-      </div><!-- end of .container-->
+        <div class="row">
+          <div class="slider">
+            <div class="owl-carousel">
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide10.jpg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide2.jpeg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide3.jpeg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide4.jpg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide5.jpeg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide6.jpg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide7.jpg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide8.jpg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="slider-card">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                  <div>
+                    <img src="<?= base_url('public/assets/img/slide9.jpg') ?>" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-7">
 
+      </div>
     </section>
-    <!-- <section> close ============================-->
-    <!-- ============================================-->
+    <!-- end carousel  -->
 
+    <!-- Lokasi -->
+    <section class="py-4 bg-100" id="services">
+      <div class="container">
+        <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3 text-center"><b>Lokasi</b></h5>
+        <div id="iframe_container" class="iframe-container">
+          <iframe id="1" name="map_frame" title="smanda_map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.388959315234!2d116.086003!3d-8.586649!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf0e079a69a4adf4a!2sState%20Senior%20High%20School%202%20Mataram!5e0!3m2!1sen!2sus!4v1649077191710!5m2!1sen!2sus" align="center" scrolling="yes" class="iframe-responsive"></iframe>
+        </div>
+      </div>
+    </section>
+    <!-- End Lokasi -->
 
-
-
-    <!-- ============================================-->
-    <!-- <section> begin ============================-->
+    <!-- footer -->
     <section class="py-0 bg-primary">
-
       <div class="container">
         <div class="row justify-content-between pb-2 pt-5">
           <div class="col-12 col-lg-auto mb-5 mb-lg-0"><a class="d-flex align-items-center fw-semi-bold fs-3" href="#"> <img class="me-3" src="<?= base_url('public/assets/img/logo_sma2.png') ?>" alt="..." /></a>
-            <p class="my-3 text-100 fw-light">Jl. Panji Tilar Negara No.25, Kekalik Jaya, Kec. Sekarbela, Kota Mataram, Nusa Tenggara Barat </p>
+            <p class="my-1 text-100 fw-light">Jl. Panji Tilar Negara No.25, Kekalik Jaya</p>
+            <p class="my-1 text-100 fw-light">Kec. Sekarbela, Kota Mataram, Nusa Tenggara Barat </p>
           </div>
           <div class="col-auto mb-3">
             <ul class="list-unstyled mb-md-4 mb-lg-0">
@@ -260,38 +264,57 @@
               <li class="mb-3"><a class="text-100 fw-light text-decoration-none" href="#!">Facebook : SMAN 2 Mataram </a></li>
             </ul>
           </div>
-
         </div>
         <div class="row">
           <div class="col-auto mb-2">
             <p class="mb-0 fs--1 my-2 text-100"> Copyright &copy; 2021-2022 Ni Luh Putu Sri Astiti &nbsp; </p>
           </div>
         </div>
-      </div><!-- end of .container-->
-
+      </div>
     </section>
-    <!-- <section> close ============================-->
-    <!-- ============================================-->
-
 
   </main>
-  <!-- ===============================================-->
-  <!--    End of Main Content-->
-  <!-- ===============================================-->
-
-
-
 
   <!-- ===============================================-->
   <!--    JavaScripts-->
   <!-- ===============================================-->
   <script src="<?= base_url('public/vendors/@popperjs/popper.min.js') ?>"></script>
+  <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
   <script src="<?= base_url('public/vendors/bootstrap/bootstrap.min.js') ?>"></script>
   <script src="<?= base_url('public/vendors/is/is.min.js') ?>"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="<?= base_url('public/assets/js/theme.js') ?>"></script>
-  <script src="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.js" integrity="sha384-1mHmu4fyyExEnjX4DGx0QsSsPWPIaJ7oFcQ3LIL/gAT7t5i6mNfW80xJOzEHfNgv" crossorigin="anonymous"></script>
+  <script src="<?= base_url('assets/js/owl.carousel.min.js') ?>"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.js" integrity="sha384-1mHmu4fyyExEnjX4DGx0QsSsPWPIaJ7oFcQ3LIL/gAT7t5i6mNfW80xJOzEHfNgv" crossorigin="anonymous"></script> -->
+  <script>
+    $(document).ready(function() {
+      $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        responsiveClass: true,
+        center: true,
+        nav: true,
+        navText: [
+          "<i class='fa fa-angle-left'></i>",
+          "<i class='fa fa-angle-right'></i>"
+        ],
+        responsive: {
+          0: {
+            items: 1,
 
+          },
+          600: {
+            items: 2,
+
+          },
+          1000: {
+            items: 2,
+
+          }
+        }
+      })
+    });
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 </body>
 

@@ -17,8 +17,7 @@ if (isset($_GET['act'])) {
 }
 ?>
 <?php
-require 'partial/sidebar.php';
-require 'partial/navbar.php';
+
 $query = mysql_query("select * from data_training order by(id)");
 $query2 = mysql_query("select * from data_training_konversi order by(id)");
 $jumlah = mysql_num_rows($query);
@@ -142,6 +141,8 @@ while ($row = mysql_fetch_array($query)) {
                               '$skhu',
                               '$jurusan'
                             )");
+
+    header('location:mining_konversi.php');
   }
 }
 
@@ -149,6 +150,10 @@ if ($jumlah == 0) {
   echo "<center><h3>Data Belum Dikonversi...</h3></center>";
 } else {
   if (isset($_POST['submit_mining'])) {
+?>
+<?php
+    require 'partial/sidebar.php';
+    require 'partial/navbar.php';
 ?>
     <div class="content-wrapper">
       <div class=" card">
@@ -160,6 +165,8 @@ if ($jumlah == 0) {
 
   <?php
   } else {
+    require 'partial/sidebar.php';
+    require 'partial/navbar.php';
   ?>
     <!--  -->
     <div class="content-wrapper">
