@@ -1,93 +1,38 @@
 <?php $thisPage = "DATA TRAINING";
 require_once 'conn/koneksi.php';
+require_once 'conn/general.php';
 if (!isset($_SESSION['usr'])) {
   header("location:auth/login-form.php");
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMANDA | DATA TRAINING</title>
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?= base_url('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>" />
-
-  <link rel="stylesheet" href="<?= base_url('dist/css/adminlte.min.css') ?>">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?= base_url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/sweetalert2.min.css') ?>">
-  <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/loading.css') ?>" /> -->
-
-
-</head>
-<style>
-  .btn {
-    margin-bottom: 8px;
-  }
-
-  @media (max-width: 768px) {
-    .btn-responsive {
-      padding: 2px 4px;
-      font-size: 80%;
-      line-height: 1;
-      border-radius: 3px;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 992px) {
-    .btn-responsive {
-      padding: 4px 9px;
-      font-size: 90%;
-      line-height: 1.2;
-    }
-  }
-</style>
 <?php
+include_once ("partial/headers.php");
 require_once "partial/navbar.php";
-
 if (isset($_GET['act'])) {
   $action = $_GET['act'];
   $id = $_GET['id'];
-  //update data training
   if ($action == 'update') {
     include "update_data_training.php";
-  }
-  //delete data training
-  else if ($action == 'delete') {
+  } else if ($action == 'delete') {
     mysql_query("DELETE FROM data_training WHERE id = '$id'");
-    header('location:data_training.php');
-  }
-  //delete semua data
-  else if ($action == 'delete_all') {
+    header('location:data_training.php?status_hapus=sukses-hapus');
+  } else if ($action == 'delete_all') {
     mysql_query("TRUNCATE data_training");
-    header('location:data_training.php');
+    header('location:data_training.php?status_hapus_all=sukses-hapus-all');
   }
 } else {
   require 'partial/sidebar.php';
   include "form_data_training.php";
   $query = mysql_query("select * from data_training order by(id)");
-
   $jumlah = mysql_num_rows($query);
-
-
 ?>
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1 class="m-0"><?php echo $thisPage; ?></h1>
+            <h3 class="m-0"><i class="fas fa-server"></i>&nbsp;DATA TRAINING</h3>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -98,25 +43,18 @@ if (isset($_GET['act'])) {
         </div>
       </div>
     </div>
-    <!--  -->
     <div class="container-fluid mt-2">
-      <!--  -->
       <div class="row mb-2">
-        <!--  -->
         <div class="content-header">
           <div class="container-fluid">
-            <div class="row" style="float: left;">
+            <div class="row" style="float: right;">
               <div class="col-lg-12 col-md-4">
                 <button type="button" class="btn bg-info btn-responsive" data-bs-toggle="modal" data-bs-target="#tambahDataTraining">
                   <i class="fas fa-plus-square"></i> Tambah Data
                 </button>
-                <!--  -->
-                <!--  -->
                 <button type="button" class="btn btn-danger btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusDataTraining">
                   <i class="fas fa-trash-alt"></i></i> Reset
                 </button>
-                <!--  -->
-                <!-- Modal hapus data -->
                 <div class="modal fade" id="hapusDataTraining" tabindex="-1" aria-labelledby="hapusDataModal" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -129,20 +67,14 @@ if (isset($_GET['act'])) {
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                        <!--  -->
                         <a href="data_training.php?act=delete_all" class="btn btn-primary"> Ya </a>
-                        <!--  -->
                       </div>
-
                     </div>
                   </div>
                 </div>
-                <!--  -->
                 <button type="button" class="btn btn-success btn-responsive" data-bs-toggle="modal" data-bs-target="#importDataTraining">
                   <i class="fas fa-upload"></i> Import
                 </button>
-                <!--  -->
-                <!-- Modal import data -->
                 <div class="modal fade" id="importDataTraining" tabindex="-1" aria-labelledby="importDataModal" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
@@ -153,6 +85,7 @@ if (isset($_GET['act'])) {
                       <div class="modal-body">
 
                         <div class="form-group">
+                          <p><span style="color: red;">*</span>type file harus xls (Excel 97 - 2003).</p>
                           <label for="exampleInputFile">Input File : </label>
                           <div class="input-group">
 
@@ -170,51 +103,44 @@ if (isset($_GET['act'])) {
                     </div>
                   </div>
                 </div>
-                <!--  -->
               </div>
-
             </div>
           </div>
         </div>
-        <!--  -->
       </div>
 
-      <!--  -->
       <div class="wrapper">
         <section class="content">
+        <?php include_once("partial/flash_massage_training.php");?>
           <div class="container-fluid">
-
             <div class="row">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">
-                      <?php
-                      if ($jumlah == 0) {
-                        echo "<center><h3>Data Training masih kosong...</h3></center>";
-                      } else {
-                        echo "Jumlah data training: " . $jumlah;
-                      }
-                      ?>
-                    </h3>
+                    <?php
+                    if ($jumlah == 0) {
+                      $msg = "Data Training masih kosong";
+                      echo '<div class="alert alert-warning py- mx-0"><i class="fas fa-exclamation-triangle"></i>&emsp;' . $msg .  '</div>';
+                    } else {
+                      echo "Jumlah data training :&nbsp;" . $jumlah;
+                    }
+                    ?>
                   </div>
-                  <!-- /.card-header -->
                   <div class="card-body">
-
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>JK</th>
+                          <th>Jk</th>
                           <th>PPDB</th>
-                          <th>BAHASA INDONESIA</th>
-                          <th>MATEMATIKA</th>
-                          <th>BAHASA INGGRIS</th>
-                          <th>IPA</th>
-                          <th>IPS</th>
-                          <th>SKHU</th>
-                          <th>JURUSAN</th>
-                          <th>AKSI</th>
+                          <th>Bhs Indonesia</th>
+                          <th>Matematika</th>
+                          <th>Bhs Inggris</th>
+                          <th>Ipa</th>
+                          <th>Ips</th>
+                          <th>Skhu</th>
+                          <th>Jurusan</th>
+                          <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -264,8 +190,7 @@ if (isset($_GET['act'])) {
                             <td><?php echo $row['skhu']; ?></td>
                             <td><b><?php echo $row['jurusan']; ?></b></td>
                             <td>
-                              <a href="data_training.php&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline"><i class="fas fa-edit"></i></a>
-                              <!-- <a href="index.php?menu=data&act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline" data-bs-toggle="modal" data-bs-target="#editDataTraining"><i class="fas fa-edit"></i></a> -->
+                              <a href="data_training.php?act=update&id=<?php echo $row['id']; ?>" class="btn btn-warning btn-responsive btn-sm d-inline"><i class="fas fa-edit"></i></a>
                               <a href="data_training.php?act=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-responsive btn-sm d-inline" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="fas fa-trash"></i></a>
                             </td>
                           </tr>
@@ -275,91 +200,17 @@ if (isset($_GET['act'])) {
                       }
                       ?>
                       </tbody>
-
                     </table>
-
                   </div>
-                  <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
               </div>
-              <!-- /.col -->
             </div>
-            <!-- /.row -->
           </div>
-          <!-- /.container-fluid -->
         </section>
-        <!--  -->
       </div>
     </div>
   </div>
-
-  <script>
-    const hapus = document.querySelector('#hapus');
-    hapus.addEventListener('click', function() {
-      swal({
-        title: 'hapus data ini',
-        text: 'yakin hapus data',
-        type: 'warning'
-      });
-    });
-  </script>
-  <script src="<?= base_url('assets/js/sweetalert2.all.min.js') ?>"></script>
-  <script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
-  <!-- jQuery -->
-
-  <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
-  <!-- Bootstrap 4 -->
-  <script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-  <!-- DataTables  & Plugins -->
-  <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
-  <script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
-  <!-- AdminLTE App -->
-  <script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
-
-  <!-- Page specific script -->
-  <script>
-    $(function() {
-      $("#example1")
-        .DataTable({
-          responsive: true,
-          lengthChange: false,
-          autoWidth: false,
-          buttons: ["copy", "excel", "pdf", "print", "colvis"],
-        })
-        .buttons()
-        .container()
-        .appendTo("#example1_wrapper .col-md-6:eq(0)");
-      $("#example2").DataTable({
-        paging: true,
-        lengthChange: false,
-        searching: false,
-        ordering: true,
-        info: true,
-        autoWidth: false,
-        responsive: true,
-      });
-    });
-  </script>
-
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2021-2022 <i>Ni Luh Putu Sri Astiti</i> </strong>
-  </footer>
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
+<?php include_once("partial/footers.php");?>
   </div>
   </body>
-
 </html>

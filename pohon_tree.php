@@ -5,46 +5,59 @@ if (!isset($_SESSION['usr'])) {
 }
 ?>
 <?php
-require 'partial/header.php';
+require 'partial/headers.php';
 require 'partial/sidebar.php';
 require 'partial/navbar.php';
 ?>
-
 <body class="hold-transition sidebar-mini">
-
     <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>POHON KEPUTUSAN</h1>
+                            <h3 class="m-0"><i class="fas fa-server"></i>&nbsp;POHON KEPUTUSAN</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item">Home</li>
                                 <li class="breadcrumb-item active">Pohon Keputusan</li>
                             </ol>
                         </div>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
             </section>
-
-            <!-- Main content -->
+            <div class="row mb-2">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row" style="float: right;">
+                            <div class="col-lg-12 col-md-4">
+                                <a href="<?= base_url('tree.php') ?>" type="button" class="btn btn-success btn-responsive"><i class="fas fa-eye"></i>&emsp; Lihat Rule/Aturan Yang terbentuk</a> &emsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
+
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="<?= base_url('tree.php')?>" type="button" class="btn btn-warning btn-sm btn-responsive"><i class="fas fa-eye"></i>&emsp; Lihat Rule/Aturan Yang terbentuk</a> &emsp;
+                                    <?php
+                                    $query = mysql_query("SELECT * FROM pohon_keputusan");
+                                    $jumlah = mysql_num_rows($query);
+
+                                    if ($jumlah == 0) {
+                                        $msg = "pohon keputusan belum terbentuk";
+                                        echo '<div class="alert alert-warning py- mx-0"><i class="fas fa-exclamation-triangle"></i>&emsp;' . $msg .  '</div>';
+                                    } else {
+                                        echo "Jumlah pohon keputusan :&nbsp;" . $jumlah;
+                                    }
+                                    ?>
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
-                                    <!--  -->
                                     <?php
                                     error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
                                     //select id dari pohon keputusan
@@ -55,7 +68,6 @@ require 'partial/navbar.php';
                                         $id[$l] = $bar_row[0];
                                         $l++;
                                     }
-
                                     $query = mysql_query("SELECT * FROM pohon_keputusan ORDER BY(id)");
                                     $temp_rule = array();
                                     $temp_rule[0] = '';
@@ -67,7 +79,6 @@ require 'partial/navbar.php';
                                         } else {
                                             $rule = $bar[2];
                                         }
-
                                         $rule = str_replace("OR", "/", $rule);
                                         //explode rule
                                         $exRule = explode(" AND ", $rule);
@@ -90,7 +101,6 @@ require 'partial/navbar.php';
                                                     $t++;
                                                 }
                                             }
-
                                             //jika terakhir tambah cetak keputusan
                                             if ($i == ($jml_ExRule - 1)) {
                                                 $strip = '';
@@ -135,84 +145,15 @@ require 'partial/navbar.php';
                                         $ll++;
                                     }
                                     ?>
-                                    <!--  -->
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container-fluid -->
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">All rights reserved.</footer>
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
-    <script src="<?= base_url('assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') ?>"></script>
-    <!-- jQuery -->
-    <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
-    <!-- Bootstrap 4 -->
-    <script src="<?= base_url('plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-buttons/js/dataTables.buttons.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/jszip/jszip.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/pdfmake/pdfmake.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/pdfmake/vfs_fonts.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-buttons/js/buttons.html5.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
-    <script src="<?= base_url('plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
-    <!-- AdminLTE App -->
-    <script src="<?= base_url('dist/js/adminlte.min.js') ?>"></script>
-
-
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $("#example1")
-                .DataTable({
-                    responsive: true,
-                    lengthChange: false,
-                    autoWidth: false,
-                    buttons: ["copy", "excel", "pdf", "print", "colvis"],
-                })
-                .buttons()
-                .container()
-                .appendTo("#example1_wrapper .col-md-6:eq(0)");
-            $("#example2").DataTable({
-                paging: true,
-                lengthChange: false,
-                searching: false,
-                ordering: true,
-                info: true,
-                autoWidth: false,
-                responsive: true,
-            });
-        });
-    </script>
-
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2021-2022 <i>Ni Luh Putu Sri Astiti</i> </strong>
-    </footer>
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
+    <?php include_once("partial/footers.php"); ?>
     </div>
 </body>
 

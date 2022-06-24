@@ -11,11 +11,11 @@
     </div> -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
       <a href="<?= base_url('dashboard.php') ?>" class="brand-link">
-        <img src="<?= base_url('dist/img/logo.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">SMAN 2 MATARAM</span>
+        <img src="<?= base_url('dist/img/logo.png') ?>" alt="sman_2_mataram" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light"><b>SMAN 2 MATARAM</b></span>
       </a>
 
       <!-- Sidebar -->
@@ -23,7 +23,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="<?= base_url('dist/img/user.png') ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="<?= base_url('assets/man.png') ?>" class="img-circle elevation-2" alt="User_Img">
           </div>
           <div class="info">
             <a href="#" class="d-block"><?= $_SESSION['nama'] ?></a>
@@ -33,7 +33,7 @@
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
+          <div class="input-group text-dark" data-widget="sidebar-search">
             <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
               <button class="btn btn-sidebar">
@@ -51,7 +51,7 @@
 
             <li class="nav-item">
               <a href="<?= base_url('dashboard.php') ?>" accesskey='1' class="nav-link <?php if ($thisPage == "Dashboard") echo "active"; ?>">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-home"></i>
                 <p> Dashboard </i></p>
               </a>
             </li>
@@ -61,6 +61,7 @@
                 <p> Data Training</p>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="<?= base_url('mining.php') ?>" accesskey='3' class="nav-link <?php if ($thisPage == "MINING DATA") echo "active"; ?>">
                 <i class="nav-icon fab fa-cloudscale"></i>
@@ -74,33 +75,24 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('hasil_prediksi.php') ?>" accesskey='5' class="nav-link <?php if ($thisPage == "HASIL PREDIKSI") echo "active"; ?>">
-                <i class="nav-icon fas fa-calculator"></i>
-                <p> Hasil Prediksi </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url('data_user.php') ?>" accesskey='6' class="nav-link <?php if ($thisPage == "DATA SISWA") echo "active"; ?>">
+              <a href="<?= base_url('data_user.php') ?>" accesskey='5' class="nav-link <?php if ($thisPage == "DATA SISWA") echo "active"; ?>">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p> Data Siswa </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('uji_rule.php') ?>" accesskey='7' class="nav-link <?php if ($thisPage == "DATA UJI") echo "active"; ?>">
-                <i class="nav-icon fas fa-graduation-cap"></i>
-                <p> Data Uji </p>
+              <a href="<?= base_url('hasil_prediksi.php') ?>" accesskey='6' class="nav-link <?php if ($thisPage == "HASIL PREDIKSI") echo "active"; ?>">
+                <i class="nav-icon fas fa-calculator"></i>
+                <p> Hasil Prediksi </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('auth/logout.php') ?>" accesskey='7' class="nav-link">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p style="color: red;"> LogOut </p>
+              <a href="<?= base_url('uji_rule.php') ?>" accesskey='7' class="nav-link <?php if ($thisPage == "DATA UJI") echo "active"; ?>">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p> Data Uji </p>
               </a>
             </li>
-
           </ul>
         </nav>
-        <!-- /.sidebar-menu -->
       </div>
-      <!-- /.sidebar -->
     </aside>

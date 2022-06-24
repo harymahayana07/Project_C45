@@ -16,19 +16,15 @@
   <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('public/assets/img/favicons/favicon-16x16.png') ?>">
   <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('public/assets/img/favicons/favicon.ico') ?>">
   <link rel="manifest" href="<?= base_url('public/assets/img/favicons/manifest.json') ?>">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.css" integrity="sha384-AvIUz0OeqILp4fNEi51z9HqDHi/FXyvB54l4CFzgP3pV8V67SxE8j0CEmLHWIu/e" crossorigin="anonymous" /> -->
   <link href="<?= base_url('public/assets/css/theme.css') ?>" rel="stylesheet" />
   <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/carousel-style.css') ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
 
 <body>
 
   <main class="main" id="top">
-    <!-- nav -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" data-navbar-on-scroll="data-navbar-on-scroll">
       <div class="container"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="<?= base_url('public/index.php') ?>"> <img class="me-3" src="<?= base_url('public/assets/img/logo_sma2.png') ?>" alt="" /></a>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -37,8 +33,7 @@
             <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Beranda</a></li>
             <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#visiMisi">Visi & Misi</a></li>
             <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#photos">Foto</a></li>
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#services">Lokasi</a></li>
-
+            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#lokasi">Lokasi</a></li>
           </ul>
           <form class="ps-lg-5">
             <a class="btn btn-outline-primary order-0" type="submit" href="<?= base_url('auth/login-form.php') ?>"> Login </a>
@@ -46,20 +41,13 @@
         </div>
       </div>
     </nav>
-    <!-- end nav -->
 
-    <!-- home -->
     <section class="py-3" id="home">
       <div class="bg-holder d-none d-md-block" style="background-image:url(../assets/bg-siswa-io2.png);
       background-position:right top;
       background-size:650px;
       margin-top:6em;">
       </div>
-      <!--/.bg-holder-->
-      <!-- <div class="bg-holder d-block d-md-none" style="background-image:url(assets/img/illustrations/hero-bg.png);background-position:right bottom;background-size:contain;margin-top:4.625rem;">
-      </div> -->
-      <!--/.bg-holder-->
-
       <div class="container">
         <div class="row align-items-center min-vh-md-75 mt-7">
           <div class="col-md-7 col-lg-6 py-4 text-sm-start ">
@@ -89,9 +77,7 @@
       <div class="py-6">
       </div>
     </section>
-    <!-- home -->
 
-    <!-- visimisi -->
     <section id="visiMisi" class="py-3">
       <div class="container">
         <div class="row">
@@ -149,9 +135,7 @@
         </div>
       </div>
     </section>
-    <!-- end visimisi -->
 
-    <!--carousel.owl  -->
     <section class="bg-100" id="photos" class="py-0">
       <? $section = "photos"; ?>
       <div class="container">
@@ -231,14 +215,10 @@
           </div>
         </div>
       </div>
-      <div class="py-7">
-
-      </div>
+      <div class="py-7"></div>
     </section>
-    <!-- end carousel  -->
 
-    <!-- Lokasi -->
-    <section class="py-4 bg-100" id="services">
+    <section class="py-4 bg-100" id="lokasi">
       <div class="container">
         <h5 class="fw-light fs-3 fs-lg-5 lh-sm mb-3 text-center"><b>Lokasi</b></h5>
         <div id="iframe_container" class="iframe-container">
@@ -246,9 +226,7 @@
         </div>
       </div>
     </section>
-    <!-- End Lokasi -->
 
-    <!-- footer -->
     <section class="py-0 bg-primary">
       <div class="container">
         <div class="row justify-content-between pb-2 pt-5">
@@ -274,10 +252,6 @@
     </section>
 
   </main>
-
-  <!-- ===============================================-->
-  <!--    JavaScripts-->
-  <!-- ===============================================-->
   <script src="<?= base_url('public/vendors/@popperjs/popper.min.js') ?>"></script>
   <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
   <script src="<?= base_url('public/vendors/bootstrap/bootstrap.min.js') ?>"></script>
@@ -285,7 +259,6 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="<?= base_url('public/assets/js/theme.js') ?>"></script>
   <script src="<?= base_url('assets/js/owl.carousel.min.js') ?>"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/gh/carousnap/carousnap@v1.7/carousnap/carousnap.js" integrity="sha384-1mHmu4fyyExEnjX4DGx0QsSsPWPIaJ7oFcQ3LIL/gAT7t5i6mNfW80xJOzEHfNgv" crossorigin="anonymous"></script> -->
   <script>
     $(document).ready(function() {
       $('.owl-carousel').owlCarousel({
@@ -317,5 +290,4 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 </body>
-
 </html>

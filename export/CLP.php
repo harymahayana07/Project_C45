@@ -1,9 +1,9 @@
 <?php
-	include "../koneksi.php";
-	$query=mysql_query("SELECT a.nim,b.nama,b.jenis_kelamin,b.angkatan,b.kelas,a.hasil 
+	include_once ("../conn/koneksi.php");
+	$query= mysql_query("SELECT a.nim,b.nama,b.jenis_kelamin,b.angkatan,b.kelas,a.hasil 
 							FROM hasil_prediksi a INNER JOIN mahasiswa b ON (a.nim=b.nim) 
 							ORDER BY(a.nim)");
-	$jumlah=mysql_num_rows($query);	
+	$jumlah= mysql_num_rows($query);	
 	
 	$conten = "<center><h1>Laporan Hasil Prediksi Prestasi Akademik Mahasiswa</h1></center><br><br>Jumlah data : ".$jumlah."
 	<table bgcolor='#7c96ba' border='1' cellspacing='0' cellspading='0' align='center' width=600>";
@@ -16,7 +16,7 @@
 		$warna2 = '#f5f5f5';
 		$warna  = $warna1; 	
 		$no=1;
-		while($row=mysql_fetch_array($query)){
+		while($row = mysql_fetch_array($query)){
 			if($warna == $warna1){
 				$warna = $warna2; 
 			} else { 
