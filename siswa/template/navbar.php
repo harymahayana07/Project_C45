@@ -4,13 +4,8 @@
             <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
             <div class="navbar-brand">
                 <a href="#">
-                    <b class="logo-icon">
-                        <img src="<?= base_url('siswa/package/src/assets/images/logo-icon.png') ?>" alt="homepage" class="dark-logo" />
-                        <img src="<?= base_url('siswa/package/src/assets/images/logo-icon.png') ?>" alt="homepage" class="light-logo" />
-                    </b>
                     <span class="logo-text">
-                        <img src="<?= base_url('siswa/package/src/assets/images/logo-text.png') ?>" alt="homepage" class="dark-logo" />
-                        <img src="<?= base_url('siswa/package/src/assets/images/logo-light-text.png') ?>" class="light-logo" alt="homepage" />
+                        <img src="<?= base_url('dist/img/logo_sma2.png') ?>" alt="logo_sma2" class="dark-logo" />
                     </span>
                 </a>
             </div>
@@ -22,11 +17,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i data-feather="settings" class="svg-icon"></i>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Form Input</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Form Validate</a>
-                    </div>
+                   
                 </li>
             </ul>
             <ul class="navbar-nav float-right">
@@ -39,10 +30,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings" class="svg-icon mr-2 ml-1"></i>
-                            Account Setting</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+                        <a class="dropdown-item" href="<?= base_url('auth/logout.php')?>"><i data-feather="power" class="svg-icon mr-2 ml-1"></i>
                             Logout</a>
                     </div>
                 </li>

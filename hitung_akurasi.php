@@ -232,7 +232,7 @@
 										$warna  = $warna1;
 										$no = 1;
 
-										while ($row = mysql_fetch_array($query)) {
+										while ($row = mysql_fetch_array($query2)) {
 											if ($warna == $warna1) {
 												$warna = $warna2;
 											} else {

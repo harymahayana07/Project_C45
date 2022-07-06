@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('siswa/package/src/assets/images/favicon.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('dist/img/logo.png') ?>">
     <title>SMAN 2 MATARAM</title>
     <link href="<?= base_url('siswa/package/src/assets/extra-libs/c3/c3.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('siswa/package/src/assets/libs/chartist/dist/chartist.min.css') ?>" rel="stylesheet">

@@ -14,7 +14,7 @@
                <i class="fas fa-sync-alt" style="margin-right: 4px;"></i> Password </a>
              <div class="dropdown-divider"></div>
              <a class="dropdown-item text-dark" href="<?= base_url('auth/logout.php') ?>">
-               <i class="fas fa-sign-out-alt" style="margin-right: 4px;"></i> Signout </a>
+               <i class="fas fa-sign-out-alt" style="margin-right: 4px;"></i> Sign Out </a>
            </div>
          </div>
        </div>

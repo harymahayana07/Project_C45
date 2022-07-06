@@ -51,7 +51,16 @@ if ($level == 'siswa') {
 
         <section class="content">
           <div class="container-fluid">
+            <div class="col-sm-12">
+              <div class="alert alert-primary alert-dismissible bg-primary text-white border-0 fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                Selamat Datang <strong><?= strtolower($_SESSION['lvl']); ?></strong> di Aplikasi Penjurusan Siswa Baru!
+              </div>
+            </div>
             <div class="row">
+
               <div class="col-lg-3 col-6">
                 <div class="small-box bg-info">
                   <div class="inner">
@@ -97,7 +106,7 @@ if ($level == 'siswa') {
                   <div class="icon">
                     <i class="fas fa-file-alt"></i>
                   </div>
-                  <a href="<?= base_url('pohon_tree.php') ?>" class="small-box-footer text-dark">Lihat Data &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                  <a href="<?= base_url('tree.php') ?>" class="small-box-footer text-dark">Lihat Data &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                 </div>
               </div>
             </div>

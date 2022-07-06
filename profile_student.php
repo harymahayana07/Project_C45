@@ -20,6 +20,7 @@ if (!isset($_SESSION['usr'])) {
         include_once("siswa/template/navbar.php");
         include_once("siswa/template/sidebar.php");
         ?>
+
         <div class="page-wrapper">
             <div class="page-breadcrumb mb-0">
                 <div class="row">
@@ -43,50 +44,50 @@ if (!isset($_SESSION['usr'])) {
                 $nama = $_SESSION['nama'];
                 $lvl = $_SESSION['lvl'];
                 ?>
-                <div class="form-body">
+                <div class="card-body" style="color: black; background-color: #dee0e3;">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="math" class="col-lg-2">Nisn siswa </label>
+                                <div class="col-lg-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" id="math" class="form-control" value="<?= $_SESSION['usr'] ?>" disabled autocomplete="off">
+                                        </div>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <label for="math" class="col-lg-2">Nisn siswa </label>
-                            <div class="col-lg-10">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input type="text" id="math" class="form-control" value="<?= $_SESSION['usr'] ?>" disabled autocomplete="off">
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label for="math" class="col-lg-2">Nama siswa </label>
-                            <div class="col-lg-10">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input type="text" id="math" class="form-control" value="<?= $_SESSION['nama'] ?>" disabled autocomplete="off">
-                                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="math" class="col-lg-2">Nama siswa </label>
+                                <div class="col-lg-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" id="math" class="form-control" value="<?= $_SESSION['nama'] ?>" disabled autocomplete="off">
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label for="math" class="col-lg-2">Status </label>
-                            <div class="col-lg-10">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input type="text" id="math" class="form-control" value="<?= ucwords($_SESSION['lvl']);?> Sman 2 mataram" disabled autocomplete="off">
-                                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="math" class="col-lg-2">Status </label>
+                                <div class="col-lg-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" id="math" class="form-control" value="<?= strtoupper($_SESSION['lvl']); ?> SMAN 2 MATARAM" disabled autocomplete="off">
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-
 
             </div>
 

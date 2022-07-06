@@ -36,7 +36,7 @@ if (!isset($_SESSION['usr'])) {
                 </div>
             </div>
 
-            <div class="container-fluid ">
+            <div class="container-fluid">
                 <!-- <div class="col-sm-8 col-sm-6 alert alert-info mt-2">
                     <h4 class="page-title text-dark font-weight-medium mb-1 mt-2">Selamat Datang Di Website Penjurusan <?= strtolower($_SESSION['nama']); ?></h4>
                 </div> -->
@@ -53,9 +53,9 @@ if (!isset($_SESSION['usr'])) {
                     <div style="margin-left: 9px; margin-right: 9px;">
                         <div class="col-md-8 col-md-3 alert alert-warning"><i class="fas fa-exclamation-triangle"></i>&emsp;<?php echo $msg; ?></div>
                     </div>
-                   
-                   <?php
-                  
+
+                    <?php
+
                 } else {
                     $nisn = $_SESSION['usr'];
                     $query = mysql_query("SELECT * FROM hasil_prediksi WHERE nisn='$nisn'");
@@ -63,142 +63,144 @@ if (!isset($_SESSION['usr'])) {
                     $jmlque = mysql_num_rows($query);
                     if ($jmlque == 1) {
                     ?>
-                        <div class="form-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="jk1" class="col-lg-2">Jenis Kelamin</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <select name="jk" id="jk1" class="form-control" disabled autofocus>
-                                                    <option value="1" <?php if ($baris['jk'] == '1') : echo 'selected';
-                                                                        endif; ?>>Laki-Laki</option>
-                                                    <option value="2" <?php if ($baris['jk'] == '2') : echo 'selected';
-                                                                        endif; ?>>Perempuan</option>
-                                                </select>
-                                            </div>
+                        <div class="card-body" style="color: black; background-color: #dee0e3;">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="jk1" class="col-lg-2">Jenis Kelamin</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <select name="jk" id="jk1" class="form-control" disabled autofocus>
+                                                        <option value="1" <?php if ($baris['jk'] == '1') : echo 'selected';
+                                                                            endif; ?>>Laki-Laki</option>
+                                                        <option value="2" <?php if ($baris['jk'] == '2') : echo 'selected';
+                                                                            endif; ?>>Perempuan</option>
+                                                    </select>
+                                                </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="ppdb" class="col-lg-2">Jalur PPDB</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-8">
-
-                                                <select name="txtppdb" id="ppdb" class="form-control" disabled>
-                                                    <option value="1" <?php if ($baris['ppdb'] == '1') : echo 'selected';
-                                                                        endif; ?>>Perpindahan Orang tua</option>
-                                                    <option value="2" <?php if ($baris['ppdb'] == '2') : echo 'selected';
-                                                                        endif; ?>>Prestasi Akademik</option>
-                                                    <option value="3" <?php if ($baris['ppdb'] == '3') : echo 'selected';
-                                                                        endif; ?>>Prestasi Non-Akademik</option>
-                                                    <option value="4" <?php if ($baris['ppdb'] == '4') : echo 'selected';
-                                                                        endif; ?>>Prestasi Tahfidz</option>
-                                                    <option value="5" <?php if ($baris['ppdb'] == '5') : echo 'selected';
-                                                                        endif; ?>>Afirmasi</option>
-                                                    <option value="6" <?php if ($baris['ppdb'] == '6') : echo 'selected';
-                                                                        endif; ?>>Zonasi</option>
-                                                    <option value="7" <?php if ($baris['ppdb'] == '7') : echo 'selected';
-                                                                        endif; ?>>PPLP</option>
-                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="indo" class="col-lg-2">Rata-rata Bahasa Indonesia</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtbhs_id" id="indo" class="form-control" value="<?= $baris['bhs_indonesia'] ?>" disabled autocomplete="off">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="ppdb" class="col-lg-2">Jalur PPDB</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-8">
+
+                                                    <select name="txtppdb" id="ppdb" class="form-control" disabled>
+                                                        <option value="1" <?php if ($baris['ppdb'] == '1') : echo 'selected';
+                                                                            endif; ?>>Perpindahan Orang tua</option>
+                                                        <option value="2" <?php if ($baris['ppdb'] == '2') : echo 'selected';
+                                                                            endif; ?>>Prestasi Akademik</option>
+                                                        <option value="3" <?php if ($baris['ppdb'] == '3') : echo 'selected';
+                                                                            endif; ?>>Prestasi Non-Akademik</option>
+                                                        <option value="4" <?php if ($baris['ppdb'] == '4') : echo 'selected';
+                                                                            endif; ?>>Prestasi Tahfidz</option>
+                                                        <option value="5" <?php if ($baris['ppdb'] == '5') : echo 'selected';
+                                                                            endif; ?>>Afirmasi</option>
+                                                        <option value="6" <?php if ($baris['ppdb'] == '6') : echo 'selected';
+                                                                            endif; ?>>Zonasi</option>
+                                                        <option value="7" <?php if ($baris['ppdb'] == '7') : echo 'selected';
+                                                                            endif; ?>>PPLP</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="math" class="col-lg-2">Rata-rata Matematika</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtmtk" id="math" class="form-control" value="<?= $baris['matematika'] ?>" disabled autocomplete="off">
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="ing" class="col-lg-2">Rata-rata Bahasa Inggris</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtbhs_ing" id="ing" class="form-control" value="<?= $baris['bhs_inggris'] ?>" disabled autocomplete="off">
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="alam" class="col-lg-2">Rata-rata Ilmu Pengetahuan Alam</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtipa" id="alam" class="form-control" value="<?= $baris['ipa'] ?>" disabled autocomplete="off">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="indo" class="col-lg-2">Rata-rata Bahasa Indonesia</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtbhs_id" id="indo" class="form-control" value="<?= $baris['bhs_indonesia'] ?>" disabled autocomplete="off">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="sosial" class="col-lg-2">Rata-rata Ilmu Pengetahuan Sosial</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtips" id="sosial" class="form-control" value="<?= $baris['ips'] ?>" disabled autocomplete="off">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="math" class="col-lg-2">Rata-rata Matematika</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtmtk" id="math" class="form-control" value="<?= $baris['matematika'] ?>" disabled autocomplete="off">
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="skh" class="col-lg-2">Rata-rata SKHU</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtskhu" id="skh" class="form-control" value="<?= $baris['skhu'] ?>" disabled autocomplete="off">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="ing" class="col-lg-2">Rata-rata Bahasa Inggris</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtbhs_ing" id="ing" class="form-control" value="<?= $baris['bhs_inggris'] ?>" disabled autocomplete="off">
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <label for="skh" class="col-lg-2">Prediksi Jurusan</label>
-                                    <div class="col-lg-10">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <input type="text" name="txtskhu" id="skh" class="form-control" value="<?= $baris['hasil'] ?>" disabled autocomplete="off">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="alam" class="col-lg-2">Rata-rata Ilmu Pengetahuan Alam</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtipa" id="alam" class="form-control" value="<?= $baris['ipa'] ?>" disabled autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="sosial" class="col-lg-2">Rata-rata Ilmu Pengetahuan Sosial</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtips" id="sosial" class="form-control" value="<?= $baris['ips'] ?>" disabled autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="skh" class="col-lg-2">Rata-rata SKHU</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtskhu" id="skh" class="form-control" value="<?= $baris['skhu'] ?>" disabled autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label for="skh" class="col-lg-2">Prediksi Jurusan</label>
+                                        <div class="col-lg-10">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txtskhu" id="skh" class="form-control" value="<?= $baris['hasil'] ?>" disabled autocomplete="off">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +350,7 @@ if (!isset($_SESSION['usr'])) {
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body" style="color: black; background-color: #dee0e3;">
                                             <h4 class="card-title mb-3"> Isi Data dibawah dengan data nilai anda</h4>
                                             <form action="" method="POST">
                                                 <div class="form-body">
@@ -359,7 +361,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
-                                                                        <select name="jk" id="jk1" class="form-control" autofocus>
+                                                                        <select name="jk" id="jk1" class="form-control" autofocus required>
                                                                             <option value=""> <i>---Pilih--- <i class="bi bi-caret-down-fill"></i></i> </option>
                                                                             <option value="1">Laki-Laki</option>
                                                                             <option value="2">Perempuan</option>
@@ -377,7 +379,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
-                                                                        <select name="txtppdb" id="ppdb" class="form-control">
+                                                                        <select name="txtppdb" id="ppdb" class="form-control" required>
                                                                             <option value=""><i>---Pilih--- <i class="bi bi-caret-down-fill"></i></i> </option>
                                                                             <option value="1">Perpindahan Orang tua</option>
                                                                             <option value="2">Prestasi Akademik</option>
@@ -399,7 +401,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" name="txtbhs_id" id="indo" class="form-control" placeholder=" * " autocomplete="off">
+                                                                        <input type="text" name="txtbhs_id" id="indo" class="form-control" placeholder=" * " autocomplete="off" required>
                                                                     </div>
 
                                                                 </div>
@@ -413,7 +415,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" name="txtmtk" id="math" class="form-control" placeholder=" * " autocomplete="off">
+                                                                        <input type="text" name="txtmtk" id="math" class="form-control" placeholder=" * " autocomplete="off" required>
                                                                     </div>
 
                                                                 </div>
@@ -427,7 +429,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" name="txtbhs_ing" id="ing" class="form-control" placeholder=" * " autocomplete="off">
+                                                                        <input type="text" name="txtbhs_ing" id="ing" class="form-control" placeholder=" * " autocomplete="off" required>
                                                                     </div>
 
                                                                 </div>
@@ -441,7 +443,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" name="txtipa" id="alam" class="form-control" placeholder=" * " autocomplete="off">
+                                                                        <input type="text" name="txtipa" id="alam" class="form-control" placeholder=" * " autocomplete="off" required>
                                                                     </div>
 
                                                                 </div>
@@ -455,7 +457,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" name="txtips" id="sosial" class="form-control" placeholder=" * " autocomplete="off">
+                                                                        <input type="text" name="txtips" id="sosial" class="form-control" placeholder=" * " autocomplete="off" required>
                                                                     </div>
 
                                                                 </div>
@@ -469,7 +471,7 @@ if (!isset($_SESSION['usr'])) {
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                        <input type="text" name="txtskhu" id="skh" class="form-control" placeholder=" * " autocomplete="off">
+                                                                        <input type="text" name="txtskhu" id="skh" class="form-control" placeholder=" * " autocomplete="off" required>
                                                                     </div>
 
                                                                 </div>
@@ -490,7 +492,7 @@ if (!isset($_SESSION['usr'])) {
                             </div>
 
                             <!--  -->
-                <?php
+                            <?php
                         } else {
                             $n_jk = $_POST['jk'];
                             $n_ppdb = $_POST['txtppdb'];
@@ -500,15 +502,16 @@ if (!isset($_SESSION['usr'])) {
                             $n_ipa = $_POST['txtipa'];
                             $n_ips = $_POST['txtips'];
                             $n_skhu = $_POST['txtskhu'];
-                            echo "<h4><center>Hasil Jawaban Anda...<br>";
-                            echo "jk: " . $n_jk . "<br>";
-                            echo "ppdb: " . $n_ppdb . "<br>";
-                            echo "bhs_indonesia: " . $n_bhs_indonesia . "<br>";
-                            echo "matematika: " . $n_matematika . "<br>";
-                            echo "bhs_inggris: " . $n_bhs_inggris . "<br>";
-                            echo "ipa: " . $n_ipa . "<br>";
-                            echo "ips: " . $n_ips . "<br>";
-                            echo "skhu: " . $n_skhu . "<br><br><br></center></h4>";
+
+                            // echo "<h4><center>Hasil Jawaban Anda...<br>";
+                            // echo "jk: " . $n_jk . "<br>";
+                            // echo "ppdb: " . $n_ppdb . "<br>";
+                            // echo "bhs_indonesia: " . $n_bhs_indonesia . "<br>";
+                            // echo "matematika: " . $n_matematika . "<br>";
+                            // echo "bhs_inggris: " . $n_bhs_inggris . "<br>";
+                            // echo "ipa: " . $n_ipa . "<br>";
+                            // echo "ips: " . $n_ips . "<br>";
+                            // echo "skhu: " . $n_skhu . "<br><br><br></center></h4>";
 
                             $sql = mysql_query("SELECT * FROM pohon_keputusan");
                             $id_rule = "";
@@ -639,16 +642,50 @@ if (!isset($_SESSION['usr'])) {
                                 }
                                 echo "<h1><center>Anda Akan masuk kelas " . $keputusan . "</center></h1>";
                                 // echo "<h4><center>Rule terpilih adalah rule yang terakhir karena tidak memenuhi semua rule</center></h4>";
-                                mysql_query("INSERT INTO hasil_prediksi (nisn,jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) VALUES 
-				('$nisn','$n_jk','$n_ppdb','$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
+                                if (empty($errors)) :
+
+                                    $simpan = mysql_query("INSERT INTO hasil_prediksi (nisn,jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) 
+                                     VALUES ('$nisn', '$n_jk', '$n_ppdb', '$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
+
+                                    if ($simpan) {
+                                        $sts[] = 'Data berhasil disimpan';
+                                    } else {
+                                        $sts[] = 'Data gagal disimpan';
+                                    }
+                                endif;
                             } else {
-                                echo "<h1><center>Anda diprediksi masuk kelas " . $keputusan . "</center></h1>";
+                            ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card text-white bg-info">
+                                            <div class="card-header">
+                                                <h4 class="mb-0 text-white">Selamat Kepada <?= ucwords($_SESSION['lvl']); ?></h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h3 class="card-title text-white"> Nama : <?= $_SESSION['nama']; ?></h3>
+                                                <p class="card-text"> Anda Masuk Dikelas : <?= $keputusan; ?></p>
+                                                <a href="prediksi_form.php" class="btn btn-dark">Kembali</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                <?php
+                                // echo "<h1><center>Anda diprediksi masuk kelas " . $keputusan . "</center></h1>";
                                 $sql_que = mysql_query("SELECT * FROM pohon_keputusan WHERE id=$id_rule");
                                 $row_bar = mysql_fetch_array($sql_que);
                                 $rule_terpilih = "IF " . $row_bar[1] . " AND " . $row_bar[2] . " THEN jurusan = " . $row_bar[3];
                                 // echo "<h4><center>Rule yang terpilih adalah rule ke-" . $row_bar[0] . "<br>" . $rule_terpilih . "</center></h4>";
-                                mysql_query("INSERT INTO hasil_prediksi (nisn,jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) VALUES 
-				('$nisn','$n_jk','$n_ppdb','$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
+                                if (empty($errors)) :
+
+                                    $simpan = mysql_query("INSERT INTO hasil_prediksi (nisn,jk,ppdb,bhs_indonesia,matematika,bhs_inggris,ipa,ips,skhu,hasil) 
+                                     VALUES ('$nisn', '$n_jk', '$n_ppdb', '$n_bhs_indonesia','$n_matematika','$n_bhs_inggris','$n_ipa','$n_ips','$n_skhu','$keputusan')");
+
+                                    if ($simpan) {
+                                        $sts[] = 'Data berhasil disimpan';
+                                    } else {
+                                        $sts[] = 'Data gagal disimpan';
+                                    }
+                                endif;
                             }
                         }
                     }

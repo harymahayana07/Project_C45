@@ -9,7 +9,7 @@
   <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
   <meta name="theme-color" content="#ffffff">
 
-  <title>C45 | Home</title>
+  <title>SMAN 2 MATARAM</title>
 
   <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('public/assets/img/favicons/apple-touch-icon.png') ?>">
   <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('public/assets/img/favicons/favicon-32x32.png') ?>">
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/carousel-style.css') ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -30,10 +31,10 @@
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link fw-medium active" aria-current="page" href="#home">Beranda</a></li>
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#visiMisi">Visi & Misi</a></li>
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#photos">Foto</a></li>
-            <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#lokasi">Lokasi</a></li>
+            <li class="nav-item px-2"><a class="nav-link active" href="#home">Beranda</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="#visiMisi">Visi & Misi</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="#photos">Foto</a></li>
+            <li class="nav-item px-2"><a class="nav-link" href="#lokasi">Lokasi</a></li>
           </ul>
           <form class="ps-lg-5">
             <a class="btn btn-outline-primary order-0" type="submit" href="<?= base_url('auth/login-form.php') ?>"> Login </a>
@@ -121,7 +122,6 @@
                               <br>7. Menyelenggarakan Kegiatan Imtaq Dan Kegiatan Keagamaan Lainnya Untuk Membina Keimanan, Ketaqwaan Dan Akhlaq Terpuji Bagi Siswa<br>
                               <br>8. Membangun Hubungan Yang Lebih Komunikatif Antara Sekolah Dengan Masyarakat Dalam Menyusun Program Sekolah Dan Juga Pihak Lain Yang Berkiprah Dan Memiliki Katian Dengan Masalah Pendidikan
                             </p>
-
                           </div>
                         </div>
                       </div>
@@ -129,7 +129,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -259,6 +258,8 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="<?= base_url('public/assets/js/theme.js') ?>"></script>
   <script src="<?= base_url('assets/js/owl.carousel.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/nav.js') ?>"></script>
+
   <script>
     $(document).ready(function() {
       $('.owl-carousel').owlCarousel({
@@ -290,4 +291,5 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 </body>
+
 </html>

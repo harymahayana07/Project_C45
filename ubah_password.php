@@ -124,5 +124,5 @@ endif;
 			</section>
 		</div>
 		<?php
-		require 'partial/footer.php';
+		require 'partial/footers.php';
 		?>

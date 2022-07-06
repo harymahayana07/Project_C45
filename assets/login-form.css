@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url("bg-login.jpg");
+  background-image: url("bg-login.jpg") !important;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -18,7 +18,7 @@ body {
   min-height: 500px;
   margin: 80px auto;
   padding: 40px 30px 30px 30px;
-  background-color: #ecf0f3;
+  background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 13px 13px 20px #29262c, -13px -13px 20px rgb(36, 36, 40);
 }

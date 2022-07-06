@@ -9,9 +9,13 @@ include_once("partial/headers.php");
 
 if (isset($_GET['act'])) {
 	$action = $_GET['act'];
+	$id = $_GET['nisn'];
 	if ($action == 'delete_all') {
 		mysql_query("TRUNCATE hasil_prediksi");
 		header('location:hasil_prediksi.php?status_hapus_all=sukses-hapus-all');
+	} else if ($action == 'delete') {
+		mysql_query("DELETE FROM hasil_prediksi WHERE nisn = '$id'");
+		header('location:hasil_prediksi.php?status_hapus=sukses-hapus');
 	}
 } else {
 	require 'partial/navbar.php';
@@ -28,7 +32,6 @@ if (isset($_GET['act'])) {
 			<div class="content-wrapper">
 				<section class="content-header">
 					<div class="container-fluid">
-
 						<div class="row mb-2">
 							<div class="col-sm-6">
 								<h3><i class="fas fa-calculator">&nbsp;</i>HASIL PREDIKSI</h3>
@@ -51,7 +54,10 @@ if (isset($_GET['act'])) {
 								<div class="container-fluid">
 									<div class="row" style="float: right;">
 										<div class="col-lg-12 col-md-4">
-											<a href="export/CLP.php?format=3" class="btn btn-success btn-responsive"><i class="fas fa-print"></i> Cetak </a>&emsp;
+											<a href="export/CLP.php?format=4" class="btn btn-success btn-responsive"><i class="fas fa-print"></i>&nbsp; PRINT</a>
+											<a href="export/CLP.php?format=1" class="btn btn-success btn-responsive"><i class="fas fa-print"></i>&nbsp; WORD </a>
+											<a href="export/CLP.php?format=2" class="btn btn-success btn-responsive"><i class="fas fa-print"></i>&nbsp; EXCEL</a>
+											<a href="export/CLP.php?format=3" class="btn btn-success btn-responsive"><i class="fas fa-print"></i>&nbsp; PDF </a>&emsp;
 
 											<button type="button" class="btn btn-danger btn-responsive" data-bs-toggle="modal" data-bs-target="#hapusDataTraining">
 												<i class="fas fa-trash-alt"></i></i> Reset
@@ -60,7 +66,7 @@ if (isset($_GET['act'])) {
 												<div class="modal-dialog">
 													<div class="modal-content">
 														<div class="modal-header bg-warning">
-															<h5>Hapus Data Training</h5>
+															<h5>Hapus Data Hasil Prediksi</h5>
 															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 														</div>
 														<div class="modal-body">
@@ -84,6 +90,20 @@ if (isset($_GET['act'])) {
 						switch ($status):
 							case 'sukses-hapus-all':
 								$msg = 'Semua data berhasil dihapus';
+								break;
+						endswitch;
+
+						if ($msg) : ?>
+							<div style="margin-left: 9px; margin-right: 9px;">
+								<div class="col-md-6 col-md-3 alert alert-info"><i class="fas fa-check-circle"></i><a href="hasil_prediksi.php"><button type="button" class="close"><span>&times;</span></button></a>&emsp;<?php echo $msg; ?></div>
+							</div>
+						<?php endif; ?>
+						<?php
+						$status = isset($_GET['status_hapus']) ? $_GET['status_hapus'] : '';
+						$msg = '';
+						switch ($status):
+							case 'sukses-hapus':
+								$msg = 'Data berhasil dihapus';
 								break;
 						endswitch;
 
@@ -117,6 +137,7 @@ if (isset($_GET['act'])) {
 													<th>Jenis Kelamin</th>
 													<th>Asal Sekolah</th>
 													<th>Hasil Prediksi</th>
+													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -139,6 +160,9 @@ if (isset($_GET['act'])) {
 														<td><?php echo $row[2]; ?></td>
 														<td><?php echo $row[3]; ?></td>
 														<td><?php echo $row[4]; ?></td>
+														<td>
+															<a href="hasil_prediksi.php?act=delete&nisn=<?php echo $row[0]; ?>" class="btn btn-danger btn-responsive btn-sm d-inline" onclick="return confirm('Anda yakin akan hapus data ini?')"><i class="fas fa-trash"></i></a>
+														</td>
 													</tr>
 											<?php
 													$no++;
